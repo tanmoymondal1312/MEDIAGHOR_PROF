@@ -115,6 +115,8 @@ function setupDescriptionToggles() {
     });
 }
 
+
+
 function copyToClipboard(button) {
     const text = button.getAttribute('data-link');
     navigator.clipboard.writeText(text).then(() => {
@@ -132,6 +134,13 @@ function copyToClipboard(button) {
         console.error("Failed to copy: ", err);
     });
 }
+
+
+
+
+
+
+
 
 
 

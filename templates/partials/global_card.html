@@ -44,16 +44,34 @@
             
             <!-- Blog Post Card Type -->
             {% elif data.is_for_blog_posts %}
-                <div class="blog-card-content">
-                    <p class="text-gray-600 mt-2 flex-grow preview-text">
-                        {{ data.post_content }}
-                    </p>
-                    
-                    {% if data.full_post_content %}
-                    <a href="#" class="inline-block mt-2 text-blue-600 font-bold hover:text-blue-800 hover:underline transition-colors">
-                        See Full Post
-                    </a>
-                    {% endif %}
+           <!-- Add data-id to the parent container (adjust selector if needed) -->
+                <div class="blog-card" data-id="{{ data.id }}">  <!-- 👈 Add this line -->
+                    <div class="blog-card-content">
+                        <p class="text-gray-600 mt-2 flex-grow preview-text">
+                            {{ data.post_content }}
+                        </p>
+                        
+                        <div class="flex items-center justify-between mt-2">
+                            {% if data.full_post_content %}
+                            <a href="#" class="inline-block text-blue-600 font-bold hover:text-blue-800 hover:underline transition-colors">
+                                See Full Post
+                            </a>
+                            {% endif %}
+                            <div class="flex space-x-2 ml-auto">
+                                <button 
+                                    class="flex items-center text-gray-600 hover:text-green-600 transition-colors"
+                                    title="Like"
+                                    data-like-button
+                                    data-post-id="{{ data.id }}"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                    </svg>
+                                    <span class="likes-count ml-1">{{ data.likes }}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             
             <!-- Company Service Card Type -->
@@ -75,6 +93,61 @@
 </div>
 
 <script>
+
+    //Like Unlike On Blog Post
+    document.addEventListener('DOMContentLoaded', function() {
+        const likeButtons = document.querySelectorAll('[data-like-button]');
+        
+        likeButtons.forEach(button => {
+            button.addEventListener('click', async function() {
+                const postId = this.dataset.postId;
+                const likeCountElement = this.querySelector('.likes-count');
+                const isLiked = this.classList.contains('text-green-600');
+                
+                try {
+                    const response = await fetch('/blogs/post-impression/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCookie('csrftoken'),
+                        },
+                        body: JSON.stringify({
+                            post_id: postId,
+                            action: isLiked ? 'unlike' : 'like'
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        likeCountElement.textContent = data.new_likes;
+                        this.classList.toggle('text-gray-600');
+                        this.classList.toggle('text-green-600');
+                    } else {
+                        console.error('Error:', data.error);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+        
+        // CSRF token function (same as before)
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    });
 
 </script>
 

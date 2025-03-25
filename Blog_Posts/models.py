@@ -6,6 +6,7 @@ class BlogPost(models.Model):
     post_content = models.TextField()
     full_post_content = models.TextField(blank=True, null=True)
     is_for_blog_posts = models.BooleanField(default=True)
+    likes = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
