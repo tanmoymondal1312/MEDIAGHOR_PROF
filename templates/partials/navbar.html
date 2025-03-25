@@ -1,0 +1,51 @@
+{% load static %}
+<nav class="bv-navbar text-white p-4 flex items-center justify-between w-full fixed top-0 left-0 z-50" 
+    style="background-color:rgb(125, 114, 223);">
+
+    <!-- Toggle Button (Visible only on mobile) -->
+    <button id="toggleMenu" class="bv-toggle lg:hidden text-yellow-400 text-2xl mr-4">☰</button>
+
+    <!-- Logo -->
+    <img src="{% static 'images/logo-2.png' %}" alt="Media Ghor" class="w-20 h-auto mx-auto lg:mx-0">
+
+    <!-- Navigation Menu -->
+    <div id="menu" class="bv-menu hidden lg:flex flex-col lg:flex-row lg:items-center lg:space-x-6 
+        absolute lg:relative top-16 lg:top-auto left-0 lg:left-auto w-full lg:w-auto 
+        bg-gray-900 lg:bg-transparent p-4 lg:p-0 shadow-md lg:shadow-none transition-all duration-300 ease-in-out">
+        
+        <a href="{% url 'home' %}" class="block py-2 lg:py-0 hover:text-yellow-400 text-lg font-semibold transition-all duration-300">Home</a>
+
+        <!-- Dropdown Menu -->
+        <div class="relative group">
+            <a href="#" class="block py-2 lg:py-0 hover:text-yellow-400 text-lg font-semibold transition-all duration-300 flex items-center">
+                Resources
+                <svg class="w-4 h-4 ml-1 transition-transform duration-300 group-hover:rotate-180" 
+                     fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </a>
+            <!-- Dropdown Content -->
+            <div class="dropdown-content absolute left-0 mt-1 w-48 bg-gray-800 text-white rounded-lg shadow-lg 
+                opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-50">
+                <a href="#" class="block px-4 py-3 hover:bg-yellow-500 hover:text-gray-900 transition-all duration-300 rounded-t-lg">Android</a>
+                <a href="#" class="block px-4 py-3 hover:bg-yellow-500 hover:text-gray-900 transition-all duration-300">Django</a>
+                <a href="#" class="block px-4 py-3 hover:bg-yellow-500 hover:text-gray-900 transition-all duration-300 rounded-b-lg">Python</a>
+            </div>
+        </div>
+
+        <a href="#" class="block py-2 lg:py-0 hover:text-yellow-400 text-lg font-semibold transition-all duration-300">Posts</a>
+        <a href="{% url 'services' %}" class="block py-2 lg:py-0 hover:text-yellow-400 text-lg font-semibold transition-all duration-300">Our Services</a>
+    </div>
+
+    <!-- Search Box -->
+    <div class="bv-searchbox relative w-full lg:w-auto mt-4 lg:mt-0">
+        <input type="text" placeholder="Search..." 
+        class="bv-search-input w-full lg:w-64 px-4 py-2 rounded-full border-2 border-transparent focus:border-yellow-400 focus:outline-none transition-colors 
+        bg-gradient-to-r from-[#b6c3d6] via-[#bcb6d6] to-[#bcd6b6] text-black placeholder-gray-700">
+        <button class="bv-search-btn absolute right-2 top-1/2 transform -translate-y-1/2 bg-white text-gray-900 p-2 rounded-full shadow-md hover:bg-yellow-400">
+            🔍
+        </button>
+    </div>
+</nav>
+
+

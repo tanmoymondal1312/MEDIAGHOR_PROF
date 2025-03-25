@@ -1,0 +1,46 @@
+/*NavBar--------------------------------------------------*/
+.bv-searchbox {
+    left: -100px;
+    position: relative;
+}
+
+/* Ensure menu is hidden by default for mobile */
+@media (max-width: 1023px) {
+    #menu {
+        display: none;
+        flex-direction: column;
+    }
+}
+
+/* Show menu when it's active */
+#menu.block {
+    display: block;
+}
+
+
+
+/*Global card ---------------------------------------------*/
+/* Library Container Styles */
+.library-container {
+    max-height: 160px;
+    min-height: 60px;
+}
+.library-content {
+    line-height: 1.4;
+    tab-size: 4;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+}
+
+
+
+.short-text, .full-text {
+    transition: opacity 0.3s ease;
+}
+
+
+
+/*home.html ---------------------------------------------*/
+
+
+
