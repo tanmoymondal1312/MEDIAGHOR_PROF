@@ -25,7 +25,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('services/',include('Company_Services.urls')),
     path('blogs/', include('Blog_Posts.urls')),
-    path('resources/', include('Blog_Posts.urls')),
+    path('resources/', include('Resources.urls')),
 
 
 ]

@@ -33,6 +33,7 @@
                                     How To Use
                                 </button>
                                 <button onclick="copyToClipboard(this)" 
+                                        data-post-id="{{ data.id }}"
                                         data-link="{{ data.library_link }}"
                                         class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 copy-btn">
                                     Copy
@@ -93,61 +94,6 @@
 </div>
 
 <script>
-
-    //Like Unlike On Blog Post
-    document.addEventListener('DOMContentLoaded', function() {
-        const likeButtons = document.querySelectorAll('[data-like-button]');
-        
-        likeButtons.forEach(button => {
-            button.addEventListener('click', async function() {
-                const postId = this.dataset.postId;
-                const likeCountElement = this.querySelector('.likes-count');
-                const isLiked = this.classList.contains('text-green-600');
-                
-                try {
-                    const response = await fetch('/blogs/post-impression/', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRFToken': getCookie('csrftoken'),
-                        },
-                        body: JSON.stringify({
-                            post_id: postId,
-                            action: isLiked ? 'unlike' : 'like'
-                        })
-                    });
-                    
-                    const data = await response.json();
-                    
-                    if (data.success) {
-                        likeCountElement.textContent = data.new_likes;
-                        this.classList.toggle('text-gray-600');
-                        this.classList.toggle('text-green-600');
-                    } else {
-                        console.error('Error:', data.error);
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                }
-            });
-        });
-        
-        // CSRF token function (same as before)
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-    });
 
 </script>
 
