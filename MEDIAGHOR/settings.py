@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Company_Services',
     'Blog_Posts',
     'Resources',
+    'categories',
 ]
 
 MIDDLEWARE = [

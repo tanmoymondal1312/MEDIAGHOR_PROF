@@ -5,6 +5,7 @@ class CompanyService(models.Model):
     image = models.ImageField(upload_to='company_services/', blank=True, null=True)
     description = models.TextField()
     is_for_company_service = models.BooleanField(default=True)
+    priority = models.IntegerField(default=0,blank=True,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -27,13 +27,13 @@
             <!-- Dropdown Content -->
             <div class="dropdown-content absolute left-0 mt-1 w-48 bg-gray-800 text-white rounded-lg shadow-lg 
                 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-50">
-                <a href="#" class="block px-4 py-3 hover:bg-yellow-500 hover:text-gray-900 transition-all duration-300 rounded-t-lg">Android</a>
-                <a href="#" class="block px-4 py-3 hover:bg-yellow-500 hover:text-gray-900 transition-all duration-300">Django</a>
-                <a href="#" class="block px-4 py-3 hover:bg-yellow-500 hover:text-gray-900 transition-all duration-300 rounded-b-lg">Python</a>
+                <a href="{% url 'resources:single_category_resources' 'android' %}" class="block px-4 py-3 hover:bg-yellow-500 hover:text-gray-900 transition-all duration-300 rounded-t-lg">Android</a>
+                <a href="{% url 'resources:single_category_resources' 'django' %}" class="block px-4 py-3 hover:bg-yellow-500 hover:text-gray-900 transition-all duration-300">Django</a>
+                <a href="{% url 'resources:single_category_resources' 'python' %}" class="block px-4 py-3 hover:bg-yellow-500 hover:text-gray-900 transition-all duration-300 rounded-b-lg">Python</a>
             </div>
         </div>
 
-        <a href="#" class="block py-2 lg:py-0 hover:text-yellow-400 text-lg font-semibold transition-all duration-300">Posts</a>
+        <a href="{% url 'blogs:all-posts'%}" class="block py-2 lg:py-0 hover:text-yellow-400 text-lg font-semibold transition-all duration-300">Posts</a>
         <a href="{% url 'services' %}" class="block py-2 lg:py-0 hover:text-yellow-400 text-lg font-semibold transition-all duration-300">Our Services</a>
     </div>
 
