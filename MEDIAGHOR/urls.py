@@ -23,9 +23,13 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('services/',include('Company_Services.urls')),
-    path('resources/', include(('Blog_Posts.urls', 'blogs'), namespace='blogs')),
-    path('resources/', include(('Resources.urls', 'resources'), namespace='resources')),
+    path('about', views.about, name='about'),
+
+    path('services', include(('Company_Services.urls', 'company_services'), namespace='company_services')),
+
+    path('blogs', include(('Blog_Posts.urls', 'blogs'), namespace='blogs')),
+    path('resources', include(('Resources.urls', 'resources'), namespace='resources')),
+    path('api/search-suggestions/', views.search_suggestions, name='search-suggestions'),
 
 ]
 

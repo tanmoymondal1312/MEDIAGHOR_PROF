@@ -1,10 +1,12 @@
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import ensure_csrf_cookie
 import json
 from .models import BlogPost
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
+
 
 
 @require_POST
@@ -48,12 +50,23 @@ def post_impression(request):
 
 def all_posts(request):
     # Get all posts ordered by likes (highest first)
-    posts_list = BlogPost.objects.all().order_by('-likes')
-    
+    search = request.GET.get('search', '').strip()
+
+    if(not search):
+        posts_list = BlogPost.objects.all().order_by('-likes')
+    else:
+        posts_list = BlogPost.objects.filter(
+            Q(short_title__icontains=search) | 
+            Q(post_content__icontains=search) |
+            Q(full_post_content__icontains=search) |
+            Q(title__icontains=search)
+        ).order_by('-likes')
+
+
+
     # Paginate with 12 items per page
-    paginator = Paginator(posts_list, 4)
+    paginator = Paginator(posts_list, 12)
     page_number = request.GET.get('page')
-    
     try:
         services_datas = paginator.page(page_number)
     except PageNotAnInteger:
@@ -76,3 +89,30 @@ def all_posts(request):
     }
     
     return render(request, 'all_posts.html', context)
+
+
+def post(request,id):
+
+    current_post = get_object_or_404(BlogPost, id=id)
+
+    
+    # Get recommended posts using multiple criteria, ordered by likes (descending) and date (descending)
+    recommended_posts = BlogPost.objects.filter(
+        Q(title__icontains=current_post.short_title) |
+        Q(post_content__icontains=current_post.short_title) |
+        Q(full_post_content__icontains=current_post.short_title)
+    ).exclude(id=current_post.id).filter(
+        is_for_blog_posts=True
+    ).distinct().order_by('-likes', '-created_at')[:5]  # First by likes, then by date
+    
+    # Fallback if no recommendations found - get most popular recent posts
+    if not recommended_posts.exists():
+        recommended_posts = BlogPost.objects.filter(
+            is_for_blog_posts=True
+        ).exclude(id=current_post.id).order_by('-likes', '-created_at')[:5]
+    
+    context = {
+        'post': current_post,
+        'recommended_posts': recommended_posts
+    }
+    return render(request, 'post.html',context)

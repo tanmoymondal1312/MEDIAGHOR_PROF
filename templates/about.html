@@ -1,0 +1,407 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}About | Media Ghor{% endblock %}
+
+{% block content %}
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+  
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-12 md:py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-3xl md:text-6xl font-bold mb-4 md:mb-6">About Media Ghor</h1>
+            <p class="text-lg md:text-2xl mb-6 md:mb-8 max-w-3xl mx-auto">Your trusted partner for innovative IT solutions and developer resources</p>
+            <div class="flex justify-center">
+                <img src="{% static 'images/logo-2.png' %}" alt="Media Ghor" 
+                     class="h-24 w-auto md:h-32 floating"
+                     style="max-width: 80vw;">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Who We Are</h2>
+                    <p class="text-gray-600 mb-6 text-lg">
+                        Media Ghor is a premier IT solutions provider founded by Tanmoy Mondal, dedicated to delivering cutting-edge technology services and resources to businesses and developers worldwide.
+                    </p>
+                    <p class="text-gray-600 mb-6 text-lg">
+                        Our mission is to empower digital transformation through innovative solutions and comprehensive tech resources that help businesses grow and developers excel.
+                    </p>
+                    <div class="flex items-center mt-8">
+                        <img src="{% static 'images/from-kanika.png' %}" alt="From Kanika" class="h-16 mr-4">
+                        <div>
+                            <p class="text-gray-500 text-sm">A proud subsidiary of</p>
+                            <p class="text-gray-800 font-bold">Kanika Technologies</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <div class="bg-gray-100 p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Our Vision</h3>
+                        <p class="text-gray-600 mb-6">
+                            To become the most trusted technology partner for businesses of all sizes by delivering exceptional digital solutions that drive growth and innovation.
+                        </p>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 mt-8">Our Values</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                                <span class="text-gray-600">Innovation: We constantly push boundaries to deliver cutting-edge solutions.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                                <span class="text-gray-600">Quality: We never compromise on the quality of our products and services.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                                <span class="text-gray-600">Integrity: We maintain transparency and honesty in all our dealings.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                                <span class="text-gray-600">Client-Centric: Your success is our top priority.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-16">Our Premium Services</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+                <!-- Android Development -->
+                <a href="{% url 'company_services:service_details' id='android-development' %}">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden service-card transition duration-500">
+                        <div class="p-8">
+                            <div class="uppercase tracking-wide text-sm text-purple-600 font-semibold mb-1">Service</div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Android App Development</h3>
+                            <div class="flex items-center mb-4">
+                                <div class="bg-purple-100 rounded-full p-3 mr-3">
+                                    <i class="fab fa-android text-purple-600 text-xl"></i>
+                                </div>
+                                <p class="text-gray-600">Custom, high-performance Android apps designed for all devices</p>
+                            </div>
+                            <ul class="space-y-3 text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="text-purple-600 mr-2 mt-1">⚡</span>
+                                    <span>Fast, secure, and optimized for smooth user experiences</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-purple-600 mr-2 mt-1">🎨</span>
+                                    <span>Engaging UI/UX with seamless navigation and responsiveness</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+
+
+                <!-- API Development -->
+                <a href="{% url 'company_services:service_details' id='api-development' %}">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden service-card transition duration-500">
+                        <div class="p-8">
+                            <div class="uppercase tracking-wide text-sm text-purple-600 font-semibold mb-1">Service</div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">API Development</h3>
+                            <div class="flex items-center mb-4">
+                                <div class="bg-purple-100 rounded-full p-3 mr-3">
+                                    <i class="fas fa-code text-purple-600 text-xl"></i>
+                                </div>
+                                <p class="text-gray-600">Powerful and scalable APIs for seamless application integration</p>
+                            </div>
+                            <ul class="space-y-3 text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="text-purple-600 mr-2 mt-1">⚙️</span>
+                                    <span>Custom API solutions tailored to your business needs</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-purple-600 mr-2 mt-1">🚀</span>
+                                    <span>High-speed data exchange for smooth app functionality</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+
+
+                <!-- Web Development -->
+                <a href="{% url 'company_services:service_details' id='web-development' %}">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden service-card transition duration-500">
+                        <div class="p-8">
+                            <div class="uppercase tracking-wide text-sm text-purple-600 font-semibold mb-1">Service</div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Web Development</h3>
+                            <div class="flex items-center mb-4">
+                                <div class="bg-purple-100 rounded-full p-3 mr-3">
+                                    <i class="fas fa-globe text-purple-600 text-xl"></i>
+                                </div>
+                                <p class="text-gray-600">Modern, responsive websites built for performance and scalability</p>
+                            </div>
+                            <ul class="space-y-3 text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="text-purple-600 mr-2 mt-1">💻</span>
+                                    <span>Dynamic web apps with interactive features and seamless navigation</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-purple-600 mr-2 mt-1">🔒</span>
+                                    <span>Secure coding practices for robust online platforms</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- iOS Development -->
+                <a href="{% url 'company_services:service_details' id='ios-app-development' %}">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden service-card transition duration-500">
+                        <div class="p-8">
+                            <div class="uppercase tracking-wide text-sm text-purple-600 font-semibold mb-1">Service</div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">iOS App Development</h3>
+                            <div class="flex items-center mb-4">
+                                <div class="bg-purple-100 rounded-full p-3 mr-3">
+                                    <i class="fab fa-apple text-purple-600 text-xl"></i>
+                                </div>
+                                <p class="text-gray-600">Premium iOS applications tailored for Apple's ecosystem</p>
+                            </div>
+                            <ul class="space-y-3 text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="text-purple-600 mr-2 mt-1">🚀</span>
+                                    <span>Optimized for speed, security, and high performance</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-purple-600 mr-2 mt-1">🎨</span>
+                                    <span>Sleek and intuitive UI/UX that meets Apple's standards</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Developer Resources" class="rounded-lg shadow-xl">
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Developer Resources Hub</h2>
+                    <p class="text-gray-600 mb-6 text-lg">
+                        At Media Ghor, we understand the importance of having the right tools and resources at your fingertips. That's why we've created a comprehensive resource center for developers.
+                    </p>
+                    <ul class="space-y-4 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="text-purple-600 mr-3 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Android dependencies and libraries</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-600 mr-3 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Python libraries and frameworks</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-600 mr-3 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Django tools and techniques</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-600 mr-3 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Programming language references</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-600 mr-3 mt-1"><i class="fas fa-check"></i></span>
+                            <span>Code snippets and templates</span>
+                        </li>
+                    </ul>
+                    <a href="{% url 'resources:category_resources'%}" class="mt-8 inline-block bg-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-purple-700 transition duration-300">
+                        Explore Resources
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Technology Insights & Blog</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Stay updated with the latest trends, technologies, and systems in our regularly updated blog</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 group">
+                    <a href="{% url 'blogs:post_detail' id='modern-web-development-trends-in-2025' %}">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" alt="Web Development" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="text-purple-600 text-sm font-semibold mb-2">Web Development</div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-purple-600 transition">Modern Web Development Trends in 2023</h3>
+                            <p class="text-gray-600 mb-4">Explore the latest frameworks, tools, and techniques shaping the future of web development.</p>
+                            <span class="text-purple-600 font-medium group-hover:text-purple-800 transition inline-flex items-center">
+                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Blog Post 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 group">
+                    <a href="{% url 'blogs:post_detail' id='cross-platform-app-development-pros-and-cons' %}" class="block">
+                        <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Mobile Development" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="text-purple-600 text-sm font-semibold mb-2">Mobile Development</div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-purple-600 transition">Cross-Platform App Development: Pros and Cons</h3>
+                            <p class="text-gray-600 mb-4">Analyzing the benefits and limitations of popular cross-platform frameworks like Flutter and React Native.</p>
+                            <span class="text-purple-600 font-medium group-hover:text-purple-800 transition inline-flex items-center">
+                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Blog Post 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 group">
+                    <a href="{% url 'blogs:post_detail' id='the-future-of-ai-in-software-development' %}" class="block">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1465&q=80" alt="Emerging Tech" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="text-purple-600 text-sm font-semibold mb-2">Emerging Technologies</div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-purple-600 transition">The Future of AI in Software Development</h3>
+                            <p class="text-gray-600 mb-4">How artificial intelligence is revolutionizing coding, testing, and deployment processes.</p>
+                            <span class="text-purple-600 font-medium group-hover:text-purple-800 transition inline-flex items-center">
+                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="{% url 'blogs:all-posts' %}" class="inline-block bg-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-purple-700 transition duration-300">
+                    View All Blog Posts
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Meet Our Founder</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">The visionary behind Media Ghor's success</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                    <div class="relative">
+                        <!-- Circular image with proper sizing and object-cover -->
+                        <img src="{% static 'images/ceo-founder.jpg' %}" 
+                             alt="Tanmoy Mondal, Founder & CEO"
+                             class="w-64 h-64 rounded-full object-cover border-4 border-purple-200 shadow-lg">
+                        
+                        <!-- Crown badge (positioned absolutely) -->
+                        <div class="absolute -bottom-2 -right-2 bg-purple-600 text-white rounded-full p-3 shadow-lg">
+                            <i class="fas fa-crown text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-2/3 md:pl-12 text-center md:text-left">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Tanmoy Mondal</h3>
+                    <p class="text-purple-600 font-medium mb-6">Founder & Lead Developer</p>
+                    <p class="text-gray-600 mb-6 max-w-2xl mx-auto md:mx-0">
+                        With a passion for technology and innovation, Tanmoy founded Media Ghor with the vision of creating a one-stop solution for all IT needs. His expertise in multiple programming languages and frameworks has been instrumental in building high-quality solutions for clients worldwide.
+                    </p>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="mailto:tanmoymondal1315@gmail.com" class="text-gray-600 hover:text-purple-600">
+                            <i class="fas fa-envelope text-2xl"></i>
+                        </a>
+                        <a href="tel:+8801736008374" class="text-gray-600 hover:text-purple-600">
+                            <i class="fas fa-phone text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-purple-600">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="https://github.com/tanmoymondal1312" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="text-gray-600 hover:text-purple-600">
+                            <i class="fab fa-github text-2xl"></i>
+                     </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Digital Presence?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Whether you need a custom application, API integration, or developer resources, we've got you covered.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="contact.html" class="bg-white text-purple-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition duration-300">
+                    Get in Touch
+                </a>
+                <a href="{% url 'company_services:services' %}" class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold hover:bg-white hover:text-purple-600 transition duration-300">
+                    Explore Services
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+   
+
+
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const btn = document.querySelector(".mobile-menu-button");
+        const menu = document.querySelector(".mobile-menu");
+
+        btn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+{% endblock %}

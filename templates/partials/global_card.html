@@ -2,12 +2,22 @@
     {% for data in services_datas %}
         <div class="bg-white shadow-lg rounded-2xl p-4 border border-gray-200 hover:shadow-2xl transition duration-300 flex flex-col h-auto">
             <!-- Common Card Header (Image + Title) -->
-            {% if data.image %}
-                <img src="{{ data.image.url }}" alt="{{ data.title|default:'Service Image' }}" 
-                     class="w-full h-auto object-contain rounded-md">
-            {% endif %}
+                {% if data.is_for_blog_posts %}
+                <a href="{% url 'blogs:post_detail' id=data.id %}">
+                    {% if data.image %}
+                        <img src="{{ data.image.url }}" alt="{{ data.title|default:'Service Image' }}"class="w-full h-auto object-contain rounded-md">
+                    {% endif %}
+                    <h2 class="text-xl font-bold mt-4">{{ data.title|default:"Untitled Service" }}</h2>
+                </a>
+                {% elif data.is_for_libraries %}
+                <h2 class="text-xl font-bold mt-4">{{ data.title|default:"Untitled Service" }}</h2>
+                {% elif data.is_for_company_service %}
+                    {% if data.image %}
+                        <img src="{{ data.image.url }}" alt="{{ data.title|default:'Service Image' }}"class="w-full h-auto object-contain rounded-md">
+                    {% endif %}
+                    <h2 class="text-xl font-bold mt-4">{{ data.title|default:"Untitled Service" }}</h2>
+                {% endif %}
             
-            <h2 class="text-xl font-bold mt-4">{{ data.title|default:"Untitled Service" }}</h2>
             
             <!-- Library Card Type -->
             {% if data.is_for_libraries %}
@@ -29,13 +39,16 @@
 
                         {% if data.library_link %}
                             <div class="flex justify-between mt-3 space-x-2">
-                                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                                    How To Use
-                                </button>
-                                <button onclick="copyToClipboard(this)" 
+                                <a href="{% url 'resources:library_detail' id=data.id %}">
+                                    <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                                        How To Use
+                                    </button>
+                                </a>
+
+                                <button
                                         data-post-id="{{ data.id }}"
                                         data-link="{{ data.library_link }}"
-                                        class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 copy-btn">
+                                        class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 copy-btn">
                                     Copy
                                 </button>
                             </div>
@@ -45,22 +58,28 @@
             
             <!-- Blog Post Card Type -->
             {% elif data.is_for_blog_posts %}
-           <!-- Add data-id to the parent container (adjust selector if needed) -->
-                <div class="blog-card" data-id="{{ data.id }}">  <!-- 👈 Add this line -->
+            <!-- The entire card is wrapped in an anchor tag -->
+                <div class="blog-card" data-id="{{ data.id }}">
                     <div class="blog-card-content">
                         <p class="text-gray-600 mt-2 flex-grow preview-text">
-                            {{ data.post_content }}
+                            <a href="{% url 'blogs:post_detail' id=data.id %}">
+                                {{ data.post_content }}
+                            </a>
                         </p>
                         
                         <div class="flex items-center justify-between mt-2">
                             {% if data.full_post_content %}
-                            <a href="#" class="inline-block text-blue-600 font-bold hover:text-blue-800 hover:underline transition-colors">
-                                See Full Post
+                            <a href="{% url 'blogs:post_detail' id=data.id %}">
+                                <span class="inline-block text-blue-600 font-bold hover:text-blue-800 hover:underline transition-colors">
+                                    See Full Post
+                                </span>
                             </a>
+
                             {% endif %}
                             <div class="flex space-x-2 ml-auto">
+                                <!-- Like button needs to stop event propagation -->
                                 <button 
-                                    class="flex items-center text-gray-600 hover:text-green-600 transition-colors"
+                                    class="flex items-center text-gray-600 transition-colors"
                                     title="Like"
                                     data-like-button
                                     data-post-id="{{ data.id }}"
@@ -80,12 +99,16 @@
                 <div class="company-service-content">
                     <p class="text-gray-600 mt-2 flex-grow">{{ data.description|default:"No description available." }}</p>
                     <div class="flex justify-between mt-4 space-x-2">
-                        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                            More Details
-                        </button>
-                        <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
-                            Contact Now
-                        </button>
+                        <a href="{% url 'company_services:service_details' id=data.id %}">
+                            <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                                More Details
+                            </button>
+                        </a>
+                        <a href="{% url 'company_services:service_details_contact' id=data.id %}">
+                            <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                                Contact Now
+                            </button>
+                         </a>
                     </div>
                 </div>
             {% endif %}
@@ -98,5 +121,13 @@
 </script>
 
 <style>
+    /* This ensures the hover state doesn't interfere with the active like state */
+    [data-like-button].liked:hover {
+        color: #16a34a !important; /* green-600 */
+    }
+
+    [data-like-button]:not(.liked):hover {
+        color: #4b5563 !important; /* gray-600 */
+    }
 
 </style>

@@ -1,51 +1,218 @@
 {% load static %}
-<nav class="bv-navbar text-white p-4 flex items-center justify-between w-full fixed top-0 left-0 z-50" 
-    style="background-color:rgb(125, 114, 223);">
+<nav class="bv-navbar text-white p-3 lg:p-4 flex items-center justify-between w-full fixed top-0 left-0 z-50" 
+    style="background-color:rgb(207, 206, 222);">
 
-    <!-- Toggle Button (Visible only on mobile) -->
-    <button id="toggleMenu" class="bv-toggle lg:hidden text-yellow-400 text-2xl mr-4">☰</button>
-
-    <!-- Logo -->
-    <img src="{% static 'images/logo-2.png' %}" alt="Media Ghor" class="w-20 h-auto mx-auto lg:mx-0">
+    <!-- Left Section (Logo + Toggle) -->
+    <div class="flex items-center flex-shrink-0">
+        <!-- Toggle Button (Visible only on mobile) -->
+        <button id="toggleMenu" class="bv-toggle lg:hidden text-black text-xl mr-2">☰</button>
+        <!-- Logo - Compact on mobile -->
+        <a href="{% url 'home' %}" class="flex items-center">
+            <img src="{% static 'images/logo-2.png' %}" alt="Media Ghor" class="h-[45px] lg:h-[60px] w-auto">
+        </a>    
+    </div>
 
     <!-- Navigation Menu -->
     <div id="menu" class="bv-menu hidden lg:flex flex-col lg:flex-row lg:items-center lg:space-x-6 
-        absolute lg:relative top-16 lg:top-auto left-0 lg:left-auto w-full lg:w-auto 
-        bg-gray-900 lg:bg-transparent p-4 lg:p-0 shadow-md lg:shadow-none transition-all duration-300 ease-in-out">
+        absolute lg:relative top-full lg:top-auto left-0 lg:left-auto w-full lg:w-auto 
+        bg-white lg:bg-transparent p-4 lg:p-0 shadow-md lg:shadow-none transition-all duration-300 ease-in-out">
         
-        <a href="{% url 'home' %}" class="block py-2 lg:py-0 hover:text-yellow-400 text-lg font-semibold transition-all duration-300">Home</a>
+        <a href="{% url 'home' %}" class="block py-2 lg:py-0 hover:text-purple-400 text-lg font-semibold transition-all duration-300 text-black">Home</a>
 
-        <!-- Dropdown Menu -->
+        <!-- Dropdown Menu - Enhanced for mobile -->
         <div class="relative group">
-            <a href="#" class="block py-2 lg:py-0 hover:text-yellow-400 text-lg font-semibold transition-all duration-300 flex items-center">
-                Resources
-                <svg class="w-4 h-4 ml-1 transition-transform duration-300 group-hover:rotate-180" 
-                     fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
-                </svg>
-            </a>
-            <!-- Dropdown Content -->
-            <div class="dropdown-content absolute left-0 mt-1 w-48 bg-gray-800 text-white rounded-lg shadow-lg 
-                opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-50">
-                <a href="{% url 'resources:single_category_resources' 'android' %}" class="block px-4 py-3 hover:bg-yellow-500 hover:text-gray-900 transition-all duration-300 rounded-t-lg">Android</a>
-                <a href="{% url 'resources:single_category_resources' 'django' %}" class="block px-4 py-3 hover:bg-yellow-500 hover:text-gray-900 transition-all duration-300">Django</a>
-                <a href="{% url 'resources:single_category_resources' 'python' %}" class="block px-4 py-3 hover:bg-yellow-500 hover:text-gray-900 transition-all duration-300 rounded-b-lg">Python</a>
+            <div class="flex items-center">
+                <a href="{% url 'resources:category_resources'%}" class="block py-2 lg:py-0 hover:text-purple-400 text-lg font-semibold transition-all duration-300 flex items-center text-black">
+                    Resources
+                </a>
+                <!-- Mobile dropdown toggle -->
+                <button id="mobileResourcesToggle" class="lg:hidden ml-1 text-black focus:outline-none">
+                    <svg class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Dropdown Content - Enhanced for mobile -->
+            <div id="resourcesDropdown" class="dropdown-content absolute lg:left-0 mt-1 w-full lg:w-48 bg-gray-800 lg:bg-gray-800 text-white rounded-lg lg:shadow-lg 
+                lg:opacity-0 lg:invisible lg:group-hover:opacity-100 lg:group-hover:visible transition-all duration-300 ease-in-out z-50">
+                <a href="{% url 'resources:single_category_resources' 'android' %}" class="block px-4 py-3 hover:bg-black hover:text-gray-900 transition-all duration-300 rounded-t-lg lg:rounded-t-lg">Android</a>
+                <a href="{% url 'resources:single_category_resources' 'django' %}" class="block px-4 py-3 hover:bg-black hover:text-gray-900 transition-all duration-300">Django</a>
+                <a href="{% url 'resources:single_category_resources' 'python' %}" class="block px-4 py-3 hover:bg-black hover:text-gray-900 transition-all duration-300 rounded-b-lg lg:rounded-b-lg">Python</a>
             </div>
         </div>
 
-        <a href="{% url 'blogs:all-posts'%}" class="block py-2 lg:py-0 hover:text-yellow-400 text-lg font-semibold transition-all duration-300">Posts</a>
-        <a href="{% url 'services' %}" class="block py-2 lg:py-0 hover:text-yellow-400 text-lg font-semibold transition-all duration-300">Our Services</a>
+        <a href="{% url 'blogs:all-posts' %}" class="block py-2 lg:py-0 hover:text-purple-400 text-lg font-semibold transition-all duration-300 text-black">Posts</a>
+        <a href="{% url 'company_services:services' %}" class="block py-2 lg:py-0 hover:text-purple-400 text-lg font-semibold transition-all duration-300 text-black">Our Services</a>
+        <a href="{% url 'about' %}" class="block py-2 lg:py-0 hover:text-purple-400 text-lg font-semibold transition-all duration-300 text-black">About Us</a>
+
     </div>
 
     <!-- Search Box -->
-    <div class="bv-searchbox relative w-full lg:w-auto mt-4 lg:mt-0">
-        <input type="text" placeholder="Search..." 
-        class="bv-search-input w-full lg:w-64 px-4 py-2 rounded-full border-2 border-transparent focus:border-yellow-400 focus:outline-none transition-colors 
-        bg-gradient-to-r from-[#b6c3d6] via-[#bcb6d6] to-[#bcd6b6] text-black placeholder-gray-700">
-        <button class="bv-search-btn absolute right-2 top-1/2 transform -translate-y-1/2 bg-white text-gray-900 p-2 rounded-full shadow-md hover:bg-yellow-400">
-            🔍
-        </button>
+    <div class="bv-searchbox flex-shrink-0 ml-1 lg:ml-4">
+        <div class="relative">
+            <input type="text" placeholder="Search..." id="searchInput"
+                class="w-[100px] lg:w-[180px] px-3 lg:px-4 py-1.5 lg:py-2 rounded-full border-2 border-transparent focus:border-black focus:outline-none transition-colors 
+                bg-gradient-to-r from-[#b6c3d6] via-[#faf8f2] to-[#bcd6b6] text-black placeholder-gray-700 text-xs lg:text-base"
+                autocomplete="off">
+            <button class="absolute right-1 lg:right-2 top-1/2 transform -translate-y-1/2 bg-white text-gray-900 p-0.5 lg:p-1 rounded-full shadow-md hover:bg-black transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 lg:h-5 lg:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </button>
+            <!-- Suggestions Dropdown -->
+            <div id="searchSuggestions" class="absolute z-50 w-full mt-1 bg-white text-gray-800 rounded-lg shadow-lg hidden max-h-60 overflow-y-auto border border-gray-200"></div>
+        </div>
     </div>
 </nav>
 
+<style>
+    /* NavBar Styles */
+    .bv-navbar {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
 
+    /* Dropdown Styles */
+    .dropdown-content {
+        transform: translateY(10px);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .group:hover .dropdown-content {
+        transform: translateY(0);
+    }
+
+    /* Responsive Menu */
+    @media (max-width: 1023px) {
+        #menu {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: 100%;
+            background: white;
+        }
+
+        #menu.block {
+            display: flex;
+        }
+
+        .bv-navbar {
+            padding: 0.5rem 0.75rem;
+        }
+        
+        .bv-searchbox {
+            min-width: 80px;
+            margin-left: auto;
+        }
+
+        /* Mobile dropdown styles */
+        #resourcesDropdown {
+            position: static;
+            width: 100%;
+            margin-top: 0;
+            box-shadow: none;
+            display: none;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+        }
+
+        #resourcesDropdown.mobile-show {
+            display: block;
+        }
+
+        #mobileResourcesToggle .svg-rotate {
+            transform: rotate(180deg);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .bv-searchbox {
+            width: 200px;
+        }
+        
+        .bv-searchbox input::placeholder {
+            content: "Search...";
+        }
+
+        #mobileResourcesToggle {
+            display: none;
+        }
+    }
+
+    /* Search Box Animation */
+    .bv-searchbox input:focus {
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
+    }
+
+    /* Smooth transitions */
+    .bv-menu {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleButton = document.getElementById("toggleMenu");
+        const menu = document.getElementById("menu");
+        const mobileResourcesToggle = document.getElementById("mobileResourcesToggle");
+        const resourcesDropdown = document.getElementById("resourcesDropdown");
+        
+        // Toggle main menu function
+        const toggleMenu = () => {
+            menu.classList.toggle("hidden");
+            menu.classList.toggle("block");
+        };
+        
+        // Toggle resources dropdown on mobile
+        const toggleResourcesDropdown = () => {
+            resourcesDropdown.classList.toggle("mobile-show");
+            mobileResourcesToggle.querySelector('svg').classList.toggle("svg-rotate");
+        };
+        
+        // Toggle menu on button click
+        toggleButton.addEventListener("click", toggleMenu);
+        
+        // Toggle resources dropdown on mobile
+        if (mobileResourcesToggle) {
+            mobileResourcesToggle.addEventListener("click", toggleResourcesDropdown);
+        }
+        
+        // Close menu when clicking outside
+        document.addEventListener("click", (e) => {
+            if (!menu.contains(e.target) && !toggleButton.contains(e.target) && window.innerWidth < 1024) {
+                menu.classList.add("hidden");
+                menu.classList.remove("block");
+                resourcesDropdown.classList.remove("mobile-show");
+                if (mobileResourcesToggle) {
+                    mobileResourcesToggle.querySelector('svg').classList.remove("svg-rotate");
+                }
+            }
+        });
+        
+        // Responsive behavior
+        const handleResize = () => {
+            if (window.innerWidth >= 1024) {
+                menu.classList.remove("hidden");
+                menu.classList.add("flex");
+                resourcesDropdown.classList.remove("mobile-show");
+                if (mobileResourcesToggle) {
+                    mobileResourcesToggle.querySelector('svg').classList.remove("svg-rotate");
+                }
+            } else {
+                if (!menu.classList.contains("hidden") && menu.classList.contains("block")) {
+                    menu.classList.add("hidden");
+                    menu.classList.remove("block");
+                }
+                menu.classList.remove("flex");
+            }
+        };
+        
+        // Initial check
+        handleResize();
+        
+        // Listen for resize events
+        window.addEventListener("resize", handleResize);
+    });
+</script>

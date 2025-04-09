@@ -1,0 +1,827 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{post.short_title}} | Media Ghor{% endblock %}
+
+{% block content %}
+<div class="relative min-h-screen bg-gray-50">
+    <!-- Desktop/Tablet Layout -->
+    <div class="hidden md:flex h-screen overflow-hidden">
+        <!-- Left Side - Recommended Posts -->
+        <div class="w-1/4 border-r border-gray-200 overflow-y-auto bg-white p-4 mt-4">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Recommended Library</h3>
+            <div class="space-y-4">
+                {% for post in recommended_posts %}
+                <a href="{% url 'resources:library_detail' id=post.id %}" class="block group">
+                    <div class="flex items-start space-x-3 p-2 rounded-lg hover:bg-gray-100 transition">
+                        <div>
+                            <h4 class="font-medium text-gray-900 group-hover:text-blue-600">{{ post.short_title|default:post.title|truncatechars:40 }}</h4>
+                            <div class="flex items-center mt-1 text-sm text-gray-500">
+                                <span>{{ post.created_at|date:"M d, Y" }}</span>
+                                <span class="mx-2">•</span>
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" 
+                                        class="h-4 w-4 text-gray-500 hover:text-black cursor-pointer" 
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                    </svg>
+                                    <span>{{ post.copy }}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Middle - Post Content -->
+        <div class="w-2/4 overflow-y-auto p-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ post.title }}</h1>
+            {% if post.short_title %}
+            <h2 class="text-xl text-gray-600 mb-6">{{ post.short_title }}</h2>
+            {% endif %}
+
+            <div class="library-container w-full p-3 border-2 border-gray-300 rounded-md bg-gray-200 overflow-hidden flex items-center justify-between">
+                <pre class="library-content m-0 font-mono whitespace-pre-wrap break-all flex-1">{{ post.library_link|default:'No link available' }}</pre>
+                <button
+                    data-post-id="{{ post.id }}"
+                    data-link="{{ post.library_link }}"
+                    class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 copy-btn ml-3">
+                    Copy
+                </button>
+            </div>
+        
+            <!-- Added beautiful "How To Use" section -->
+            <div class="mt-8">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-200 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    How To Use :
+                </h3>
+            </div>
+            
+            <div class="whitespace-pre-wrap font-sans text-base leading-relaxed">
+                <div class="[&>p]:indent-8 [&>p]:mb-4 [&>ul]:list-disc [&>ul]:pl-8 [&>ul]:mb-4 [&>ol]:list-decimal [&>ol]:pl-8 [&>ol]:mb-4 [&>pre]:bg-gray-100 [&>pre]:p-4 [&>pre]:rounded [&>pre]:overflow-x-auto [&>pre]:my-4 [&>blockquote]:border-l-4 [&>blockquote]:border-gray-300 [&>blockquote]:pl-4 [&>blockquote]:text-gray-600 [&>blockquote]:my-4">
+                    {{ post.how_to_use|default:post.description|safe }}
+                </div>
+            </div>
+        
+            <div class="md:hidden mt-8 flex justify-center">
+                <button
+                    data-post-id="{{ post.id }}"
+                    data-link="{{ post.library_link }}"
+                    class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 copy-btn ml-3">
+                    Copy
+                </button>
+            </div>            
+        </div>
+
+        <!-- Right Side - Post Meta -->
+        <div class="w-1/4 border-l border-gray-200 overflow-y-auto bg-white p-6 mt-4">
+            {% if post.image %}
+            <div class="mb-6">
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            {% endif %}
+            
+            <div class="space-y-4">
+                <h2 class="text-xl font-bold text-gray-900 mb-4 tracking-tight leading-snug">
+                    {{ post.short_title }}
+                </h2>
+                <div>
+                    <h3 class="text-sm font-medium text-gray-500">Published</h3>
+                    <p class="text-lg text-gray-900">{{ post.created_at|date:"F j, Y" }}</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-medium text-gray-500">Last Updated</h3>
+                    <p class="text-lg text-gray-900">{{ post.updated_at|date:"F j, Y" }}</p>
+                </div>
+                
+                <div class="library-container w-full p-3 border-2 border-gray-300 rounded-md bg-gray-200 overflow-hidden flex items-center justify-between">
+                    <pre class="library-content m-0 font-mono whitespace-pre-wrap break-all flex-1">{{ post.library_link|default:'No link available' }}</pre>
+                </div>
+                
+                <div class="flex items-center space-x-2 mt-2">
+                    <button
+                        data-post-id="{{ post.id }}"
+                        data-link="{{ post.library_link }}"
+                        class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 copy-btn">
+                        Copy
+                    </button>
+                
+                    <span class="flex items-center space-x-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" 
+                            class="h-4 w-4 text-gray-500 hover:text-black cursor-pointer" 
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        <span>{{ post.copy }}</span>
+                    </span>
+                </div>
+                <div class="px-4 py-3">
+                    <h3 class="text-xl font-semibold text-gray-600 text-center md:text-left mb-2 underline">
+                        Description
+                    </h3>
+                    <p class="text-lg text-gray-900 text-center md:text-left leading-relaxed">
+                        {{ post.description }}
+                    </p>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Layout -->
+    <div class="md:hidden">
+        <!-- Content Area -->
+        <div class="p-4">
+            <div id="mobile-content" class="mb-16">
+                <h1 class="text-2xl font-bold text-gray-900 mb-2">{{ post.title }}</h1>
+                {% if post.short_title %}
+                <h2 class="text-lg text-gray-600 mb-4">{{ post.short_title }}</h2>
+                {% endif %}
+
+                <div class="library-container w-full p-3 border-2 border-gray-300 rounded-md bg-gray-200 overflow-hidden flex items-center justify-between">
+                    <pre class="library-content m-0 font-mono whitespace-pre-wrap break-all flex-1">{{ post.library_link|default:'No link available' }}</pre>
+                </div>
+                <button
+                    data-post-id="{{ post.id }}"
+                    data-link="{{ post.library_link }}"
+                    class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 copy-btn mt-2">
+                    Copy
+                </button>
+                
+                <div class="mt-8">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-200 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        How To Use :
+                    </h3>
+                </div>
+                
+                <div class="whitespace-pre-wrap font-sans text-base leading-relaxed">
+                    <div class="[&>p]:indent-8 [&>p]:mb-4 [&>ul]:list-disc [&>ul]:pl-8 [&>ul]:mb-4 [&>ol]:list-decimal [&>ol]:pl-8 [&>ol]:mb-4 [&>pre]:bg-gray-100 [&>pre]:p-4 [&>pre]:rounded [&>pre]:overflow-x-auto [&>pre]:my-4 [&>blockquote]:border-l-4 [&>blockquote]:border-gray-300 [&>blockquote]:pl-4 [&>blockquote]:text-gray-600 [&>blockquote]:my-4">
+                        {{ post.how_to_use|default:post.description|safe }}
+                    </div>
+                </div>
+                  
+                
+                <div class="library-container w-full p-3 border-2 border-gray-300 rounded-md bg-gray-200 overflow-hidden flex items-center justify-between">
+                    <pre class="library-content m-0 font-mono whitespace-pre-wrap break-all flex-1">{{ post.library_link|default:'No link available' }}</pre>
+                </div>
+                <button
+                    data-post-id="{{ post.id }}"
+                    data-link="{{ post.library_link }}"
+                    class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 copy-btn mt-2">
+                    Copy
+                </button>
+            </div>
+            
+            <div id="mobile-meta" class="hidden mb-16">
+                <div class="space-y-6">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 tracking-tight leading-snug">
+                        {{ post.short_title }}
+                    </h2>
+
+                    <div class="library-container w-full p-3 border-2 border-gray-300 rounded-md bg-gray-200 overflow-hidden flex items-center justify-between">
+                        <pre class="library-content m-0 font-mono whitespace-pre-wrap break-all flex-1">{{ post.library_link|default:'No link available' }}</pre>
+                    </div>
+                    
+                    <div class="flex items-center space-x-2 mt-2">
+                        <button
+                            data-post-id="{{ post.id }}"
+                            data-link="{{ post.library_link }}"
+                            class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 copy-btn">
+                            Copy
+                        </button>
+                    
+                        <span class="flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" 
+                                class="h-4 w-4 text-gray-500 hover:text-black cursor-pointer" 
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            <span>{{ post.copy }}</span>
+                        </span>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500">Published</h3>
+                        <p class="text-lg text-gray-900">{{ post.created_at|date:"F j, Y" }}</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500">Last Updated</h3>
+                        <p class="text-lg text-gray-900">{{ post.updated_at|date:"F j, Y" }}</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500">Category</h3>
+                        <p class="text-lg text-gray-900">{{ post.category }}</p>
+                    </div>
+
+
+                    <div class="px-4 py-3">
+                        <h3 class="text-xl font-semibold text-gray-600 text-center md:text-left mb-2 underline">
+                            Description
+                        </h3>
+                        <p class="text-lg text-gray-900 text-center md:text-left leading-relaxed">
+                            {{ post.description }}
+                        </p>
+                    </div>  
+                </div>
+            </div>
+            
+            <div id="mobile-recommended" class="hidden mb-16">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Recommended Libraries</h3>
+                <div class="space-y-4">
+                    {% for post in recommended_posts %}
+                    <a href="{% url 'resources:library_detail' id=post.id %}" class="block group">
+                        <div class="flex items-start space-x-3 p-2 rounded-lg hover:bg-gray-100 transition">
+                            <div>
+                                <h4 class="font-medium text-gray-900 group-hover:text-blue-600">{{ post.short_title|default:post.title|truncatechars:40 }}</h4>
+                                <div class="flex items-center mt-1 text-sm text-gray-500">
+                                    <span>{{ post.created_at|date:"M d, Y" }}</span>
+                                    <span class="mx-2">•</span>
+                                    <span class="flex items-center space-x-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" 
+                                            class="h-4 w-4 text-gray-500 hover:text-black cursor-pointer" 
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                        </svg>
+                                        <span>{{ post.copy }}</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Navigation -->
+        <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around items-center py-3 px-4 z-10">
+            <button onclick="showSection('mobile-content')" class="flex flex-col items-center text-blue-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                </svg>
+                <span class="text-xs mt-1">Content</span>
+            </button>
+            <button onclick="showSection('mobile-meta')" class="flex flex-col items-center text-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="text-xs mt-1">Details</span>
+            </button>
+            <button onclick="showSection('mobile-recommended')" class="flex flex-col items-center text-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span class="text-xs mt-1">Recommended</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Mobile navigation - Enhanced with scroll management
+    function showSection(sectionId) {
+        // Hide all sections
+        document.getElementById('mobile-content').classList.add('hidden');
+        document.getElementById('mobile-meta').classList.add('hidden');
+        document.getElementById('mobile-recommended').classList.add('hidden');
+        
+        // Show the selected section
+        const activeSection = document.getElementById(sectionId);
+        activeSection.classList.remove('hidden');
+        
+        // Reset scroll position for the new section
+        activeSection.scrollTop = 0;
+        
+        // Update active button
+        document.querySelectorAll('[onclick^="showSection"]').forEach(btn => {
+            btn.classList.remove('text-blue-600');
+            btn.classList.add('text-gray-500');
+        });
+        
+        event.currentTarget.classList.remove('text-gray-500');
+        event.currentTarget.classList.add('text-blue-600');
+    }
+
+    // Track scroll positions for each section
+    const scrollPositions = {
+        'mobile-content': 0,
+        'mobile-meta': 0,
+        'mobile-recommended': 0
+    };
+
+    // Enhanced showSection function with scroll preservation
+    function showSection(sectionId) {
+        // Store current scroll position before switching
+        const currentSection = document.querySelector('#mobile-content:not(.hidden), #mobile-meta:not(.hidden), #mobile-recommended:not(.hidden)');
+        if (currentSection) {
+            scrollPositions[currentSection.id] = currentSection.scrollTop;
+        }
+        
+        // Hide all sections
+        document.getElementById('mobile-content').classList.add('hidden');
+        document.getElementById('mobile-meta').classList.add('hidden');
+        document.getElementById('mobile-recommended').classList.add('hidden');
+        
+        // Show the selected section
+        const activeSection = document.getElementById(sectionId);
+        activeSection.classList.remove('hidden');
+        
+        // Restore scroll position (with slight delay to ensure DOM is ready)
+        setTimeout(() => {
+            activeSection.scrollTop = scrollPositions[sectionId];
+        }, 50);
+        
+        // Update active button
+        document.querySelectorAll('[onclick^="showSection"]').forEach(btn => {
+            btn.classList.remove('text-blue-600');
+            btn.classList.add('text-gray-500');
+        });
+        
+        event.currentTarget.classList.remove('text-gray-500');
+        event.currentTarget.classList.add('text-blue-600');
+    }
+
+
+    // Helper function to get CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    /**
+    * Displays a toast notification message centered at bottom
+    * @param {string} message - The message to display
+    * @param {string} [type='info'] - Type of toast (info, success, error, warning)
+    * @param {number} [duration=3000] - Duration in milliseconds (0 = persistent)
+    */
+    function showToastMessage(message, type = 'info', duration = 3000) {
+        // Create toast container if it doesn't exist
+        let toastContainer = document.getElementById('toast-container');
+        if (!toastContainer) {
+            toastContainer = document.createElement('div');
+            toastContainer.id = 'toast-container';
+            toastContainer.className = 'fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 space-y-2 w-full max-w-xs';
+            document.body.appendChild(toastContainer);
+        }
+
+        // Create toast element
+        const toast = document.createElement('div');
+        toast.className = `toast-notification flex items-start p-4 rounded-lg shadow-lg transform transition-all duration-300 ${getToastClasses(type)}`;
+        toast.setAttribute('role', 'alert');
+        toast.style.opacity = '0';
+        toast.style.maxHeight = '0';
+        toast.style.overflow = 'hidden';
+
+        // Add icon based on type
+        const icon = document.createElement('span');
+        icon.className = `toast-icon mr-3 mt-0.5 ${getToastIconClasses(type)}`;
+        toast.appendChild(icon);
+
+        // Add message content
+        const content = document.createElement('div');
+        content.className = 'flex-1';
+        content.textContent = message;
+        toast.appendChild(content);
+
+        // Add close button
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'ml-4 text-gray-400 hover:text-gray-500 focus:outline-none';
+        closeBtn.innerHTML = '&times;';
+        closeBtn.setAttribute('aria-label', 'Close notification');
+        closeBtn.addEventListener('click', () => dismissToast(toast));
+        toast.appendChild(closeBtn);
+
+        // Add to DOM
+        toastContainer.prepend(toast);
+
+        // Animate in
+        setTimeout(() => {
+            toast.style.opacity = '1';
+            toast.style.maxHeight = '200px';
+        }, 10);
+
+        // Auto-dismiss if duration > 0
+        if (duration > 0) {
+            setTimeout(() => dismissToast(toast), duration);
+        }
+
+        return toast;
+    }
+
+    function getToastClasses(type) {
+        const classes = {
+            info: 'bg-blue-50 text-blue-800',
+            success: 'bg-green-50 text-green-800',
+            error: 'bg-red-50 text-red-800',
+            warning: 'bg-yellow-50 text-yellow-800'
+        };
+        return classes[type] || classes.info;
+    }
+
+    function getToastIconClasses(type) {
+        const classes = {
+            info: 'text-blue-500',
+            success: 'text-green-500',
+            error: 'text-red-500',
+            warning: 'text-yellow-500'
+        };
+        const baseClass = 'inline-flex items-center justify-center flex-shrink-0 w-6 h-6';
+        return `${baseClass} ${classes[type] || classes.info}`;
+    }
+
+    function dismissToast(toast) {
+        toast.style.opacity = '0';
+        toast.style.maxHeight = '0';
+        setTimeout(() => {
+            toast.remove();
+            const container = document.getElementById('toast-container');
+            if (container && container.children.length === 0) {
+                container.remove();
+            }
+        }, 300);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        //Removing spaces start of yhe full post content
+        const contentDivs = document.querySelectorAll(".whitespace-pre-wrap > div");
+
+        contentDivs.forEach(div => {
+        if (div.innerHTML.trim().length > 0) {
+            div.innerHTML = div.innerHTML.trimStart();
+        }
+        });
+        // Remove any potential white overlays
+        document.querySelectorAll('div').forEach(div => {
+            if (!div.id && !div.className && window.getComputedStyle(div).backgroundColor !== 'rgba(0, 0, 0, 0)') {
+                div.style.display = 'none';
+            }
+        });
+        document.querySelectorAll('.likes-count').forEach(element => {
+            const currentLikes = parseInt(element.textContent) || 0;
+            element.classList.toggle('wide', currentLikes > 99);
+        });
+
+
+
+
+
+
+        const searchInput = document.getElementById('searchInput');
+        const searchSuggestions = document.getElementById('searchSuggestions');
+        let debounceTimer;
+        let currentRequest = null;
+    
+        // Fetch suggestions from Django backend
+        const fetchSuggestions = async (query) => {
+            try {
+                // Cancel previous request if still pending
+                if (currentRequest) {
+                    currentRequest.abort();
+                }
+                
+                currentRequest = new AbortController();
+                const response = await fetch(`/api/search-suggestions/?q=${encodeURIComponent(query)}&page=all_libraries`, {
+                    signal: currentRequest.signal
+                });
+                
+                const data = await response.json();
+                console.log("API Response:", data);
+                
+                // Ensure we always return an array of strings
+                if (data.results && Array.isArray(data.results)) {
+                    return data.results.map(item => {
+                        // Handle both object {short_title} and direct string cases
+                        return typeof item === 'object' ? item.short_title : item;
+                    }).filter(Boolean); // Remove any undefined/null values
+                }
+                return [];
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    console.error('Error fetching suggestions:', error);
+                }
+                return [];
+            } finally {
+                currentRequest = null;
+            }
+        };
+    
+        // Display suggestions dropdown
+        const showSuggestions = (titles) => {
+            // Clear previous suggestions
+            searchSuggestions.innerHTML = '';
+            console.log("Showing suggestions:", titles);
+    
+            if (!titles || titles.length === 0) {
+                searchSuggestions.classList.add('hidden');
+                return;
+            }
+    
+            // Create suggestion elements
+            titles.forEach(title => {
+                if (!title) return; // Skip empty titles
+                
+                const suggestion = document.createElement('div');
+                suggestion.className = 'px-4 py-2 hover:bg-yellow-100 cursor-pointer transition-colors border-b border-gray-100 last:border-b-0';
+                suggestion.textContent = title;
+                const currentUrl = "http://127.0.0.1:8000/resources";
+
+                
+                suggestion.addEventListener('click', () => {
+                    const currentUrl = "http://127.0.0.1:8000/resources";
+
+                    window.location.href = `${currentUrl}?search=${encodeURIComponent(title)}`;
+                });
+                
+                searchSuggestions.appendChild(suggestion);
+            });
+    
+            searchSuggestions.classList.remove('hidden');
+        };
+    
+        // Handle input with debounce
+        searchInput.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            const query = searchInput.value.trim();
+            
+            if (query.length < 2) {
+                searchSuggestions.classList.add('hidden');
+                return;
+            }
+            
+            debounceTimer = setTimeout(async () => {
+                const suggestions = await fetchSuggestions(query);
+                showSuggestions(suggestions);
+            }, 300);
+        });
+    
+        // Close suggestions when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.bv-searchbox')) {
+                searchSuggestions.classList.add('hidden');
+            }
+        });
+    
+        // Handle search button click
+        document.querySelector('.bv-searchbox button').addEventListener('click', () => {
+            const query = searchInput.value.trim();
+            if (query) {
+                const currentUrl = "http://127.0.0.1:8000/resources";
+                window.location.href = `${currentUrl}?search=${encodeURIComponent(query)}`;
+            }
+        });
+    
+        // Handle Enter key
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const query = searchInput.value.trim();
+                if (query) {
+                    const currentUrl = "http://127.0.0.1:8000/resources";
+                    window.location.href = `${currentUrl}?search=${encodeURIComponent(query)}`;
+                }
+            }
+        });
+    });
+</script>
+
+<style>
+
+
+    /* Base Styles */
+    #mobile-content,
+    #mobile-meta,
+    #mobile-recommended {
+        height: calc(100vh - 180px); /* Adjust based on your header/footer */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        scroll-behavior: smooth;
+        padding-bottom: 20px; /* Prevent bottom cut-off */
+    }
+    
+    /* Prevent content jump when switching tabs */
+    .mobile-section-container {
+        min-height: calc(100vh - 180px);
+    }
+    
+    /* Smooth transitions for tab switching */
+    [id^="mobile-"] {
+        transition: opacity 0.3s ease;
+    }
+    
+    /* Better scrolling experience */
+    .prose {
+        overscroll-behavior-y: contain;
+    }
+    
+    /* Post Content Styles */
+    .prose {
+        line-height: 1.75;
+        color: #374151;
+    }
+    .prose p {
+        margin-bottom: 1.25em;
+    }
+    .prose img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        margin: 1.5em 0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .prose h2 {
+        font-size: 1.5em;
+        font-weight: 600;
+        margin: 1.5em 0 0.75em;
+        color: #111827;
+    }
+    .prose h3 {
+        font-size: 1.25em;
+        font-weight: 600;
+        margin: 1.5em 0 0.75em;
+        color: #111827;
+    }
+    .prose ul, .prose ol {
+        margin-bottom: 1.25em;
+        padding-left: 1.5em;
+    }
+    .prose li {
+        margin-bottom: 0.5em;
+    }
+    .prose a {
+        color: #3b82f6;
+        text-decoration: underline;
+        transition: color 0.2s ease;
+    }
+    .prose a:hover {
+        color: #2563eb;
+    }
+    .prose blockquote {
+        border-left: 4px solid #e5e7eb;
+        padding-left: 1em;
+        margin: 1.5em 0;
+        color: #6b7280;
+        font-style: italic;
+    }
+    
+   
+
+    /* Ensure content sections are completely transparent */
+    #mobile-content,
+    #mobile-meta,
+    #mobile-recommended {
+        background: transparent !important;
+    }
+
+    /* Remove any potential overlay effects */
+    body > div:not([id]):not([class]) {
+        display: none !important;
+    }
+
+    /* Dark mode adjustments */
+    @media (prefers-color-scheme: dark) {
+        .mobile-like-button svg {
+            color: #9ca3af; /* Lighter gray for dark mode */
+        }
+        
+        .mobile-like-button .likes-count {
+            background-color: #047857;
+        }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 400px) {
+        .mobile-like-container {
+            bottom: 5rem;
+            right: 0.8rem;
+        }
+    }
+
+
+
+        
+    /* Toast Notification Styles */
+    .toast-notification {
+        will-change: transform, opacity, max-height;
+        transition: opacity 300ms ease, max-height 300ms ease, transform 300ms ease;
+        display: flex;
+        align-items: flex-start;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        max-width: 24rem;
+        margin: 0 auto;
+    }
+    
+    .toast-icon {
+        font-size: 1.25rem;
+        flex-shrink: 0;
+        margin-right: 0.75rem;
+        margin-top: 0.125rem;
+    }
+    
+    .toast-content {
+        flex: 1;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+    
+    .toast-close {
+        margin-left: 0.75rem;
+        color: #9ca3af;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.25rem;
+        border-radius: 0.25rem;
+    }
+    
+    .toast-close:hover {
+        color: #6b7280;
+        background-color: #f3f4f6;
+    }
+    
+    /* Toast Variants */
+    .toast-info {
+        background-color: #eff6ff;
+        color: #1e40af;
+    }
+    
+    .toast-success {
+        background-color: #ecfdf5;
+        color: #065f46;
+    }
+    
+    .toast-error {
+        background-color: #fef2f2;
+        color: #b91c1c;
+    }
+    
+    .toast-warning {
+        background-color: #fffbeb;
+        color: #92400e;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 640px) {
+        .prose {
+            font-size: 0.9375rem;
+        }
+        
+        .prose h2 {
+            font-size: 1.375em;
+        }
+        
+        .prose h3 {
+            font-size: 1.125em;
+        }
+        
+        .mobile-like-container {
+            bottom: 4.5rem;
+        }
+    }
+    
+    /* Dark Mode Support */
+    @media (prefers-color-scheme: dark) {
+        .prose {
+            color: #e5e7eb;
+        }
+        
+        .prose h2, .prose h3 {
+            color: #f9fafb;
+        }
+        
+        .prose a {
+            color: #60a5fa;
+        }
+        
+        .prose a:hover {
+            color: #3b82f6;
+        }
+    }
+</style>
+{% endblock %}

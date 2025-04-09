@@ -1,24 +1,3 @@
-/*NavBar--------------------------------------------------*/
-.bv-searchbox {
-    left: -100px;
-    position: relative;
-}
-
-/* Ensure menu is hidden by default for mobile */
-@media (max-width: 1023px) {
-    #menu {
-        display: none;
-        flex-direction: column;
-    }
-}
-
-/* Show menu when it's active */
-#menu.block {
-    display: block;
-}
-
-
-
 /*Global card ---------------------------------------------*/
 /* Library Container Styles */
 .library-container {
@@ -41,6 +20,4 @@
 
 
 /*home.html ---------------------------------------------*/
-
-
 

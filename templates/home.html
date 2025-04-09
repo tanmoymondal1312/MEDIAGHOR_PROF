@@ -4,10 +4,9 @@
 
 {% block content %}
     <div>
-        <p class="text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-700 text-2xl font-bold py-2 mt-6 hover:bg-gradient-to-l transition-all duration-500">
+        <p class="text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-sm md:text-xl font-bold py-1 md:py-2 mt-2 md:mt-6 animate-gradient bg-[length:200%_auto] hover:from-indigo-600 hover:to-blue-500 transition-all duration-500">
             Your one-stop solution for the Programming World
         </p>
-
         {% include 'partials/global_card.html' %}
 
         <div class="pagination flex justify-center space-x-2 mt-6">
@@ -30,4 +29,151 @@
             {% endif %}
         </div>
     </div>
+
+    <style>
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        .animate-gradient {
+            animation: gradientFlow 2s linear infinite;
+        }
+
+
+        #searchSuggestions {
+            background-color: white;
+            color: #333; /* Dark gray text for better contrast */
+            border: 1px solid #e2e8f0; /* Light gray border */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        #searchSuggestions div {
+            color: #2d3748; /* Even darker text for items */
+            transition: all 0.2s ease;
+        }
+        
+        #searchSuggestions div:hover {
+            background-color: #f6e05e; /* Your yellow-400 color */
+            color: #1a202c; /* Darker text on hover */
+        }
+        
+    </style>
+    <script>
+        console.log("In Home");
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchSuggestions = document.getElementById('searchSuggestions');
+            let debounceTimer;
+            let currentRequest = null;
+        
+            // Fetch suggestions from Django backend
+            const fetchSuggestions = async (query) => {
+                try {
+                    // Cancel previous request if still pending
+                    if (currentRequest) {
+                        currentRequest.abort();
+                    }
+                    
+                    currentRequest = new AbortController();
+                    const response = await fetch(`/api/search-suggestions/?q=${encodeURIComponent(query)}&page=home`, {
+                        signal: currentRequest.signal
+                    });
+                    
+                    const data = await response.json();
+                    console.log("API Response:", data);
+                    
+                    // Ensure we always return an array of strings
+                    if (data.results && Array.isArray(data.results)) {
+                        return data.results.map(item => {
+                            // Handle both object {short_title} and direct string cases
+                            return typeof item === 'object' ? item.short_title : item;
+                        }).filter(Boolean); // Remove any undefined/null values
+                    }
+                    return [];
+                } catch (error) {
+                    if (error.name !== 'AbortError') {
+                        console.error('Error fetching suggestions:', error);
+                    }
+                    return [];
+                } finally {
+                    currentRequest = null;
+                }
+            };
+        
+            // Display suggestions dropdown
+            const showSuggestions = (titles) => {
+                // Clear previous suggestions
+                searchSuggestions.innerHTML = '';
+                console.log("Showing suggestions:", titles);
+        
+                if (!titles || titles.length === 0) {
+                    searchSuggestions.classList.add('hidden');
+                    return;
+                }
+        
+                // Create suggestion elements
+                titles.forEach(title => {
+                    if (!title) return; // Skip empty titles
+                    
+                    const suggestion = document.createElement('div');
+                    suggestion.className = 'px-4 py-2 hover:bg-yellow-100 cursor-pointer transition-colors border-b border-gray-100 last:border-b-0';
+                    suggestion.textContent = title;
+                    
+                    suggestion.addEventListener('click', () => {
+                        const currentUrl = window.location.pathname;
+                        window.location.href = `${currentUrl}?search=${encodeURIComponent(title)}`;
+                    });
+                    
+                    searchSuggestions.appendChild(suggestion);
+                });
+        
+                searchSuggestions.classList.remove('hidden');
+            };
+        
+            // Handle input with debounce
+            searchInput.addEventListener('input', () => {
+                clearTimeout(debounceTimer);
+                const query = searchInput.value.trim();
+                
+                if (query.length < 2) {
+                    searchSuggestions.classList.add('hidden');
+                    return;
+                }
+                
+                debounceTimer = setTimeout(async () => {
+                    const suggestions = await fetchSuggestions(query);
+                    showSuggestions(suggestions);
+                }, 300);
+            });
+        
+            // Close suggestions when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.bv-searchbox')) {
+                    searchSuggestions.classList.add('hidden');
+                }
+            });
+        
+            // Handle search button click
+            document.querySelector('.bv-searchbox button').addEventListener('click', () => {
+                const query = searchInput.value.trim();
+                if (query) {
+                    const currentUrl = window.location.pathname;
+                    window.location.href = `${currentUrl}?search=${encodeURIComponent(query)}`;
+                }
+            });
+        
+            // Handle Enter key
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        const currentUrl = window.location.pathname;
+                        window.location.href = `${currentUrl}?search=${encodeURIComponent(query)}`;
+                    }
+                }
+            });
+        });
+
+    </script>
 {% endblock %}
