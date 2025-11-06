@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{post.title}} - {{post.short_title}} | Programming Blog | Media Ghor</title>
+    <meta name="description" content="{{post.post_content|truncatewords:30}} - Read this programming tutorial and resource on Media Ghor.">
+    <meta name="keywords" content="{{post.title}}, {{post.short_title}}, programming tutorial, coding blog, web development, software engineering, programming resources">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{post.title}} - {{post.short_title}} | Media Ghor">
+    <meta property="og:description" content="{{post.post_content|truncatewords:30}}">
+    <meta property="og:url" content="https://mediaghor.com{% url 'blogs:post_detail' id=post.id %}">
+    <meta property="og:type" content="article">
+    {% if post.image %}
+    <meta property="og:image" content="https://mediaghor.com{{ post.image.url }}">
+    {% else %}
+    <meta property="og:image" content="https://mediaghor.com/static/images/logo.png">
+    {% endif %}
+    <meta property="og:site_name" content="Media Ghor">
+    <meta property="og:published_time" content="{{post.created_at|date:'c'}}">
+    <meta property="og:modified_time" content="{{post.updated_at|date:'c'}}">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{post.title}} - {{post.short_title}}">
+    <meta name="twitter:description" content="{{post.post_content|truncatewords:30}}">
+    {% if post.image %}
+    <meta name="twitter:image" content="https://mediaghor.com{{ post.image.url }}">
+    {% else %}
+    <meta name="twitter:image" content="https://mediaghor.com/static/images/logo.png">
+    {% endif %}
+    <meta name="twitter:site" content="@mediaghor">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mediaghor.com{% url 'blogs:post_detail' id=post.id %}">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest'%}">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Media Ghor">
+    <meta name="theme-color" content="#3B82F6">
+    
+    <!-- Article Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{{post.title}}",
+        "description": "{{post.short_title}}",
+        "image": "{% if post.image %}https://mediaghor.com{{ post.image.url }}{% else %}https://mediaghor.com/static/images/logo.png{% endif %}",
+        "author": {
+            "@type": "Organization",
+            "name": "Media Ghor"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Media Ghor",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://mediaghor.com/static/images/logo.png"
+            }
+        },
+        "datePublished": "{{post.created_at|date:'c'}}",
+        "dateModified": "{{post.updated_at|date:'c'}}",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://mediaghor.com{% url 'blogs:post_detail' id=post.id %}"
+        },
+        "articleSection": "Programming",
+        "keywords": "programming, coding, tutorial, web development"
+    }
+    </script>
+    
+    <!-- Breadcrumb Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://mediaghor.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://mediaghor.com/blog"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{post.title}}",
+                "item": "https://mediaghor.com{% url 'blogs:post_detail' id=post.id %}"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col font-inter" style="font-family: 'Inter', sans-serif;">
+
+
+    <!-- Navigation -->
+    {% include 'partials/navbar.html' %}
+
+    <div class="relative min-h-screen bg-gray-50 flex-1 pt-20">
+        <!-- Desktop/Tablet Layout -->
+        <div class="hidden md:flex h-screen overflow-hidden">
+            <!-- Left Side - Recommended Posts -->
+            <div class="w-1/4 border-r border-gray-200 overflow-y-auto bg-white p-4 mt-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Recommended Posts</h3>
+                <div class="space-y-4">
+                    {% for post in recommended_posts %}
+                    <a href="{% url 'blogs:post_detail' id=post.id %}" class="block group">
+                        <div class="flex items-start space-x-3 p-2 rounded-lg hover:bg-gray-100 transition">
+                            {% if post.image %}
+                            <div class="w-16 rounded bg-gray-100 p-1 flex items-center justify-center">
+                                <img 
+                                    src="{{ post.image.url }}" 
+                                    alt="{{ post.title }}" 
+                                    class="max-w-full max-h-16 object-contain"
+                                >
+                            </div>
+                            {% else %}
+                            <div class="w-16 h-16 bg-gray-200 rounded flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            {% endif %}
+                            <div>
+                                <h4 class="font-medium text-gray-900 group-hover:text-blue-600">{{ post.short_title|default:post.title|truncatechars:40 }}</h4>
+                                <div class="flex items-center mt-1 text-sm text-gray-500">
+                                    <span>{{ post.created_at|date:"M d, Y" }}</span>
+                                    <span class="mx-2">•</span>
+                                    <span class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                        </svg>
+                                        {{ post.likes }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Middle - Post Content -->
+            <div class="w-2/4 overflow-y-auto p-8">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ post.title }}</h1>
+                {% if post.short_title %}
+                <h2 class="text-xl text-gray-600 mb-6">{{ post.short_title }}</h2>
+                {% endif %}
+                
+                <div class="whitespace-pre-wrap font-sans text-base leading-relaxed my-4">
+                    <div class="[&>p]:indent-8 [&>p]:mb-4 [&>ul]:list-disc [&>ul]:pl-8 [&>ul]:mb-4 [&>ol]:list-decimal [&>ol]:pl-8 [&>ol]:mb-4 [&>pre]:bg-gray-100 [&>pre]:p-4 [&>pre]:rounded [&>pre]:overflow-x-auto [&>pre]:my-4 [&>blockquote]:border-l-4 [&>blockquote]:border-gray-300 [&>blockquote]:pl-4 [&>blockquote]:text-gray-600 [&>blockquote]:my-4">
+                {{ post.full_post_content|default:post.post_content|safe }}
+                    </div>
+                </div>
+                
+                <!-- Like button for mobile (hidden on desktop) -->
+                <div class="md:hidden mt-8 flex justify-center">
+                    <button 
+                        data-like-button 
+                        data-post-id="{{ post.id }}"
+                        class="flex items-center text-gray-600 hover:text-green-600 transition-colors px-4 py-2"
+                        title="Like"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                        </svg>
+                        <span class="likes-count ml-1">{{ post.likes }}</span>
+                    </button>
+                </div>            
+            </div>
+
+            <!-- Right Side - Post Meta -->
+            <div class="w-1/4 border-l border-gray-200 overflow-y-auto bg-white p-6 mt-4">
+                {% if post.image %}
+                <div class="mb-6">
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full h-auto rounded-lg shadow-md">
+                </div>
+                {% endif %}
+                
+                <div class="space-y-4">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 tracking-tight leading-snug">
+                        {{ post.short_title }}
+                    </h2>
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-100">
+                        <h3 class="text-sm font-medium text-gray-700 mb-3">Post Statistics</h3>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-blue-100 p-2 rounded-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500">Views</p>
+                                    <p class="text-lg font-bold text-gray-900">{{ post.views|default:"0" }}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-green-100 p-2 rounded-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500">Likes</p>
+                                    <p class="text-lg font-bold text-gray-900">{{ post.likes }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-2 ml-auto">
+                        <button 
+                            class="flex items-center text-gray-600 hover:text-green-600 transition-colors"
+                            title="Like"
+                            data-like-button
+                            data-post-id="{{ post.id }}"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                            </svg>
+                            <span class="likes-count ml-1">{{ post.likes }}</span>
+                        </button>
+                    </div>
+
+                    <div class="relative p-4 rounded-md border-4 border-transparent bg-gray-50 overflow-hidden">
+                        <h4 class="text-base md:text-lg font-normal text-gray-700 leading-relaxed">
+                            {{ post.post_content }}
+                        </h4>
+                        <div class="absolute inset-0 rounded-md border-4 border-transparent animated-border pointer-events-none"></div>
+                    </div>
+
+
+
+                    <div>
+                        <h3 class="text-sm font-medium">Published</h3>
+                        <p class="text-lg text-gray-900">{{ post.created_at|date:"F j, Y" }}</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500">Last Updated</h3>
+                        <p class="text-lg text-gray-900">{{ post.updated_at|date:"F j, Y" }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Layout - COMPLETELY FIXED -->
+        <div class="md:hidden flex flex-col min-h-screen">
+            <!-- Content Area - Independent scrolling containers -->
+            <div class="flex-1 overflow-hidden relative">
+                <!-- Content Section -->
+                <div id="mobile-content" class="mobile-section active absolute inset-0 overflow-y-auto bg-white p-4">
+                    <h1 class="text-2xl font-bold text-gray-900 mb-2">{{ post.title }}</h1>
+                    {% if post.short_title %}
+                    <h2 class="text-lg text-gray-600 mb-4">{{ post.short_title }}</h2>
+                    {% endif %}
+                    
+                    {% if post.image %}
+                    <div class="mb-6">
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full h-auto rounded-lg shadow-md">
+                    </div>
+                    {% endif %}
+                    
+                    <div class="whitespace-pre-wrap font-sans text-base leading-relaxed my-4">
+                        <div class="[&>p]:indent-8 [&>p]:mb-4 [&>ul]:list-disc [&>ul]:pl-8 [&>ul]:mb-4 [&>ol]:list-decimal [&>ol]:pl-8 [&>ol]:mb-4 [&>pre]:bg-gray-100 [&>pre]:p-4 [&>pre]:rounded [&>pre]:overflow-x-auto [&>pre]:my-4 [&>blockquote]:border-l-4 [&>blockquote]:border-gray-300 [&>blockquote]:pl-4 [&>blockquote]:text-gray-600 [&>blockquote]:my-4">
+                    {{ post.full_post_content|default:post.post_content|safe }}
+                        </div>
+                    </div>
+                    
+                    <!-- Enhanced mobile like button -->
+                    <div class="mobile-like-container">
+                        <button 
+                            data-like-button 
+                            data-post-id="{{ post.id }}"
+                            class="mobile-like-button {% if user_has_liked %}liked{% endif %}"
+                            aria-label="Like this post"
+                        >
+                            <span class="likes-count {% if post.likes > 99 %}wide{% endif %}">{{ post.likes }}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Meta Section -->
+                <div id="mobile-meta" class="mobile-section absolute inset-0 overflow-y-auto bg-white p-4">
+                    <div class="space-y-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 tracking-tight leading-snug">
+                            {{ post.short_title }}
+                        </h2>
+                        
+                        <!-- Enhanced Stats for Mobile -->
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-100">
+                            <h3 class="text-sm font-medium text-gray-700 mb-3">Post Statistics</h3>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center space-x-2">
+                                    <div class="bg-blue-100 p-2 rounded-lg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500">Views</p>
+                                        <p class="text-lg font-bold text-gray-900">{{ post.views|default:"0" }}</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center space-x-2">
+                                    <div class="bg-green-100 p-2 rounded-lg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500">Likes</p>
+                                        <p class="text-lg font-bold text-gray-900">{{ post.likes }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-500">Published</h3>
+                            <p class="text-lg text-gray-900">{{ post.created_at|date:"F j, Y" }}</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-500">Last Updated</h3>
+                            <p class="text-lg text-gray-900">{{ post.updated_at|date:"F j, Y" }}</p>
+                        </div>
+                        
+                        <!-- Like button for mobile meta section -->
+                        <div class="pt-4">
+                            <button 
+                                data-like-button 
+                                data-post-id="{{ post.id }}"
+                                class="w-full flex items-center justify-center py-3 px-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200 text-gray-700 hover:text-green-600 transition-colors"
+                                title="Like"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                </svg>
+                                <span class="likes-count font-medium">{{ post.likes }}</span>
+                                <span class="ml-2">Likes</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recommended Section -->
+                <div id="mobile-recommended" class="mobile-section absolute inset-0 overflow-y-auto bg-white p-4">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Recommended Posts</h3>
+                    <div class="space-y-4">
+                        {% for post in recommended_posts %}
+                        <a href="{% url 'blogs:post_detail' id=post.id %}" class="block group">
+                            <div class="flex items-start space-x-3 p-2 rounded-lg hover:bg-gray-100 transition">
+                                {% if post.image %}
+                                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-16 h-16 object-cover rounded">
+                                {% else %}
+                                <div class="w-16 h-16 bg-gray-200 rounded flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+                                {% endif %}
+                                <div>
+                                    <h4 class="font-medium text-gray-900 group-hover:text-blue-600">{{ post.short_title|default:post.title|truncatechars:40 }}</h4>
+                                    <div class="flex items-center mt-1 text-sm text-gray-500">
+                                        <span>{{ post.created_at|date:"M d, Y" }}</span>
+                                        <span class="mx-2">•</span>
+                                        <span class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                            </svg>
+                                            {{ post.likes }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Navigation -->
+            <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around items-center py-3 px-4 z-10">
+                <button onclick="showSection('mobile-content')" class="flex flex-col items-center text-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                    </svg>
+                    <span class="text-xs mt-1">Content</span>
+                </button>
+                <button onclick="showSection('mobile-meta')" class="flex flex-col items-center text-gray-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="text-xs mt-1">Details</span>
+                </button>
+                <button onclick="showSection('mobile-recommended')" class="flex flex-col items-center text-gray-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span class="text-xs mt-1">Recommended</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    {% include 'partials/newsletter.html' %}
+
+    <!-- Footer -->
+    {% include 'partials/footer.html' %}
+
+    <script>
+        // Mobile navigation - COMPLETELY FIXED
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.mobile-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected section
+            const activeSection = document.getElementById(sectionId);
+            activeSection.classList.add('active');
+            
+            // Update active button
+            document.querySelectorAll('[onclick^="showSection"]').forEach(btn => {
+                btn.classList.remove('text-blue-600');
+                btn.classList.add('text-gray-500');
+            });
+            
+            event.currentTarget.classList.remove('text-gray-500');
+            event.currentTarget.classList.add('text-blue-600');
+        }
+
+        // Helper function to get CSRF token
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        // Replace the initializePostLikeInteractions function with this version
+        function initializePostLikeInteractions() {
+            // Remove any existing listeners to prevent duplication
+            document.querySelectorAll('[data-like-button]').forEach(button => {
+                button.replaceWith(button.cloneNode(true));
+            });
+        
+            // Use event delegation for better performance
+            document.addEventListener('click', async function(event) {
+                const likeButton = event.target.closest('[data-like-button]');
+                if (!likeButton) return;
+        
+                event.preventDefault();
+                
+                const postId = likeButton.dataset.postId;
+                const likeCountElements = document.querySelectorAll(`[data-post-id="${postId}"] .likes-count`);
+                const likeIcons = document.querySelectorAll(`[data-post-id="${postId}"] svg`);
+                
+                // Check if already liked
+                const wasLiked = likeButton.classList.contains('liked');
+                
+                // Disable all like buttons for this post during request
+                document.querySelectorAll(`[data-post-id="${postId}"]`).forEach(btn => {
+                    btn.style.pointerEvents = 'none';
+                });
+        
+                // Optimistic UI update
+                document.querySelectorAll(`[data-post-id="${postId}"]`).forEach(btn => {
+                    btn.classList.toggle('liked', !wasLiked);
+                });
+                
+                likeCountElements.forEach(element => {
+                    const currentLikes = parseInt(element.textContent) || 0;
+                    const newCount = wasLiked ? currentLikes - 1 : currentLikes + 1;
+                    element.textContent = newCount;
+                    
+                    // Update wide class based on digit count
+                    element.classList.toggle('wide', newCount > 99);
+                });
+                
+                likeIcons.forEach(icon => {
+                    icon.classList.toggle('text-green-600', !wasLiked);
+                    icon.classList.toggle('text-gray-600', wasLiked);
+                    if (!wasLiked) {
+                        // Add animation class
+                        icon.classList.add('animate-like');
+                    }
+                });
+        
+                try {
+                    const response = await fetch('/blogs/post-impression/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCookie('csrftoken'),
+                        },
+                        body: JSON.stringify({
+                            post_id: postId,
+                            action: wasLiked ? 'unlike' : 'like'
+                        })
+                    });
+        
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
+                    const data = await response.json();
+                    
+                    if (!data.success) {
+                        // Revert optimistic update if failed
+                        document.querySelectorAll(`[data-post-id="${postId}"]`).forEach(btn => {
+                            btn.classList.toggle('liked', wasLiked);
+                        });
+                        
+                        likeCountElements.forEach(element => {
+                            element.textContent = data.original_likes || element.textContent;
+                            element.classList.toggle('wide', data.original_likes > 99);
+                        });
+                        
+                        likeIcons.forEach(icon => {
+                            icon.classList.toggle('text-green-600', wasLiked);
+                            icon.classList.toggle('text-gray-600', !wasLiked);
+                        });
+                        
+                        showToastMessage('Failed to save like', 'error');
+                    }
+                    
+                } catch (error) {
+                    console.error('Error:', error);
+                    // Revert optimistic update
+                    document.querySelectorAll(`[data-post-id="${postId}"]`).forEach(btn => {
+                        btn.classList.toggle('liked', wasLiked);
+                    });
+                    
+                    likeCountElements.forEach(element => {
+                        const currentLikes = parseInt(element.textContent) || 0;
+                        const revertedCount = wasLiked ? currentLikes + 1 : currentLikes - 1;
+                        element.textContent = revertedCount;
+                        element.classList.toggle('wide', revertedCount > 99);
+                    });
+                    
+                    likeIcons.forEach(icon => {
+                        icon.classList.toggle('text-green-600', wasLiked);
+                        icon.classList.toggle('text-gray-600', !wasLiked);
+                    });
+                    
+                    showToastMessage('Network error. Please try again.', 'error');
+                } finally {
+                    // Re-enable buttons
+                    document.querySelectorAll(`[data-post-id="${postId}"]`).forEach(btn => {
+                        btn.style.pointerEvents = '';
+                    });
+                    
+                    // Remove animation class after delay
+                    setTimeout(() => {
+                        likeIcons.forEach(icon => {
+                            icon.classList.remove('animate-like');
+                        });
+                    }, 1000);
+                }
+            });
+        }
+        
+        /**
+        * Displays a toast notification message centered at bottom
+        * @param {string} message - The message to display
+        * @param {string} [type='info'] - Type of toast (info, success, error, warning)
+        * @param {number} [duration=3000] - Duration in milliseconds (0 = persistent)
+        */
+        function showToastMessage(message, type = 'info', duration = 3000) {
+            // Create toast container if it doesn't exist
+            let toastContainer = document.getElementById('toast-container');
+            if (!toastContainer) {
+                toastContainer = document.createElement('div');
+                toastContainer.id = 'toast-container';
+                toastContainer.className = 'fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 space-y-2 w-full max-w-xs';
+                document.body.appendChild(toastContainer);
+            }
+
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = `toast-notification flex items-start p-4 rounded-lg shadow-lg transform transition-all duration-300 ${getToastClasses(type)}`;
+            toast.setAttribute('role', 'alert');
+            toast.style.opacity = '0';
+            toast.style.maxHeight = '0';
+            toast.style.overflow = 'hidden';
+
+            // Add icon based on type
+            const icon = document.createElement('span');
+            icon.className = `toast-icon mr-3 mt-0.5 ${getToastIconClasses(type)}`;
+            toast.appendChild(icon);
+
+            // Add message content
+            const content = document.createElement('div');
+            content.className = 'flex-1';
+            content.textContent = message;
+            toast.appendChild(content);
+
+            // Add close button
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'ml-4 text-gray-400 hover:text-gray-500 focus:outline-none';
+            closeBtn.innerHTML = '&times;';
+            closeBtn.setAttribute('aria-label', 'Close notification');
+            closeBtn.addEventListener('click', () => dismissToast(toast));
+            toast.appendChild(closeBtn);
+
+            // Add to DOM
+            toastContainer.prepend(toast);
+
+            // Animate in
+            setTimeout(() => {
+                toast.style.opacity = '1';
+                toast.style.maxHeight = '200px';
+            }, 10);
+
+            // Auto-dismiss if duration > 0
+            if (duration > 0) {
+                setTimeout(() => dismissToast(toast), duration);
+            }
+
+            return toast;
+        }
+
+        function getToastClasses(type) {
+            const classes = {
+                info: 'bg-blue-50 text-blue-800',
+                success: 'bg-green-50 text-green-800',
+                error: 'bg-red-50 text-red-800',
+                warning: 'bg-yellow-50 text-yellow-800'
+            };
+            return classes[type] || classes.info;
+        }
+
+        function getToastIconClasses(type) {
+            const classes = {
+                info: 'text-blue-500',
+                success: 'text-green-500',
+                error: 'text-red-500',
+                warning: 'text-yellow-500'
+            };
+            const baseClass = 'inline-flex items-center justify-center flex-shrink-0 w-6 h-6';
+            return `${baseClass} ${classes[type] || classes.info}`;
+        }
+
+        function dismissToast(toast) {
+            toast.style.opacity = '0';
+            toast.style.maxHeight = '0';
+            setTimeout(() => {
+                toast.remove();
+                const container = document.getElementById('toast-container');
+                if (container && container.children.length === 0) {
+                    container.remove();
+                }
+            }, 300);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            //Removing spaces start of the full post content
+            const contentDivs = document.querySelectorAll(".whitespace-pre-wrap > div");
+
+            contentDivs.forEach(div => {
+            if (div.innerHTML.trim().length > 0) {
+                div.innerHTML = div.innerHTML.trimStart();
+            }
+            });
+
+            // Initialize like button functionality
+            initializePostLikeInteractions();
+            
+            // Initialize wide class for like counts
+            document.querySelectorAll('.likes-count').forEach(element => {
+                const currentLikes = parseInt(element.textContent) || 0;
+                element.classList.toggle('wide', currentLikes > 99);
+            });
+
+            // Initialize first section as active on mobile
+            if (window.innerWidth < 768) {
+                showSection('mobile-content');
+            }
+        });
+    </script>
+
+    <style>
+        /* Base Styles */
+        .mobile-section {
+            display: none;
+            height: calc(100vh - 140px);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+        
+        .mobile-section.active {
+            display: block;
+        }
+
+        /* Mobile Layout Container */
+        .md\\:hidden.flex {
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Content scrolling area */
+        .md\\:hidden .flex-1.overflow-hidden {
+            height: calc(100vh - 60px); /* Account for bottom nav */
+        }
+
+        /* Prevent content jump when switching tabs */
+        [id^="mobile-"] {
+            transition: opacity 0.3s ease;
+        }
+        
+        /* Better scrolling experience */
+        .prose {
+            overscroll-behavior-y: contain;
+        }
+        
+        /* Post Content Styles */
+        .prose {
+            line-height: 1.75;
+            color: #374151;
+        }
+        .prose p {
+            margin-bottom: 1.25em;
+        }
+        .prose img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin: 1.5em 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .prose h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin: 1.5em 0 0.75em;
+            color: #111827;
+        }
+        .prose h3 {
+            font-size: 1.25em;
+            font-weight: 600;
+            margin: 1.5em 0 0.75em;
+            color: #111827;
+        }
+        .prose ul, .prose ol {
+            margin-bottom: 1.25em;
+            padding-left: 1.5em;
+        }
+        .prose li {
+            margin-bottom: 0.5em;
+        }
+        .prose a {
+            color: #3b82f6;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+        .prose a:hover {
+            color: #2563eb;
+        }
+        .prose blockquote {
+            border-left: 4px solid #e5e7eb;
+            padding-left: 1em;
+            margin: 1.5em 0;
+            color: #6b7280;
+            font-style: italic;
+        }
+        
+        /* Enhanced Like Button Styles */
+        [data-like-button] {
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            background-color: transparent;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        [data-like-button]:hover {
+            background-color: #f9fafb;
+            transform: translateY(-1px);
+        }
+        
+        [data-like-button]:active {
+            transform: translateY(0);
+        }
+        
+        [data-like-button].liked {
+            background-color: #f0fdf4;
+            border-color: #bbf7d0;
+            color: #16a34a;
+        }
+        
+        [data-like-button].liked:hover {
+            background-color: #dcfce7;
+        }
+        
+        [data-like-button] .likes-count {
+            margin-left: 0.5rem;
+            font-weight: 500;
+            min-width: 1.5rem;
+            text-align: center;
+        }
+        
+        [data-like-button] svg {
+            transition: all 0.3s ease;
+        }
+        
+        [data-like-button]:active svg {
+            transform: scale(1.2);
+        }
+
+        /* Mobile Like Button */
+        .mobile-like-container {
+            position: fixed;
+            bottom: 5.5rem;
+            right: 1rem;
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        .mobile-like-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            background: none;
+            border: none;
+            transition: transform 0.2s ease;
+            width: 2.8rem;
+            height: 2.8rem;
+            pointer-events: auto;
+            position: relative;
+        }
+
+        /* Like count positioned above the button */
+        .mobile-like-button .likes-count {
+            position: absolute;
+            top: -0.8rem;
+            right: -0.2rem;
+            background-color: #10b981;
+            color: white;
+            border-radius: 9999px;
+            min-width: 1.5rem;
+            height: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0 0.25rem;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Icon styling */
+        .mobile-like-button svg {
+            width: 1.8rem;
+            height: 1.8rem;
+            color: #4b5563;
+            transition: color 0.2s ease;
+        }
+
+        /* Liked state */
+        .mobile-like-button.liked svg {
+            color: #10b981;
+        }
+
+        /* Toast Notification Styles */
+        .toast-notification {
+            will-change: transform, opacity, max-height;
+            transition: opacity 300ms ease, max-height 300ms ease, transform 300ms ease;
+            display: flex;
+            align-items: flex-start;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: 24rem;
+            margin: 0 auto;
+        }
+        
+        .toast-icon {
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            margin-right: 0.75rem;
+            margin-top: 0.125rem;
+        }
+        
+        .toast-content {
+            flex: 1;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+        }
+        
+        .toast-close {
+            margin-left: 0.75rem;
+            color: #9ca3af;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 0.25rem;
+        }
+        
+        .toast-close:hover {
+            color: #6b7280;
+            background-color: #f3f4f6;
+        }
+        
+        /* Toast Variants */
+        .toast-info {
+            background-color: #eff6ff;
+            color: #1e40af;
+        }
+        
+        .toast-success {
+            background-color: #ecfdf5;
+            color: #065f46;
+        }
+        
+        .toast-error {
+            background-color: #fef2f2;
+            color: #b91c1c;
+        }
+        
+        .toast-warning {
+            background-color: #fffbeb;
+            color: #92400e;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 640px) {
+            .prose {
+                font-size: 0.9375rem;
+            }
+            
+            .prose h2 {
+                font-size: 1.375em;
+            }
+            
+            .prose h3 {
+                font-size: 1.125em;
+            }
+            
+            .mobile-like-container {
+                bottom: 4.5rem;
+            }
+        }
+        
+        /* Animation for like button */
+        @keyframes likeAnimation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .animate-like {
+            animation: likeAnimation 0.6s ease-in-out;
+        }
+        .animated-border {
+            border-image-slice: 1;
+            border-width: 4px;
+            border-image-source: linear-gradient(270deg, #f3ec78, #af4261, #5ee7df, #36d1dc, #ff9a9e);
+            animation: gradientBorder 5s linear infinite;
+        }
+
+        @keyframes gradientBorder {
+            0% {
+                border-image-source: linear-gradient(270deg, #f3ec78, #af4261, #5ee7df, #36d1dc, #ff9a9e);
+            }
+            50% {
+                border-image-source: linear-gradient(450deg, #f3ec78, #af4261, #5ee7df, #36d1dc, #ff9a9e);
+            }
+            100% {
+                border-image-source: linear-gradient(270deg, #f3ec78, #af4261, #5ee7df, #36d1dc, #ff9a9e);
+            }
+        }
+    </style>
+</body>
+</html>

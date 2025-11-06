@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Screen - Play Music In Background | Media Ghor</title>
+    <meta name="description" content="Dark Screen simulates a real lock screen while allowing music and apps to run in background. Perfect for demos, privacy, and multitasking on Android devices.">
+    <meta name="keywords" content="Dark Screen, fake lock screen, background music, Android app, privacy screen, Media Ghor, background apps">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Dark Screen - Play Music In Background | Media Ghor">
+    <meta property="og:description" content="Simulate a real lock screen with Dark Screen. Run music and apps in the background while the overlay keeps your phone appearing locked.">
+    <meta property="og:url" content="https://mediaghor.com/products/dark-screen">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mediaghor.com/static/images/our_products/darkscreen_title.jpeg">
+    <meta property="og:site_name" content="Media Ghor">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dark Screen - Play Music In Background">
+    <meta name="twitter:description" content="Simulate a real lock screen while running music and apps in background.">
+    <meta name="twitter:image" content="https://mediaghor.com/static/images/our_products/darkscreen_title.jpeg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mediaghor.com/products/dark-screen/">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest'%}">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Media Ghor">
+    <meta name="theme-color" content="#3B82F6">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Dark Screen - Play Music In Background",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Android",
+        "description": "Simulate a real lock screen while allowing music and apps to run in background. Perfect for demos and privacy.",
+        "url": "https://mediaghor.com/products/dark-screen",
+        "author": {
+            "@type": "Organization",
+            "name": "Media Ghor"
+        },
+        "datePublished": "2023-01-15",
+        "softwareVersion": "2.1.0",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "ratingCount": "2100"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "screenshot": [
+            "https://mediaghor.com/static/images/our_products/dark_screen_title.jpeg",
+            "https://mediaghor.com/static/images/our_products/dark_screen/ss1.jpg",
+            "https://mediaghor.com/static/images/our_products/dark_screen/ss2.jpg",
+            "https://mediaghor.com/static/images/our_products/dark_screen/ss3.jpg",
+            "https://mediaghor.com/static/images/our_products/dark_screen/ss4.jpg"
+        ]
+    }
+    </script>
+    
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradientFlow 4s ease infinite;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #3B82F6, #10B981, #8B5CF6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stagger-animation > * {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .tech-tag {
+            background: linear-gradient(135deg, #3B82F6, #10B981);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #3B82F6, #10B981, transparent);
+            margin: 3rem auto;
+            max-width: 200px;
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, #3B82F6, #10B981);
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .screenshot-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .screenshot-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 2rem 1.5rem 1.5rem;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .screenshot-container:hover .screenshot-overlay {
+            transform: translateY(0);
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .mobile-stack {
+                flex-direction: column;
+            }
+            
+            .mobile-center {
+                text-align: center;
+                justify-content: center;
+            }
+            
+            .mobile-padding {
+                padding: 1rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .mobile-padding {
+                padding: 1rem !important;
+            }
+        }
+        
+        /* Performance Optimizations */
+        .will-change {
+            will-change: transform;
+        }
+        
+        /* Image loading states */
+        .image-loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .app-download-btn {
+            background: linear-gradient(135deg, #3B82F6, #10B981);
+            transition: all 0.3s ease;
+        }
+        
+        .app-download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen font-inter">
+    <!-- Navigation -->
+    {% include 'partials/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-20">
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 text-white py-16 md:py-24">
+            <!-- Background Elements -->
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div class="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full animate-float"></div>
+                <div class="absolute -bottom-16 -left-16 w-48 h-48 bg-white/10 rounded-full animate-float" style="animation-delay: 1.5s;"></div>
+                <div class="absolute top-1/3 right-1/4 w-32 h-32 bg-white/10 rounded-full animate-float" style="animation-delay: 2.5s;"></div>
+            </div>
+            
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <!-- Breadcrumb -->
+                <nav class="flex justify-center mb-6" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-3 text-sm">
+                        <li class="inline-flex items-center">
+                            <a href="{% url 'home' %}" class="inline-flex items-center font-medium text-blue-200 hover:text-white transition-colors duration-300">
+                                <i class="fas fa-home mr-2" aria-hidden="true"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li class="inline-flex items-center">
+                            <i class="fas fa-chevron-right text-blue-200 mx-2" aria-hidden="true"></i>
+                            <a href="{% url 'products:all_products'%}" class="inline-flex items-center font-medium text-blue-200 hover:text-white transition-colors duration-300">
+                                Products
+                            </a>
+                        </li>
+                        <li aria-current="page">
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-blue-200 mx-2" aria-hidden="true"></i>
+                                <span class="font-medium text-white">Dark Screen</span>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8 max-w-6xl mx-auto">
+                    <div class="flex-1 text-left">
+                        <div class="inline-flex items-center gap-2 mb-4">
+                            <img src="{% static 'images/our_products/dark_screen/dark_screen_logo.png' %}" alt="Dark Screen Logo" class="w-12 h-12 rounded-xl shadow-lg">
+                            <span class="tech-tag bg-white/20 backdrop-blur-sm text-white border border-white/30">
+                                <i class="fab fa-android mr-1" aria-hidden="true"></i> Android App
+                            </span>
+                        </div>
+                        
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-6 animate-fade-in-up">
+                            Dark Screen
+                        </h1>
+                        <p class="text-xl md:text-2xl mb-6 opacity-90 leading-relaxed font-light">
+                            Play Music In Background with Fake Lock Screen
+                        </p>
+                        <p class="text-lg mb-8 max-w-2xl opacity-80 leading-relaxed">
+                            Simulate a real lock screen with Dark Screen. Run music and apps in the background while the overlay keeps your phone appearing locked — perfect for demos and privacy.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-start">
+                            <a href="#download" class="app-download-btn text-white px-8 py-3 rounded-xl font-semibold text-lg flex items-center justify-center gap-3 shadow-lg">
+                                <i class="fas fa-download" aria-hidden="true"></i> Download Now
+                            </a>
+                            <a href="#features" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-8 py-3 rounded-xl font-semibold text-lg transition-colors duration-300 flex items-center justify-center gap-3 backdrop-blur-sm">
+                                <i class="fas fa-play-circle" aria-hidden="true"></i> Watch Demo
+                            </a>
+                        </div>
+                        
+                        <div class="flex items-center mt-8 text-white/80">
+                            <div class="flex items-center text-yellow-400 mr-4">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star-half-alt" aria-hidden="true"></i>
+                                <span class="text-white ml-2">4.7 (2.1K reviews)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-download mr-1" aria-hidden="true"></i>
+                                <span>50K+ Downloads</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 flex justify-center">
+                        <div class="w-64">
+                            <img 
+                                src="{% static 'images/our_products/dark_screen/dark_screen_home.png' %}" 
+                                alt="Dark Screen app interface showing fake lock screen"
+                                class="w-full h-full object-cover"
+                                loading="eager"
+                            >
+                            <div class="absolute bottom-4 left-0 right-0 flex justify-center">
+                                <div class="bg-black/70 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm">
+                                    Fake Lock Screen Active
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Info Section -->
+        <section class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">What is Dark Screen?</h2>
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                            Dark Screen is an innovative Android application that creates a realistic fake lock screen overlay, allowing you to continue running music, podcasts, or any other apps in the background while your device appears to be locked.
+                        </p>
+                        <p class="text-gray-600 mb-8 text-lg leading-relaxed">
+                            Whether you need to demonstrate an app without revealing your actual screen content, maintain privacy while letting media play, or simply want to prevent accidental touches during presentations, Dark Screen provides the perfect solution.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <span class="tech-tag">Android 8+</span>
+                            <span class="tech-tag">Overlay System</span>
+                            <span class="tech-tag">Background Audio</span>
+                            <span class="tech-tag">Privacy Protection</span>
+                            <span class="tech-tag">No Root Required</span>
+                        </div>
+                        
+                        <div class="bg-blue-50 border border-blue-200 rounded-xl p-6">
+                            <h3 class="text-xl font-bold text-blue-800 mb-3 flex items-center">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-2" aria-hidden="true"></i>
+                                Perfect For
+                            </h3>
+                            <ul class="text-blue-700 space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2" aria-hidden="true"></i>
+                                    <span>App demonstrations and presentations</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2" aria-hidden="true"></i>
+                                    <span>Listening to music with screen "off"</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2" aria-hidden="true"></i>
+                                    <span>Privacy protection in public spaces</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2" aria-hidden="true"></i>
+                                    <span>Preventing accidental screen touches</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-6">How It Works</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-white/20 rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <span class="font-bold">1</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Install & Launch</h4>
+                                    <p class="opacity-90">Download Dark Screen from the Play Store and open the app</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white/20 rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <span class="font-bold">2</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Grant Permissions</h4>
+                                    <p class="opacity-90">Allow the overlay permission for Dark Screen to work properly</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white/20 rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <span class="font-bold">3</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Activate Fake Lock</h4>
+                                    <p class="opacity-90">Tap the floating icon or use the quick settings tile to activate</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white/20 rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <span class="font-bold">4</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Use Background Apps</h4>
+                                    <p class="opacity-90">Play music, run apps, or continue tasks while screen appears locked</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-16 md:py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                        Key Features
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                        Dark Screen offers a range of powerful features to enhance your mobile experience
+                    </p>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto stagger-animation">
+                    <!-- Feature 1 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-lock-open text-white text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Realistic Fake Lock</h3>
+                        <p class="text-gray-600">
+                            Creates a convincing lock screen overlay that looks exactly like your device's real lock screen
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-music text-white text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Background Audio</h3>
+                        <p class="text-gray-600">
+                            Continue playing music, podcasts, or any audio content while the fake lock screen is active
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-user-shield text-white text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Privacy Protection</h3>
+                        <p class="text-gray-600">
+                            Keep your actual screen content private while still being able to use your device functionalities
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 4 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-bolt text-white text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Quick Activation</h3>
+                        <p class="text-gray-600">
+                            Easy one-tap activation via floating icon or quick settings tile for instant fake lock screen
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screenshots Section -->
+        <section class="py-8 md:py-12 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                        App Screenshots
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                        Explore the intuitive interface and powerful features of Dark Screen
+                    </p>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                    <!-- Screenshot 1 -->
+                    <div class="screenshot-container relative overflow-hidden rounded-xl shadow-lg">
+                        <img 
+                            src="{% static 'images/our_products/dark_screen/ss1.png' %}" 
+                            alt="Dark Screen main interface showing activation options"
+                            class="w-full h-auto object-contain"
+                            loading="lazy"
+                        >
+                        <div class="screenshot-overlay absolute bottom-0 left-0 w-full bg-black/50 text-white p-3 text-center">
+                            <h3 class="font-bold text-lg mb-1">Easy Activation</h3>
+                            <p class="text-sm opacity-90">Simple one-tap activation with clear instructions</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Screenshot 2 -->
+                    <div class="screenshot-container relative overflow-hidden rounded-xl shadow-lg">
+                        <img 
+                            src="{% static 'images/our_products/dark_screen/ss2.png' %}" 
+                            alt="Dark Screen fake lock screen in action"
+                            class="w-full h-auto object-contain"
+                            loading="lazy"
+                        >
+                        <div class="screenshot-overlay absolute bottom-0 left-0 w-full bg-black/50 text-white p-3 text-center">
+                            <h3 class="font-bold text-lg mb-1">Apply Your Lock Screen</h3>
+                            <p class="text-sm opacity-90">Apply a lock screen which you want to use</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Screenshot 3 -->
+                    <div class="screenshot-container relative overflow-hidden rounded-xl shadow-lg">
+                        <img 
+                            src="{% static 'images/our_products/dark_screen/ss3.png' %}" 
+                            alt="Dark Screen settings and customization options"
+                            class="w-full h-auto object-contain"
+                            loading="lazy"
+                        >
+                        <div class="screenshot-overlay absolute bottom-0 left-0 w-full bg-black/50 text-white p-3 text-center">
+                            <h3 class="font-bold text-lg mb-1">Click On Floating Icon</h3>
+                            <p class="text-sm opacity-90">The Floating icon will appears everywhere, Simple click on it and Boom! Enjoy lock screen with background music</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Screenshot 4 -->
+                    <div class="screenshot-container relative overflow-hidden rounded-xl shadow-lg">
+                        <img 
+                            src="{% static 'images/our_products/dark_screen/ss4.png' %}" 
+                            alt="Dark Screen floating icon and quick access"
+                            class="w-full h-auto object-contain"
+                            loading="lazy"
+                        >
+                        <div class="screenshot-overlay absolute bottom-0 left-0 w-full bg-black/50 text-white p-3 text-center">
+                            <h3 class="font-bold text-lg mb-1">Vanish Lock Screen</h3>
+                            <p class="text-sm opacity-90">Click on Lock button And Vanish The Lock Screen Smoothly</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Download Section -->
+        <section id="download" class="py-16 md:py-20 bg-gradient-to-r from-blue-600 to-purple-700 text-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Get Dark Screen Now</h2>
+                    <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                        Download the app today and experience the convenience of background tasks with fake lock screen protection
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+                        <a href="#" class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-xl font-bold text-lg transition-colors duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl">
+                            <i class="fab fa-google-play text-2xl" aria-hidden="true"></i>
+                            <div class="text-left">
+                                <div class="text-xs">GET IT ON</div>
+                                <div class="text-xl">Google Play</div>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-download text-2xl" aria-hidden="true"></i>
+                            <div class="text-left">
+                                <div class="text-xs">DOWNLOAD</div>
+                                <div class="text-xl">APK File</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto">
+                        <h3 class="text-xl font-bold mb-4">System Requirements</h3>
+                        <div class="grid md:grid-cols-2 gap-4 text-left">
+                            <div class="flex items-center">
+                                <i class="fab fa-android text-green-400 mr-3 text-xl" aria-hidden="true"></i>
+                                <span>Android 8.0 or higher</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-mobile-alt text-blue-400 mr-3 text-xl" aria-hidden="true"></i>
+                                <span>50MB free space</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-shield-alt text-yellow-400 mr-3 text-xl" aria-hidden="true"></i>
+                                <span>Overlay permission</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-bell text-purple-400 mr-3 text-xl" aria-hidden="true"></i>
+                                <span>Notification access</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-16 md:py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                            Frequently Asked Questions
+                        </h2>
+                        <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                            Find answers to common questions about Dark Screen
+                        </p>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-2xl p-6 shadow-lg">
+                            <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-start">
+                                <i class="fas fa-question-circle text-blue-500 mr-3 mt-1" aria-hidden="true"></i>
+                                Does Dark Screen actually lock my phone?
+                            </h3>
+                            <p class="text-gray-600 pl-9">
+                                No, Dark Screen creates an overlay that looks like a lock screen, but your phone remains fully functional underneath. You can continue to play music, run apps, and receive notifications while the fake lock screen is active.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-6 shadow-lg">
+                            <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-start">
+                                <i class="fas fa-question-circle text-blue-500 mr-3 mt-1" aria-hidden="true"></i>
+                                Will Dark Screen drain my battery?
+                            </h3>
+                            <p class="text-gray-600 pl-9">
+                                Dark Screen is optimized for minimal battery usage. The overlay is lightweight and doesn't consume significant resources. In fact, it may help save battery by preventing accidental screen touches that would otherwise wake your device.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-6 shadow-lg">
+                            <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-start">
+                                <i class="fas fa-question-circle text-blue-500 mr-3 mt-1" aria-hidden="true"></i>
+                                Can I use Dark Screen with any music app?
+                            </h3>
+                            <p class="text-gray-600 pl-9">
+                                Yes! Dark Screen works with any audio app including Spotify, YouTube Music, Apple Music, Podcast apps, and more. The fake lock screen doesn't interfere with background audio playback.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-6 shadow-lg">
+                            <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-start">
+                                <i class="fas fa-question-circle text-blue-500 mr-3 mt-1" aria-hidden="true"></i>
+                                Is Dark Screen safe to use?
+                            </h3>
+                            <p class="text-gray-600 pl-9">
+                                Absolutely. Dark Screen only uses the standard Android overlay system and doesn't require root access. It doesn't collect personal data or interfere with system operations beyond creating the visual lock screen overlay.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-16 md:py-20">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Ready to Try Dark Screen?</h2>
+                    <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+                        Download now and experience the convenience of background tasks with fake lock screen protection.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#download" class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
+                            <i class="fab fa-google-play" aria-hidden="true"></i> Download Now
+                        </a>
+                        <a href="{% url 'products:dark_screen_android'%}" class="bg-white hover:bg-gray-100 text-blue-500 border border-blue-500 px-8 py-3 rounded-xl font-semibold text-lg transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-arrow-left" aria-hidden="true"></i> Back to Products
+                        </a>
+                    </div>
+                    <div class="flex justify-center items-center py-8 px-4">
+                        <a href="{% url 'products:dark_screen_android_privacy_policy'%}"
+                        class="bg-white hover:bg-gray-100 text-blue-500 border border-blue-500 px-8 py-3 rounded-xl font-semibold text-lg transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl w-full sm:w-auto text-center">
+                        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                        Privacy Policy
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+        {% include 'partials/newsletter.html' %}
+
+    </main>
+
+    <!-- Footer -->
+    {% include 'partials/footer.html' %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Performance: Use requestAnimationFrame for animations
+            function staggerAnimation() {
+                const staggerElements = document.querySelectorAll('.stagger-animation > *');
+                staggerElements.forEach((el, index) => {
+                    el.style.animationDelay = `${index * 0.15}s`;
+                    el.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                });
+            }
+            
+            requestAnimationFrame(staggerAnimation);
+            
+            // Smooth scroll with performance optimization
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Intersection Observer with performance optimizations
+            const observerOptions = {
+                threshold: 0.05,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements with performance in mind
+            document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+            
+            // Mobile touch optimizations
+            let touchStartY = 0;
+            document.addEventListener('touchstart', function(e) {
+                touchStartY = e.touches[0].clientY;
+            }, { passive: true });
+        });
+    </script>
+</body>
+</html>

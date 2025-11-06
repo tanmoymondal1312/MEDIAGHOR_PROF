@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Blog | Tutorials & Resources | Media Ghor</title>
+    <meta name="description" content="Explore our programming blog with tutorials, resources, and code libraries. Learn web development, software engineering, and programming best practices.">
+    <meta name="keywords" content="programming blog, coding tutorials, web development, software engineering, programming resources, code libraries, developer tools">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Programming Blog | Tutorials & Resources | Media Ghor">
+    <meta property="og:description" content="Discover premium programming tutorials, resources, and code libraries for developers of all skill levels.">
+    <meta property="og:url" content="https://mediaghor.com/blogs">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mediaghor.com/static/images/mediaghor-icon.png">
+    <meta property="og:site_name" content="Media Ghor">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Programming Blog | Media Ghor">
+    <meta name="twitter:description" content="Explore programming tutorials and resources for developers.">
+    <meta name="twitter:image" content="https://mediaghor.com/static/images/mediaghor-icon.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mediaghor.com/blog">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest'%}">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Media Ghor">
+    <meta name="theme-color" content="#3B82F6">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Media Ghor Programming Blog",
+        "description": "Programming tutorials, resources and code libraries for developers",
+        "url": "https://mediaghor.com/blog",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Media Ghor",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://mediaghor.com/static/images/logo.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://mediaghor.com/blog"
+        }
+    }
+    </script>
+    
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen flex flex-col font-inter" style="font-family: 'Inter', sans-serif;">
+
+    <!-- Navigation -->
+    {% include 'partials/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-20">
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-16">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Programming Blog</h1>
+                <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+                    Discover tutorials, resources, and insights to level up your coding skills
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <div class="bg-white/20 backdrop-blur-sm rounded-2xl px-6 py-3">
+                        <span class="text-blue-100 font-semibold">
+                            <i class="fas fa-newspaper mr-2"></i>{{ paginator.count }} Articles
+                        </span>
+                    </div>
+                    <div class="bg-white/20 backdrop-blur-sm rounded-2xl px-6 py-3">
+                        <span class="text-blue-100 font-semibold">
+                            <i class="fas fa-fire mr-2"></i>Trending Content
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Content -->
+        <div class="container mx-auto px-4 py-12">
+            <!-- Header Stats and Filters -->
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8">
+                <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                    <div class="bg-white rounded-2xl px-6 py-3 shadow-sm border border-gray-200">
+                        <span class="text-sm text-gray-600">
+                            Showing {{services_datas.start_index}}–{{services_datas.end_index}} of {{paginator.count}} posts
+                        </span>
+                    </div>
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-2xl shadow-lg">
+                        <span class="text-sm font-semibold">
+                            <i class="fas fa-newspaper mr-2"></i>Blog Posts
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Sort and Filter Buttons -->
+                <div class="flex flex-wrap gap-3">
+                    <button class="filter-btn bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-xl border border-gray-200 shadow-sm transition-all duration-300 flex items-center gap-2 active" data-filter="all">
+                        <i class="fas fa-layer-group"></i>All Posts
+                    </button>
+                    <button class="filter-btn bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-xl border border-gray-200 shadow-sm transition-all duration-300 flex items-center gap-2" data-filter="popular">
+                        <i class="fas fa-fire"></i>Most Liked
+                    </button>
+                </div>
+            </div>
+
+            <!-- Global Card Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 items-stretch">
+                {% for data in services_datas %}
+                    <!-- Premium Compact Card -->
+                    <div class="group relative bg-white rounded-2xl p-5 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-transparent overflow-hidden blog-post" data-likes="{{data.likes}}" data-date="{{data.created_at|date:'Y-m-d'}}">
+                        
+                        <!-- Animated Gradient Border -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 -z-10"></div>
+                        <div class="absolute inset-[1.5px] bg-white rounded-2xl -z-10"></div>
+                        
+                        <!-- Glow Effect -->
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-100/20 via-purple-100/10 to-pink-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+
+                        <!-- Category Badge -->
+                        <div class="absolute -top-2 -right-2 z-20">
+                            <span class="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-600 text-white text-xs font-bold rounded-full shadow-lg flex items-center gap-1">
+                                <i class="fas fa-feather text-xs"></i> BLOG
+                            </span>
+                        </div>
+
+                        <!-- Card Content -->
+                        <div class="relative z-10 flex flex-col h-full">
+                            <!-- Header Section -->
+                            <div class="flex-1">
+                                
+                                <a href="{% url 'blogs:post_detail' id=data.id %}" class="block group/link">
+                                    {% if data.image %}
+                                        <div class="relative overflow-hidden rounded-xl mb-3">
+                                            <img src="{{ data.image.url }}" alt="{{ data.title|default:'Service Image' }}" 
+                                                 class="w-full h-32 object-cover rounded-xl transform group-hover/link:scale-105 transition-transform duration-500">
+                                            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover/link:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                                        </div>
+                                    {% endif %}
+                                    <h2 class="text-lg font-bold text-gray-800 group-hover/link:text-transparent group-hover/link:bg-gradient-to-r group-hover/link:from-blue-600 group-hover/link:to-purple-600 group-hover/link:bg-clip-text transition-all duration-300 leading-tight">
+                                        {{ data.title|default:"Untitled Service" }}
+                                    </h2>
+                                </a>
+                                
+
+                                
+                                
+                                
+                                <div class="blog-card mt-3" data-id="{{ data.id }}">
+                                    <div class="blog-card-content">
+                                        <p class="text-gray-600 text-sm leading-relaxed preview-text">
+                                            <a href="{% url 'blogs:post_detail' id=data.id %}" class="hover:text-gray-800 transition-colors duration-300">
+                                                {{ data.post_content|truncatewords:25 }}
+                                            </a>
+                                        </p>
+                                        
+                                        <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-100">
+                                            {% if data.full_post_content %}
+                                            <a href="{% url 'blogs:post_detail' id=data.id %}">
+                                                <span class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg text-sm font-semibold">
+                                                    <i class="fas fa-arrow-right mr-1"></i> Read More
+                                                </span>
+                                            </a>
+                                            {% endif %}
+                                            
+                                            <div class="flex space-x-2 ml-auto">
+                                                <!-- Like button -->
+                                                <button 
+                                                    class="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-gradient-to-r from-red-50 to-pink-50 border border-red-100 text-red-500 hover:from-red-100 hover:to-pink-100 hover:text-red-600 hover:border-red-200 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow-md group/like text-sm"
+                                                    title="Like"
+                                                    data-like-button
+                                                    data-post-id="{{ data.id }}"
+                                                >
+                                                    <i class="fas fa-heart text-xs group-hover/like:scale-110 transition-transform duration-300"></i>
+                                                    <span class="likes-count font-semibold">{{ data.likes }}</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            <!-- Footer Meta -->
+                            <div class="mt-4 pt-3 border-t border-gray-100">
+                                <div class="flex items-center justify-between text-xs text-gray-500">
+                                    <span class="flex items-center gap-1">
+                                        <i class="far fa-calendar"></i>
+                                        <span>{{ data.created_at|date:"M j, Y" }}</span>
+                                    </span>
+                                    <span class="flex items-center gap-1 view-count-container">
+                                        <i class="fas fa-eye"></i>
+                                        <span class="view-count">{{ data.views|default:"1.2k" }} views</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hover Effect Dots -->
+                        <div class="absolute -bottom-2 -left-2 w-4 h-4 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500"></div>
+                        <div class="absolute -top-2 -right-2 w-3 h-3 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500 delay-150"></div>
+                    </div>
+                {% empty %}
+                <div class="col-span-full text-center py-16">
+                    <div class="bg-white rounded-2xl p-12 shadow-lg border border-gray-200">
+                        <i class="fas fa-inbox text-6xl text-gray-300 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-700 mb-2">No Posts Found</h3>
+                        <p class="text-gray-500 mb-6">We're working on creating amazing content for you.</p>
+                        <a href="{% url 'home' %}" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold transition-colors inline-flex items-center gap-2">
+                            <i class="fas fa-home"></i>Back to Home
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Enhanced Pagination -->
+            {% if services_datas.has_other_pages %}
+            <div class="flex justify-center mt-12">
+                <nav class="inline-flex items-center space-x-2 shadow-lg rounded-2xl overflow-hidden bg-white border border-gray-200 p-2">
+                    <!-- First Page Button -->
+                    {% if services_datas.has_previous %}
+                        <a href="?page=1" class="px-5 py-3 bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all duration-300 flex items-center gap-2 font-semibold">
+                            <i class="fas fa-angle-double-left"></i>First
+                        </a>
+                    {% else %}
+                        <span class="px-5 py-3 bg-gray-100 text-gray-400 rounded-xl cursor-not-allowed flex items-center gap-2 font-semibold">
+                            <i class="fas fa-angle-double-left"></i>First
+                        </span>
+                    {% endif %}
+
+                    <!-- Previous Button -->
+                    {% if services_datas.has_previous %}
+                        <a href="?page={{ services_datas.previous_page_number }}" class="px-5 py-3 bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all duration-300 flex items-center gap-2 font-semibold">
+                            <i class="fas fa-chevron-left"></i>Prev
+                        </a>
+                    {% else %}
+                        <span class="px-5 py-3 bg-gray-100 text-gray-400 rounded-xl cursor-not-allowed flex items-center gap-2 font-semibold">
+                            <i class="fas fa-chevron-left"></i>Prev
+                        </span>
+                    {% endif %}
+
+                    <!-- Page Numbers -->
+                    {% for num in page_range %}
+                        {% if services_datas.number == num %}
+                            <span class="px-5 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-bold shadow-lg transform scale-105">
+                                {{ num }}
+                            </span>
+                        {% else %}
+                            <a href="?page={{ num }}" class="px-5 py-3 bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all duration-300 font-semibold">
+                                {{ num }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+
+                    <!-- Next Button -->
+                    {% if services_datas.has_next %}
+                        <a href="?page={{ services_datas.next_page_number }}" class="px-5 py-3 bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all duration-300 flex items-center gap-2 font-semibold">
+                            Next<i class="fas fa-chevron-right"></i>
+                        </a>
+                    {% else %}
+                        <span class="px-5 py-3 bg-gray-100 text-gray-400 rounded-xl cursor-not-allowed flex items-center gap-2 font-semibold">
+                            Next<i class="fas fa-chevron-right"></i>
+                        </span>
+                    {% endif %}
+
+                    <!-- Last Page Button -->
+                    {% if services_datas.has_next %}
+                        <a href="?page={{ paginator.num_pages }}" class="px-5 py-3 bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all duration-300 flex items-center gap-2 font-semibold">
+                            Last<i class="fas fa-angle-double-right"></i>
+                        </a>
+                    {% else %}
+                        <span class="px-5 py-3 bg-gray-100 text-gray-400 rounded-xl cursor-not-allowed flex items-center gap-2 font-semibold">
+                            Last<i class="fas fa-angle-double-right"></i>
+                        </span>
+                    {% endif %}
+                </nav>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Newsletter Section -->
+        {% include 'partials/newsletter.html' %}
+
+    </main>
+
+    <!-- Footer -->
+    {% include 'partials/footer.html' %}
+
+    <style>
+        /* Premium Styling */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Smooth Transitions */
+        * {
+            transition-property: color, background-color, border-color, transform, box-shadow;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+
+        /* Filter Button Active State */
+        .filter-btn.active {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #3b82f6;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Like Animation */
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.3); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        .heart-beat {
+            animation: heartBeat 0.6s ease-in-out;
+        }
+
+        /* Library Container Scrollbar */
+        .library-container {
+            max-height: 80px;
+            overflow-y: auto;
+        }
+        
+        .library-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .library-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .library-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+            border-radius: 10px;
+        }
+        
+        .library-container::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #2563eb, #7c3aed);
+        }
+
+        /* Enhanced like button states */
+        [data-like-button].liked {
+            background: linear-gradient(135deg, #fecaca, #fbcfe8) !important;
+            border-color: #f87171 !important;
+            color: #dc2626 !important;
+        }
+
+        /* Card hover effects */
+        .group {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .group:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        /* Shake animation for errors */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .animate-shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .grid {
+                gap: 1.5rem;
+            }
+            
+            .filter-btn {
+                font-size: 0.875rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .flex-wrap {
+                justify-content: center;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const blogPosts = document.querySelectorAll('.blog-post');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.filter;
+                    
+                    blogPosts.forEach(post => {
+                        switch(filter) {
+                            case 'recent':
+                                // Show posts from last 30 days
+                                const postDate = new Date(post.dataset.date);
+                                const thirtyDaysAgo = new Date();
+                                thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+                                post.style.display = postDate >= thirtyDaysAgo ? 'block' : 'none';
+                                break;
+                            case 'popular':
+                                // Show posts with more than 10 likes
+                                const likes = parseInt(post.dataset.likes);
+                                post.style.display = likes > 10 ? 'block' : 'none';
+                                break;
+                            default:
+                                post.style.display = 'block';
+                        }
+                    });
+                });
+            });
+
+            // Text toggle functionality
+            document.querySelectorAll('.toggle-text').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const container = this.closest('p');
+                    const shortText = container.querySelector('.short-text');
+                    const fullText = container.querySelector('.full-text');
+                    
+                    if (shortText.classList.contains('hidden')) {
+                        shortText.classList.remove('hidden');
+                        fullText.classList.add('hidden');
+                        this.innerHTML = '<i class="fas fa-chevron-down mr-1"></i>More';
+                    } else {
+                        shortText.classList.add('hidden');
+                        fullText.classList.remove('hidden');
+                        this.innerHTML = '<i class="fas fa-chevron-up mr-1"></i>Less';
+                    }
+                });
+            });
+
+            
+            // Enhanced like button functionality with API integration
+            document.querySelectorAll('[data-like-button]').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const postId = this.getAttribute('data-post-id');
+                    const likesCount = this.querySelector('.likes-count');
+                    const icon = this.querySelector('i');
+                    let currentLikes = parseInt(likesCount.textContent);
+                    let isCurrentlyLiked = this.classList.contains('liked');
+                    let action = isCurrentlyLiked ? 'unlike' : 'like';
+                    
+                    // Optimistic UI update
+                    if (isCurrentlyLiked) {
+                        // Unlike - revert UI
+                        this.classList.remove('liked');
+                        this.classList.remove('from-red-100', 'to-pink-100', 'text-red-600', 'border-red-200');
+                        this.classList.add('from-red-50', 'to-pink-50', 'text-red-500', 'border-red-100');
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                        currentLikes = Math.max(0, currentLikes - 1);
+                    } else {
+                        // Like - update UI
+                        this.classList.add('liked');
+                        this.classList.remove('from-red-50', 'to-pink-50', 'text-red-500', 'border-red-100');
+                        this.classList.add('from-red-100', 'to-pink-100', 'text-red-600', 'border-red-200');
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                        currentLikes++;
+                        
+                        // Heart animation
+                        this.style.transform = 'scale(1.2)';
+                        setTimeout(() => {
+                            this.style.transform = 'scale(1)';
+                        }, 300);
+                    }
+                    
+                    likesCount.textContent = currentLikes;
+                    
+                    // AJAX call to update like in database
+                    fetch('/blogs/post-impression/', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': getCookie('csrftoken'),
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            post_id: postId,
+                            action: action
+                        })
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (!data.success) {
+                            revertLikeUI(button, currentLikes, action);
+                            console.error('Like action failed:', data.error);
+                            showLikeError(button);
+                        } else {
+                            likesCount.textContent = data.new_likes;
+                            console.log(`Post ${postId} ${action}d successfully. New likes: ${data.new_likes}`);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        revertLikeUI(button, currentLikes, action);
+                        showLikeError(button);
+                    });
+                });
+            });
+
+            // Helper function to revert UI changes on error
+            function revertLikeUI(button, currentLikes, attemptedAction) {
+                const likesCount = button.querySelector('.likes-count');
+                const icon = button.querySelector('i');
+                
+                if (attemptedAction === 'like') {
+                    button.classList.remove('liked');
+                    button.classList.remove('from-red-100', 'to-pink-100', 'text-red-600', 'border-red-200');
+                    button.classList.add('from-red-50', 'to-pink-50', 'text-red-500', 'border-red-100');
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                    likesCount.textContent = Math.max(0, currentLikes - 1);
+                } else {
+                    button.classList.add('liked');
+                    button.classList.remove('from-red-50', 'to-pink-50', 'text-red-500', 'border-red-100');
+                    button.classList.add('from-red-100', 'to-pink-100', 'text-red-600', 'border-red-200');
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    likesCount.textContent = currentLikes + 1;
+                }
+            }
+
+            // Helper function to show error feedback
+            function showLikeError(button) {
+                const originalHTML = button.innerHTML;
+                const originalClasses = button.className;
+                
+                button.innerHTML = '<i class="fas fa-exclamation-triangle mr-1"></i>Error';
+                button.className = originalClasses.replace('from-red-50 to-pink-50', 'from-yellow-500 to-orange-500')
+                                                .replace('from-red-100 to-pink-100', 'from-yellow-500 to-orange-500')
+                                                .replace('text-red-500', 'text-white')
+                                                .replace('text-red-600', 'text-white')
+                                                .replace('border-red-100', 'border-yellow-400')
+                                                .replace('border-red-200', 'border-yellow-400');
+                
+                button.classList.add('animate-shake');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.className = originalClasses;
+                    button.classList.remove('animate-shake');
+                }, 2000);
+            }
+
+
+
+            // Helper function to get CSRF token
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            // Add hover effects to entire cards
+            document.querySelectorAll('.group').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

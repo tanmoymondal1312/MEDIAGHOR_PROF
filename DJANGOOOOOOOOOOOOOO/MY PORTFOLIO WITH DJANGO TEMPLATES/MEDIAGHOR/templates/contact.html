@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Media Ghor | Professional Software Development Services</title>
+    <meta name="description" content="Direct contact with Media Ghor for professional Android development, website development, server solutions, API development, React, and Django services.">
+    <meta name="keywords" content="Contact Media Ghor, software development contact, Android development, website development, server solutions, API development, React development, Django development">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Contact Us - Media Ghor | Professional Software Development">
+    <meta property="og:description" content="Direct contact with Media Ghor for professional software development services. Let's discuss your project requirements.">
+    <meta property="og:url" content="https://mediaghor.com/contact">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mediaghor.com/static/images/mediaghor-icon.png">
+    <meta property="og:site_name" content="Media Ghor">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact Us - Media Ghor">
+    <meta name="twitter:description" content="Direct Contact with Media Ghor for professional software development services">
+    <meta name="twitter:image" content="https://mediaghor.com/static/images/mediaghor-icon.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mediaghor.com/contact">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest'%}">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Media Ghor">
+    <meta name="theme-color" content="#3B82F6">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact Media Ghor",
+        "description": "Contact page for Media Ghor software development services",
+        "url": "https://mediaghor.com/contact",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Media Ghor",
+            "url": "https://mediaghor.com",
+            "logo": "https://mediaghor.com/static/images/logo.png",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+88-01736008374",
+                "contactType": "customer service",
+                "email": "contact@mediaghor.com",
+                "areaServed": "Worldwide",
+                "availableLanguage": ["English", "Bengali"]
+            }
+        }
+    }
+    </script>
+    
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradientFlow 4s ease infinite;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #3B82F6, #10B981, #8B5CF6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stagger-animation > * {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #3B82F6, #10B981, transparent);
+            margin: 3rem auto;
+            max-width: 200px;
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, #3B82F6, #10B981);
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f1f5f9;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(135deg, #3B82F6, #10B981);
+        }
+        
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+            filter: blur(40px);
+            z-index: 0;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 1rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+        }
+        
+        .form-select:focus {
+            outline: none;
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .form-textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-textarea:focus {
+            outline: none;
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #3B82F6, #10B981);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .contact-info-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f1f5f9;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .success-message {
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .error-message {
+            background: linear-gradient(135deg, #EF4444, #DC2626);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .loading-spinner {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            transform: scale(1.1);
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Mobile Optimizations - ENHANCED */
+        @media (max-width: 768px) {
+            /* Hero section improvements */
+            .hero-title {
+                font-size: 2.5rem !important;
+                line-height: 1.2;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.5rem !important;
+                line-height: 1.3;
+            }
+            
+            .hero-description {
+                font-size: 1rem !important;
+                line-height: 1.5;
+            }
+            
+            .service-tags {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                justify-content: center;
+            }
+            
+            .service-tags > div {
+                font-size: 0.875rem;
+                padding: 0.5rem 1rem;
+            }
+            
+            /* Contact form improvements */
+            .contact-card {
+                padding: 1.5rem;
+                margin: 0 -0.5rem;
+                border-radius: 16px;
+            }
+            
+            .contact-info-card {
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .contact-info-grid {
+                gap: 1rem;
+            }
+            
+            .feature-icon {
+                width: 50px;
+                height: 50px;
+                margin-bottom: 1rem;
+            }
+            
+            .feature-icon i {
+                font-size: 1.25rem;
+            }
+            
+            /* Form improvements */
+            .form-input, .form-select, .form-textarea {
+                padding: 0.875rem 1rem;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            .form-label {
+                font-size: 0.95rem;
+            }
+            
+            .submit-btn {
+                padding: 0.875rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            /* Layout improvements */
+            .mobile-stack {
+                flex-direction: column;
+            }
+            
+            .mobile-center {
+                text-align: center;
+                justify-content: center;
+            }
+            
+            .mobile-padding {
+                padding: 1rem !important;
+            }
+            
+            /* FAQ improvements */
+            .faq-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem;
+            }
+            
+            .faq-item {
+                padding: 1.25rem;
+            }
+            
+            /* CTA improvements */
+            .cta-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .cta-buttons a {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            /* WhatsApp float button */
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 25px;
+            }
+            
+            /* Text sizing improvements */
+            h1 {
+                font-size: 2rem !important;
+            }
+            
+            h2 {
+                font-size: 1.75rem !important;
+            }
+            
+            h3 {
+                font-size: 1.25rem !important;
+            }
+            
+            p, li {
+                font-size: 0.95rem;
+            }
+            
+            /* Spacing improvements */
+            .section-padding {
+                padding: 3rem 0 !important;
+            }
+            
+            .container-padding {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .contact-card {
+                padding: 1.25rem;
+                border-radius: 12px;
+            }
+            
+            .contact-info-card {
+                padding: 1.25rem;
+            }
+            
+            .mobile-padding {
+                padding: 0.75rem !important;
+            }
+            
+            .hero-title {
+                font-size: 2rem !important;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.25rem !important;
+            }
+            
+            .feature-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .feature-icon i {
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Performance Optimizations */
+        .will-change {
+            will-change: transform;
+        }
+        
+        /* Prevent horizontal scroll */
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* Ensure all containers don't exceed viewport */
+        .container {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen font-inter">
+    <!-- Navigation -->
+    {% include 'partials/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-20">
+        <!-- Floating Background Shapes -->
+        <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+            <div class="floating-shape w-64 h-64 -top-20 -left-20 animate-float" style="animation-delay: 0s;"></div>
+            <div class="floating-shape w-48 h-48 -bottom-16 -right-16 animate-float" style="animation-delay: 1.5s;"></div>
+            <div class="floating-shape w-32 h-32 top-1/3 right-1/4 animate-float" style="animation-delay: 2.5s;"></div>
+            <div class="floating-shape w-40 h-40 bottom-1/4 left-1/3 animate-float" style="animation-delay: 3.5s;"></div>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 text-white py-16 md:py-24 section-padding">
+            <div class="container mx-auto px-4 text-center relative z-10 container-padding">
+                <!-- Breadcrumb -->
+                <nav class="flex justify-center mb-6" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-3 text-sm">
+                        <li class="inline-flex items-center">
+                            <a href="{% url 'home'%}" class="inline-flex items-center font-medium text-blue-200 hover:text-white transition-colors duration-300">
+                                <i class="fas fa-home mr-2" aria-hidden="true"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li aria-current="page">
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-blue-200 mx-2" aria-hidden="true"></i>
+                                <span class="font-medium text-white">Contact Us</span>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+
+                <h1 class="hero-title text-4xl md:text-6xl lg:text-7xl font-black mb-6 animate-fade-in-up">
+                    <span class="gradient-text">Direct Contact With Media Ghor</span>
+                </h1>
+                <p class="hero-subtitle text-xl md:text-2xl lg:text-3xl mb-8 opacity-90 max-w-3xl mx-auto leading-relaxed font-light">
+                    Let's Discuss Your Next Project
+                </p>
+                <p class="hero-description text-lg md:text-xl mb-12 max-w-2xl mx-auto opacity-80 leading-relaxed">
+                    Ready to bring your ideas to life? Contact us for professional software development services and let's create something amazing together.
+                </p>
+                
+                <div class="service-tags flex flex-wrap justify-center gap-4 mb-8">
+                    <div class="glass-effect rounded-full px-4 py-2 md:px-6 md:py-3 backdrop-blur-sm">
+                        <span class="text-sm md:text-base"><i class="fas fa-mobile-alt mr-2" aria-hidden="true"></i>Android Development</span>
+                    </div>
+                    <div class="glass-effect rounded-full px-4 py-2 md:px-6 md:py-3 backdrop-blur-sm">
+                        <span class="text-sm md:text-base"><i class="fas fa-globe mr-2" aria-hidden="true"></i>Website Development</span>
+                    </div>
+                    <div class="glass-effect rounded-full px-4 py-2 md:px-6 md:py-3 backdrop-blur-sm">
+                        <span class="text-sm md:text-base"><i class="fas fa-server mr-2" aria-hidden="true"></i>Server Solutions</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form & Info Section -->
+        <section class="py-16 md:py-20 section-padding">
+            <div class="container mx-auto px-4 container-padding">
+                <div class="grid lg:grid-cols-3 gap-8 md:gap-12 max-w-7xl mx-auto">
+                    <!-- Contact Information -->
+                    <div class="lg:col-span-1">
+                        <div class="text-center lg:text-left mb-8 lg:mb-0">
+                            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                                Contact Information
+                            </h2>
+                            <p class="text-gray-600 text-base md:text-lg mb-8">
+                                Reach out to us through any of these channels. We're always happy to help with your software development needs.
+                            </p>
+                        </div>
+                        
+                        <div class="contact-info-grid space-y-4 md:space-y-6 stagger-animation">
+                            <!-- Phone -->
+                            <div class="contact-info-card card-hover will-change">
+                                <div class="flex items-start">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-phone text-white text-xl" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2">Call Us</h3>
+                                        <a href="tel:+8801736008374" class="text-blue-600 hover:text-blue-800 text-base md:text-lg font-semibold transition-colors duration-300">
+                                            +88 01736008374
+                                        </a>
+                                        <p class="text-gray-600 mt-2 text-sm md:text-base">
+                                            Available from 9:00 AM to 6:00 PM (GMT+6)
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Email -->
+                            <div class="contact-info-card card-hover will-change">
+                                <div class="flex items-start">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-envelope text-white text-xl" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2">Email Us</h3>
+                                        <a href="mailto:contact@mediaghor.com" class="text-blue-600 hover:text-blue-800 text-base md:text-lg font-semibold transition-colors duration-300">
+                                            contact@mediaghor.com
+                                        </a>
+                                        <p class="text-gray-600 mt-2 text-sm md:text-base">
+                                            We'll respond within 24 hours
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Direct Admin -->
+                            <div class="contact-info-card card-hover will-change">
+                                <div class="flex items-start">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-user-shield text-white text-xl" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2">Direct Admin</h3>
+                                        <a href="mailto:tanmoymondal1315@gmail.com" class="text-blue-600 hover:text-blue-800 text-base md:text-lg font-semibold transition-colors duration-300">
+                                            tanmoymondal1315@gmail.com
+                                        </a>
+                                        <p class="text-gray-600 mt-2 text-sm md:text-base">
+                                            For direct communication with the admin
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Services -->
+                            <div class="contact-info-card card-hover will-change">
+                                <div class="flex items-start">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-code text-white text-xl" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2">Our Services</h3>
+                                        <ul class="text-gray-600 space-y-1 text-sm md:text-base">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check text-green-500 mr-2" aria-hidden="true"></i>
+                                                <span>Android Development</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check text-green-500 mr-2" aria-hidden="true"></i>
+                                                <span>Website Development</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check text-green-500 mr-2" aria-hidden="true"></i>
+                                                <span>Server Solutions</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check text-green-500 mr-2" aria-hidden="true"></i>
+                                                <span>API Development</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check text-green-500 mr-2" aria-hidden="true"></i>
+                                                <span>React Development</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check text-green-500 mr-2" aria-hidden="true"></i>
+                                                <span>Django Development</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div class="lg:col-span-2">
+                        <div class="contact-card">
+                            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Send Us a Message</h2>
+                            <p class="text-gray-600 mb-6 md:mb-8 text-base md:text-lg">
+                                Fill out the form below and we'll get back to you as soon as possible.
+                            </p>
+                            
+                            <!-- Success Message -->
+                            <div id="successMessage" class="success-message">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-white text-xl mr-3" aria-hidden="true"></i>
+                                    <span class="font-semibold">Thank you for your message!</span>
+                                </div>
+                                <p class="mt-2">We've received your inquiry and will get back to you within 24 hours.</p>
+                            </div>
+                            
+                            <!-- Error Message -->
+                            <div id="errorMessage" class="error-message">
+                                <div class="flex items-center">
+                                    <i class="fas fa-exclamation-circle text-white text-xl mr-3" aria-hidden="true"></i>
+                                    <span class="font-semibold">Something went wrong!</span>
+                                </div>
+                                <p class="mt-2" id="errorText">Please try again later or contact us directly.</p>
+                            </div>
+                            
+                            <form id="contactForm" class="space-y-4 md:space-y-6">
+                                <!-- Name Field -->
+                                <div>
+                                    <label for="name" class="form-label">Your Name</label>
+                                    <input type="text" id="name" name="name" class="form-input" placeholder="Enter your full name" required>
+                                    <div id="nameError" class="text-red-500 text-sm mt-1 hidden">Please enter your name</div>
+                                </div>
+                                
+                                <!-- Email Field -->
+                                <div>
+                                    <label for="email" class="form-label">Your E-Mail</label>
+                                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email address" required>
+                                    <div id="emailError" class="text-red-500 text-sm mt-1 hidden">Please enter a valid email address</div>
+                                </div>
+                                
+                                <!-- Phone Field (Optional) -->
+                                <div>
+                                    <label for="phone" class="form-label">Phone Number <span class="text-gray-500 font-normal">(Optional)</span></label>
+                                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="Enter your phone number">
+                                </div>
+                                
+                                <!-- Service Dropdown -->
+                                <div>
+                                    <label for="service" class="form-label">Discuss About</label>
+                                    <select id="service" name="service" class="form-select" required>
+                                        <option value="" selected disabled>Select a service</option>
+                                        <option value="android-development">Android Development</option>
+                                        <option value="website-development">Website Development</option>
+                                        <option value="server-solutions">Server Solutions</option>
+                                        <option value="api-development">API Development</option>
+                                        <option value="react-development">React Development</option>
+                                        <option value="django-development">Django Development</option>
+                                        <option value="other">Non of them</option>
+                                    </select>
+                                    <div id="serviceError" class="text-red-500 text-sm mt-1 hidden">Please select a service</div>
+                                </div>
+                                
+                                <!-- Message Field -->
+                                <div>
+                                    <label for="message" class="form-label">Your Message</label>
+                                    <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your project requirements, timeline, and any specific details..." required></textarea>
+                                    <div id="messageError" class="text-red-500 text-sm mt-1 hidden">Please enter your message</div>
+                                </div>
+                                
+                                <!-- Submit Button -->
+                                <button type="submit" id="submitButton" class="submit-btn">
+                                    <span id="submitText">Send Message</span>
+                                    <div id="loadingSpinner" class="loading-spinner"></div>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-16 md:py-20 bg-gray-50 section-padding">
+            <div class="container mx-auto px-4 container-padding">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                        Frequently Asked Questions
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-base md:text-lg">
+                        Common questions about our services and process
+                    </p>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="faq-grid grid md:grid-cols-2 gap-6 md:gap-8 stagger-animation">
+                        <div class="faq-item bg-white rounded-2xl p-6 shadow-lg">
+                            <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-start">
+                                <i class="fas fa-question-circle text-blue-500 mr-3 mt-1" aria-hidden="true"></i>
+                                What is your typical response time?
+                            </h3>
+                            <p class="text-gray-600 text-sm md:text-base">
+                                We typically respond to all inquiries within 24 hours. For urgent matters, please call us directly at +88 01736008374.
+                            </p>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-2xl p-6 shadow-lg">
+                            <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-start">
+                                <i class="fas fa-question-circle text-blue-500 mr-3 mt-1" aria-hidden="true"></i>
+                                Do you provide project estimates?
+                            </h3>
+                            <p class="text-gray-600 text-sm md:text-base">
+                                Yes, after discussing your project requirements, we provide detailed estimates with timelines and cost breakdowns.
+                            </p>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-2xl p-6 shadow-lg">
+                            <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-start">
+                                <i class="fas fa-question-circle text-blue-500 mr-3 mt-1" aria-hidden="true"></i>
+                                What technologies do you work with?
+                            </h3>
+                            <p class="text-gray-600 text-sm md:text-base">
+                                We specialize in Android (Java/Kotlin), Web Development, Django, React, API development, and server solutions with various technologies.
+                            </p>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-2xl p-6 shadow-lg">
+                            <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-start">
+                                <i class="fas fa-question-circle text-blue-500 mr-3 mt-1" aria-hidden="true"></i>
+                                Do you offer ongoing support?
+                            </h3>
+                            <p class="text-gray-600 text-sm md:text-base">
+                                Yes, we provide comprehensive support and maintenance packages for all the projects we develop.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-16 md:py-20 bg-gradient-to-r from-blue-600 to-purple-700 text-white section-padding">
+            <div class="container mx-auto px-4 container-padding">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-6">Ready to Start Your Project?</h2>
+                    <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                        Let's discuss your ideas and turn them into a successful digital solution
+                    </p>
+                    
+                    <div class="cta-buttons flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="tel:+8801736008374" class="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 md:px-8 md:py-3 rounded-xl font-semibold text-base md:text-lg transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-phone" aria-hidden="true"></i> Call Us Now
+                        </a>
+                        <a href="#contactForm" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-6 py-3 md:px-8 md:py-3 rounded-xl font-semibold text-base md:text-lg transition-colors duration-300 flex items-center justify-center gap-2 backdrop-blur-sm">
+                            <i class="fas fa-envelope" aria-hidden="true"></i> Send Message
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {% include 'partials/newsletter.html' %}
+    <a href="https://wa.me/8801736008374" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <!-- Footer -->
+    {% include 'partials/footer.html' %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Performance: Use requestAnimationFrame for animations
+            function staggerAnimation() {
+                const staggerElements = document.querySelectorAll('.stagger-animation > *');
+                staggerElements.forEach((el, index) => {
+                    el.style.animationDelay = `${index * 0.15}s`;
+                    el.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                });
+            }
+            
+            requestAnimationFrame(staggerAnimation);
+            
+            // Smooth scroll with performance optimization
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Form handling with JavaScript API
+            const contactForm = document.getElementById('contactForm');
+            const submitButton = document.getElementById('submitButton');
+            const submitText = document.getElementById('submitText');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            const errorText = document.getElementById('errorText');
+            
+            // Error elements
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const serviceError = document.getElementById('serviceError');
+            const messageError = document.getElementById('messageError');
+            
+            // Form validation function
+            function validateForm() {
+                let isValid = true;
+                
+                // Reset errors
+                nameError.classList.add('hidden');
+                emailError.classList.add('hidden');
+                serviceError.classList.add('hidden');
+                messageError.classList.add('hidden');
+                
+                // Validate name
+                const name = document.getElementById('name').value.trim();
+                if (name === '') {
+                    nameError.classList.remove('hidden');
+                    isValid = false;
+                }
+                
+                // Validate email
+                const email = document.getElementById('email').value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (email === '' || !emailRegex.test(email)) {
+                    emailError.classList.remove('hidden');
+                    isValid = false;
+                }
+                
+                // Validate service
+                const service = document.getElementById('service').value;
+                if (!service) {
+                    serviceError.classList.remove('hidden');
+                    isValid = false;
+                }
+                
+                // Validate message
+                const message = document.getElementById('message').value.trim();
+                if (message === '') {
+                    messageError.classList.remove('hidden');
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+            
+            // Form submission handler
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Validate form
+                if (!validateForm()) {
+                    return;
+                }
+                
+                // Show loading state
+                submitButton.disabled = true;
+                submitText.textContent = 'Sending...';
+                loadingSpinner.style.display = 'block';
+                
+                // Hide previous messages
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+                
+                // Prepare form data
+                const formData = {
+                    name: document.getElementById('name').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    service: document.getElementById('service').value,
+                    message: document.getElementById('message').value.trim(),
+                    timestamp: new Date().toISOString()
+                };
+                
+                try {
+                    // ✅ Correctly use your Django endpoint URL here
+                    const response = await fetch("{% url 'subscriptions:contact' %}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCookie('csrftoken') // include CSRF token if needed
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    if (response.ok) {
+                        // Show success message
+                        successMessage.style.display = 'block';
+                        contactForm.reset();
+                        
+                        // Scroll to success message
+                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        throw new Error('Server responded with an error');
+                    }
+                } catch (error) {
+                    console.error('Error submitting form:', error);
+                    errorText.textContent = 'There was an error sending your message. Please try again or contact us directly.';
+                    errorMessage.style.display = 'block';
+                    
+                    // Scroll to error message
+                    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } finally {
+                    // Reset button state
+                    submitButton.disabled = false;
+                    submitText.textContent = 'Send Message';
+                    loadingSpinner.style.display = 'none';
+                }
+            });
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let cookie of cookies) {
+                        cookie = cookie.trim();
+                        if (cookie.startsWith(name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+
+            
+            // Real-time validation
+            document.getElementById('name').addEventListener('blur', function() {
+                if (this.value.trim() === '') {
+                    nameError.classList.remove('hidden');
+                } else {
+                    nameError.classList.add('hidden');
+                }
+            });
+            
+            document.getElementById('email').addEventListener('blur', function() {
+                const email = this.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (email === '' || !emailRegex.test(email)) {
+                    emailError.classList.remove('hidden');
+                } else {
+                    emailError.classList.add('hidden');
+                }
+            });
+            
+            document.getElementById('service').addEventListener('change', function() {
+                if (!this.value) {
+                    serviceError.classList.remove('hidden');
+                } else {
+                    serviceError.classList.add('hidden');
+                }
+            });
+            
+            document.getElementById('message').addEventListener('blur', function() {
+                if (this.value.trim() === '') {
+                    messageError.classList.remove('hidden');
+                } else {
+                    messageError.classList.add('hidden');
+                }
+            });
+            
+            // Intersection Observer with performance optimizations
+            const observerOptions = {
+                threshold: 0.05,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements with performance in mind
+            document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

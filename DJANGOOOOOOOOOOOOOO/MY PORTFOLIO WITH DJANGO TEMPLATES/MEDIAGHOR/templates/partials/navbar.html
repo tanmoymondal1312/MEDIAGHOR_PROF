@@ -1,0 +1,597 @@
+{% load static %}
+<nav class="bv-navbar text-white p-0 flex items-center justify-between w-full fixed top-0 left-0 z-50 transition-all duration-500"
+    style="background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 30%, rgba(248,250,252,0.95) 100%); backdrop-filter: blur(20px);">
+
+    <!-- Left Section (Logo + Toggle) -->
+    <div class="flex items-center flex-shrink-0 bg-white rounded-r-2xl pr-3 lg:pr-6 py-2 lg:py-3 shadow-lg relative overflow-hidden">
+        <!-- Animated background effect -->
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-50 via-white to-purple-50 opacity-60"></div>
+        <div class="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-blue-400 to-purple-500"></div>
+        
+        <!-- Enhanced Toggle Button for Mobile/Tablet -->
+        <button id="toggleMenu" class="bv-toggle lg:hidden text-gray-700 hover:text-purple-600 mr-2 lg:mr-3 ml-2 transition-all duration-300 transform hover:scale-110 relative z-10 p-1">
+            <div class="w-6 h-6 flex flex-col justify-center items-center space-y-1">
+                <span class="w-5 h-0.5 bg-current transform transition-all duration-300 origin-center"></span>
+                <span class="w-5 h-0.5 bg-current transform transition-all duration-300 origin-center"></span>
+                <span class="w-5 h-0.5 bg-current transform transition-all duration-300 origin-center"></span>
+            </div>
+        </button>
+        
+        <!-- Logo with enhanced styling -->
+        <a href="{% url 'home' %}" class="flex items-center relative z-10 group">
+            <div class="relative">
+                <img src="{% static 'images/mediaghor-icon.png' %}" alt="Media Ghor" class="h-[40px] lg:h-[55px] w-auto transform group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 transition-opacity duration-300 rounded-full"></div>
+            </div>
+            <!-- Brand name for larger screens -->
+            <span class="hidden xl:block ml-3 text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                MEDIA GHOR
+            </span>
+        </a>    
+    </div>
+
+    <!-- Enhanced Search Box - Moved before menu for better mobile layout -->
+    <div class="bv-searchbox flex-shrink-0 mx-2 lg:ml-6 lg:mr-4 order-2 lg:order-3">
+        <div class="relative group">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+            <input type="text" placeholder="Search..." id="searchInput"
+                class="relative w-[140px] sm:w-[160px] lg:w-[220px] px-3 lg:px-5 py-2 lg:py-3 rounded-2xl border-2 border-white/50 focus:border-blue-300 focus:outline-none transition-all duration-500 
+                bg-white/90 backdrop-blur-sm text-gray-800 placeholder-gray-500 text-sm lg:text-base shadow-lg hover:shadow-xl focus:shadow-2xl z-10"
+                autocomplete="off">
+            <button class="absolute right-2 lg:right-3 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-blue-500 to-purple-500 text-white p-1.5 lg:p-2 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110 z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 lg:h-4 lg:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </button>
+            <!-- Enhanced Suggestions Dropdown -->
+            <div id="searchSuggestions" class="absolute z-50 w-full mt-2 bg-white/95 backdrop-blur-xl text-gray-800 rounded-2xl shadow-2xl hidden max-h-80 overflow-y-auto border border-white/20 transform origin-top transition-all duration-300 scale-95 opacity-0">
+                <div class="p-2">
+                    <div class="text-xs font-semibold text-gray-500 px-3 py-2 border-b border-gray-100/50">Quick Resources</div>
+                    <!-- Suggestions will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div id="menu" class="bv-menu hidden lg:flex flex-col lg:flex-row lg:items-center lg:space-x-1 
+        absolute lg:relative top-full lg:top-auto left-0 lg:left-auto w-full lg:w-auto 
+        bg-white lg:bg-transparent p-4 lg:p-0 shadow-2xl lg:shadow-none transition-all duration-500 ease-out backdrop-blur-lg lg:backdrop-blur-none order-3 lg:order-2">
+        
+        <!-- Navigation Items with Enhanced Design -->
+        <div class="space-y-2 lg:space-y-0 lg:flex lg:space-x-1">
+            <a href="{% url 'home' %}" class="nav-item group relative flex items-center px-4 lg:px-3 py-3 lg:py-2 rounded-xl lg:rounded-full transition-all duration-300 hover:bg-white/80 hover:shadow-lg border border-transparent hover:border-white/30">
+                <div class="w-2 h-2 bg-blue-400 rounded-full mr-3 lg:mr-2 group-hover:scale-150 transition-transform duration-300"></div>
+                <span class="text-gray-800 font-semibold text-base group-hover:text-blue-600 transition-colors duration-300">Home</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl lg:rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+
+            <!-- Enhanced Dropdown Menu -->
+            <div class="relative group">
+                <div class="flex items-center">
+                    <a href="{% url 'resources:category_resources'%}" class="nav-item group relative flex items-center px-4 lg:px-3 py-3 lg:py-2 rounded-xl lg:rounded-full transition-all duration-300 hover:bg-white/80 hover:shadow-lg border border-transparent hover:border-white/30 w-full lg:w-auto">
+                        <div class="w-2 h-2 bg-green-400 rounded-full mr-3 lg:mr-2 group-hover:scale-150 transition-transform duration-300"></div>
+                        <span class="text-gray-800 font-semibold text-base group-hover:text-green-600 transition-colors duration-300">Resources</span>
+                        <svg class="w-4 h-4 ml-2 text-gray-600 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                        <div class="absolute inset-0 bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-xl lg:rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </a>
+                    <!-- Mobile dropdown toggle -->
+                    <button id="mobileResourcesToggle" class="lg:hidden ml-2 text-gray-600 focus:outline-none p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200">
+                        <svg class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Enhanced Dropdown Content -->
+                <div id="resourcesDropdown" class="dropdown-content absolute lg:left-0 mt-2 lg:mt-1 w-full lg:w-56 bg-white/95 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl 
+                    lg:opacity-0 lg:invisible lg:group-hover:opacity-100 lg:group-hover:visible transition-all duration-500 ease-out z-50 overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-50/80 to-purple-50/80"></div>
+                    <div class="relative z-10">
+                        <div class="px-4 py-3 border-b border-gray-100/50">
+                            <span class="text-sm font-semibold text-gray-700">Development</span>
+                        </div>
+                        <a href="{% url 'resources:single_category_resources' 'android' %}" class="relative block px-4 py-3 hover:bg-white/60 transition-all duration-300 group/dropitem border-b border-gray-100/30 last:border-b-0">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-green-400 rounded-full mr-3 group-hover/dropitem:scale-150 transition-transform duration-300"></div>
+                                <span class="text-gray-700 font-medium group-hover/dropitem:text-green-600 transition-colors duration-300">Android</span>
+                            </div>
+                        </a>
+                        <a href="{% url 'resources:single_category_resources' 'django' %}" class="relative block px-4 py-3 hover:bg-white/60 transition-all duration-300 group/dropitem border-b border-gray-100/30 last:border-b-0">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover/dropitem:scale-150 transition-transform duration-300"></div>
+                                <span class="text-gray-700 font-medium group-hover/dropitem:text-blue-600 transition-colors duration-300">Django</span>
+                            </div>
+                        </a>
+                        <a href="{% url 'resources:single_category_resources' 'python' %}" class="relative block px-4 py-3 hover:bg-white/60 transition-all duration-300 group/dropitem">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-yellow-400 rounded-full mr-3 group-hover/dropitem:scale-150 transition-transform duration-300"></div>
+                                <span class="text-gray-700 font-medium group-hover/dropitem:text-yellow-600 transition-colors duration-300">Python</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="{% url 'blogs:all-posts' %}" class="nav-item group relative flex items-center px-4 lg:px-3 py-3 lg:py-2 rounded-xl lg:rounded-full transition-all duration-300 hover:bg-white/80 hover:shadow-lg border border-transparent hover:border-white/30">
+                <div class="w-2 h-2 bg-purple-400 rounded-full mr-3 lg:mr-2 group-hover:scale-150 transition-transform duration-300"></div>
+                <span class="text-gray-800 font-semibold text-base group-hover:text-purple-600 transition-colors duration-300">Blogs</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl lg:rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+
+            <a href="{% url 'company_services:services' %}" class="nav-item group relative flex items-center px-4 lg:px-3 py-3 lg:py-2 rounded-xl lg:rounded-full transition-all duration-300 hover:bg-white/80 hover:shadow-lg border border-transparent hover:border-white/30">
+                <div class="w-2 h-2 bg-orange-400 rounded-full mr-3 lg:mr-2 group-hover:scale-150 transition-transform duration-300"></div>
+                <span class="text-gray-800 font-semibold text-base group-hover:text-orange-600 transition-colors duration-300">Our Services</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-xl lg:rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+
+            <a href="{% url 'products:all_products' %}"class="nav-item group relative flex items-center px-4 lg:px-3 py-3 lg:py-2 rounded-xl lg:rounded-full transition-all duration-300 hover:bg-white/80 hover:shadow-lg border border-transparent hover:border-white/30">
+                <div class="w-2 h-2 bg-teal-500 rounded-full mr-3 lg:mr-2 group-hover:scale-150 transition-transform duration-300"></div>
+                <span class="text-gray-800 font-semibold text-base group-hover:text-teal-600 transition-colors duration-300">Our Softwere</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-cyan-500/10 rounded-xl lg:rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+
+            <a href="{% url 'contact' %}" 
+                class="nav-item group relative flex items-center px-4 lg:px-3 py-3 lg:py-2 rounded-xl lg:rounded-full transition-all duration-300 
+                        hover:bg-blue-50 hover:shadow-lg border border-transparent hover:border-blue-200">
+                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3 lg:mr-2 group-hover:scale-150 transition-transform duration-300"></div>
+                    <span class="text-gray-800 font-semibold text-base group-hover:text-blue-600 transition-colors duration-300">
+                        Contact
+                    </span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-green-400/20 rounded-xl lg:rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+            </a>
+
+
+
+            <a href="{% url 'about' %}" class="nav-item group relative flex items-center px-4 lg:px-3 py-3 lg:py-2 rounded-xl lg:rounded-full transition-all duration-300 hover:bg-white/80 hover:shadow-lg border border-transparent hover:border-white/30">
+                <div class="w-2 h-2 bg-pink-400 rounded-full mr-3 lg:mr-2 group-hover:scale-150 transition-transform duration-300"></div>
+                <span class="text-gray-800 font-semibold text-base group-hover:text-pink-600 transition-colors duration-300">About Us</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-rose-500/10 rounded-xl lg:rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<style>
+    /* Enhanced NavBar Styles */
+    .bv-navbar {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0.25rem 0.5rem;
+    }
+
+    /* Logo container with premium styling */
+    .bv-navbar > div:first-child {
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.08);
+        position: relative;
+        overflow: hidden;
+        min-width: auto;
+    }
+
+    .bv-navbar > div:first-child::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        transition: left 0.7s ease;
+    }
+
+    .bv-navbar > div:first-child:hover::before {
+        left: 100%;
+    }
+
+    /* Enhanced Dropdown Styles */
+    .dropdown-content {
+        transform: translateY(15px) scale(0.95);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .group:hover .dropdown-content {
+        transform: translateY(0) scale(1);
+    }
+
+    /* Navigation item animations */
+    .nav-item {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .nav-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+        transition: left 0.6s ease;
+    }
+
+    .nav-item:hover::before {
+        left: 100%;
+    }
+
+    /* Search box focus effects */
+    .bv-searchbox input:focus {
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2), 0 10px 30px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+
+    /* === RESPONSIVE DESIGN FIXES === */
+
+    /* Mobile First Approach */
+    @media (max-width: 767px) {
+        .bv-navbar {
+            padding: 0.4rem 0.5rem;
+            flex-wrap: nowrap;
+        }
+
+        .bv-navbar > div:first-child {
+            flex-shrink: 0;
+            min-width: auto;
+        }
+
+        .bv-searchbox {
+            flex-shrink: 1;
+            min-width: 120px;
+            margin: 0 0.5rem;
+        }
+
+        .bv-searchbox input {
+            width: 100%;
+            min-width: 120px;
+        }
+
+        #toggleMenu {
+            margin-right: 0.5rem;
+            padding: 0.25rem;
+        }
+
+        /* Mobile menu styles */
+        #menu {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+        }
+
+        #menu.block {
+            display: flex;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        /* Mobile dropdown styles */
+        #resourcesDropdown {
+            position: static;
+            width: calc(100% - 2rem);
+            margin: 0.5rem 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            display: none;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        #resourcesDropdown.mobile-show {
+            display: block;
+        }
+
+        #mobileResourcesToggle .svg-rotate {
+            transform: rotate(180deg);
+        }
+
+        /* Enhanced mobile toggle animation */
+        #toggleMenu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        #toggleMenu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        #toggleMenu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+    }
+
+    /* Tablet View (768px - 1023px) */
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .bv-navbar {
+            padding: 0.5rem 1rem;
+        }
+
+        .bv-searchbox {
+            min-width: 180px;
+            margin: 0 1rem;
+        }
+
+        .bv-searchbox input {
+            width: 100%;
+        }
+
+        #toggleMenu {
+            margin-right: 1rem;
+        }
+
+        /* Tablet menu styles */
+        #menu {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            padding: 1.5rem;
+        }
+
+        #menu.block {
+            display: flex;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        /* Tablet dropdown styles */
+        #resourcesDropdown {
+            position: static;
+            width: 50%;
+            margin: 0.5rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            display: none;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        #resourcesDropdown.mobile-show {
+            display: block;
+        }
+    }
+
+    /* Desktop View (1024px and above) */
+    @media (min-width: 1024px) {
+        .bv-navbar {
+            padding: 0.5rem 1.5rem;
+            flex-wrap: nowrap;
+        }
+
+        .bv-searchbox {
+            width: 240px;
+            margin-left: auto;
+            margin-right: 1rem;
+        }
+        
+        .bv-searchbox input::placeholder {
+            content: "Search resources...";
+        }
+
+        #mobileResourcesToggle {
+            display: none;
+        }
+
+        /* Desktop hover effects */
+        .nav-item:hover {
+            transform: translateY(-2px);
+        }
+
+        #menu {
+            display: flex !important;
+            position: static;
+            background: transparent;
+            backdrop-filter: none;
+            padding: 0;
+            width: auto;
+        }
+    }
+
+    /* Large Desktop View (1280px and above) */
+    @media (min-width: 1280px) {
+        .bv-navbar {
+            padding: 0.5rem 2rem;
+        }
+
+        .bv-searchbox {
+            width: 280px;
+        }
+    }
+
+    /* Animations */
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Smooth transitions for all interactive elements */
+    * {
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+    }
+
+    /* Search suggestions animation */
+    #searchSuggestions.show {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    /* Ensure proper spacing and layout */
+    .bv-navbar > * {
+        flex-shrink: 0;
+    }
+
+    /* Prevent text overflow */
+    .nav-item span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleButton = document.getElementById("toggleMenu");
+        const menu = document.getElementById("menu");
+        const mobileResourcesToggle = document.getElementById("mobileResourcesToggle");
+        const resourcesDropdown = document.getElementById("resourcesDropdown");
+        const searchInput = document.getElementById('searchInput');
+        const searchSuggestions = document.getElementById('searchSuggestions');
+        
+        // Enhanced toggle menu function
+        const toggleMenu = () => {
+            const isOpening = menu.classList.contains("hidden");
+            menu.classList.toggle("hidden");
+            menu.classList.toggle("block");
+            toggleButton.classList.toggle("active");
+            
+            // Close resources dropdown when closing main menu
+            if (!isOpening) {
+                resourcesDropdown.classList.remove("mobile-show");
+                if (mobileResourcesToggle) {
+                    mobileResourcesToggle.querySelector('svg').classList.remove("svg-rotate");
+                }
+            }
+        };
+        
+        // Toggle resources dropdown on mobile
+        const toggleResourcesDropdown = (e) => {
+            if (e) e.stopPropagation();
+            resourcesDropdown.classList.toggle("mobile-show");
+            if (mobileResourcesToggle) {
+                mobileResourcesToggle.querySelector('svg').classList.toggle("svg-rotate");
+            }
+        };
+        
+        // Toggle menu on button click
+        toggleButton.addEventListener("click", toggleMenu);
+        
+        // Toggle resources dropdown on mobile
+        if (mobileResourcesToggle) {
+            mobileResourcesToggle.addEventListener("click", toggleResourcesDropdown);
+        }
+        
+        // Enhanced search functionality
+        searchInput.addEventListener('focus', () => {
+            searchSuggestions.classList.add('show');
+            searchSuggestions.classList.remove('hidden');
+        });
+        
+        searchInput.addEventListener('blur', () => {
+            setTimeout(() => {
+                searchSuggestions.classList.remove('show');
+                searchSuggestions.classList.add('hidden');
+            }, 200);
+        });
+        
+        // Enhanced close menu when clicking outside
+        document.addEventListener("click", (e) => {
+            const isMobile = window.innerWidth < 1024;
+            const clickedInsideMenu = menu.contains(e.target);
+            const clickedToggle = toggleButton.contains(e.target);
+            const clickedSearch = e.target.closest('.bv-searchbox');
+            
+            if (isMobile && !clickedInsideMenu && !clickedToggle && !clickedSearch) {
+                menu.classList.add("hidden");
+                menu.classList.remove("block");
+                resourcesDropdown.classList.remove("mobile-show");
+                toggleButton.classList.remove("active");
+                if (mobileResourcesToggle) {
+                    mobileResourcesToggle.querySelector('svg').classList.remove("svg-rotate");
+                }
+            }
+        });
+        
+        // Enhanced responsive behavior
+        const handleResize = () => {
+            const isDesktop = window.innerWidth >= 1024;
+            
+            if (isDesktop) {
+                // Desktop behavior
+                menu.classList.remove("hidden");
+                menu.classList.add("flex", "lg:flex");
+                menu.classList.remove("block");
+                resourcesDropdown.classList.remove("mobile-show");
+                toggleButton.classList.remove("active");
+                
+                if (mobileResourcesToggle) {
+                    mobileResourcesToggle.querySelector('svg').classList.remove("svg-rotate");
+                }
+            } else {
+                // Mobile/Tablet behavior
+                if (menu.classList.contains("block")) {
+                    menu.classList.add("hidden");
+                    menu.classList.remove("block");
+                }
+                menu.classList.remove("flex", "lg:flex");
+            }
+        };
+        
+        // Initial check
+        handleResize();
+        
+        // Enhanced resize handler with debounce
+        let resizeTimeout;
+        window.addEventListener("resize", () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(handleResize, 100);
+        });
+
+        // Enhanced scroll effect for navbar
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('.bv-navbar');
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const isMobile = window.innerWidth < 1024;
+            
+            if (isMobile) {
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    navbar.style.transform = 'translateY(-100%)';
+                } else {
+                    navbar.style.transform = 'translateY(0)';
+                }
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Enhanced search suggestions
+        
+
+        // Prevent dropdown close when clicking inside
+        resourcesDropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    });
+</script>

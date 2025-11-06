@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Resources - Get Custom Programming Tools & Libraries | Media Ghor</title>
+    <meta name="description" content="Request custom programming resources, libraries, and tools from Media Ghor. Get free coding resources tailored to your development needs.">
+    <meta name="keywords" content="request programming resources, custom code libraries, free development tools, programming help, coding resources request">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Request Resources - Get Custom Programming Tools | Media Ghor">
+    <meta property="og:description" content="Request free custom programming resources, libraries, and development tools from Media Ghor. Tailored solutions for developers.">
+    <meta property="og:url" content="https://mediaghor.com/resources/request-resource/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mediaghor.com/static/images/resources-logo.png">
+    <meta property="og:site_name" content="Media Ghor">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Request Resources - Get Custom Programming Tools | Media Ghor">
+    <meta name="twitter:description" content="Request free custom programming resources and development tools from Media Ghor.">
+    <meta name="twitter:image" content="https://mediaghor.com/static/images/resources-logo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mediaghor.com/resources/request-resource/">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest'%}">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Media Ghor">
+    <meta name="theme-color" content="#3B82F6">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Request Resources - Media Ghor",
+        "description": "Request custom programming resources, libraries, and development tools",
+        "url": "https://mediaghor.com/resources/request-resource/",
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://mediaghor.com"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Resources",
+                    "item": "https://mediaghor.com/resources"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Request Resource",
+                    "item": "https://mediaghor.com/request-resource"
+                }
+            ]
+        },
+        "mainEntity": {
+            "@type": "Service",
+            "name": "Resource Request Service",
+            "description": "Custom programming resource and tool request service for developers",
+            "provider": {
+                "@type": "Organization",
+                "name": "Media Ghor"
+            }
+        }
+    }
+    </script>
+    
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen flex flex-col pt-16 font-inter" style="font-family: 'Inter', sans-serif;">
+    <!-- Navigation -->
+    {% include 'partials/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700 text-white py-12 md:py-16 relative overflow-hidden">
+            <!-- Simplified Background -->
+            <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+                <div class="absolute -top-10 -right-10 w-60 h-60 bg-white/5 rounded-full blur-2xl"></div>
+                <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-400/10 rounded-full blur-2xl"></div>
+            </div>
+
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <!-- Breadcrumb -->
+                <nav class="flex justify-center mb-4 md:mb-6" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-2 text-sm font-medium text-blue-200">
+                        <li class="inline-flex items-center">
+                            <a href="{% url 'home' %}" class="inline-flex items-center hover:text-white transition-colors">
+                                <i class="fas fa-home mr-1 md:mr-2"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <i class="fas fa-chevron-right mx-1 md:mx-2 text-xs"></i>
+                        </li>
+                        <li>
+                            <a href="{% url 'resources:category_resources' %}" class="hover:text-white transition-colors">Resources</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-chevron-right mx-1 md:mx-2 text-xs"></i>
+                        </li>
+                        <li aria-current="page">
+                            <span class="text-white font-semibold">Request Resource</span>
+                        </li>
+                    </ol>
+                </nav>
+
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
+                    <span class="block text-lg md:text-2xl lg:text-3xl font-light mb-2 md:mb-4 opacity-90 tracking-wide">
+                        NEED CUSTOM RESOURCES?
+                    </span>
+                    <div class="flex items-center justify-center gap-3 md:gap-6 flex-wrap">
+                        <span class="bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-400 bg-clip-text text-transparent relative inline-block">
+                            Request Now
+                        </span>
+                        <div class="logo-container relative group">
+                            <i class="fas fa-hand-holding-heart relative text-3xl md:text-4xl lg:text-5xl text-amber-300"></i>
+                        </div>
+                    </div>
+                </h1>
+
+                <p class="text-base md:text-xl lg:text-2xl mb-6 md:mb-8 max-w-4xl mx-auto leading-relaxed opacity-90 font-light">
+                    Can't find what you're looking for? <span class="text-yellow-200 font-medium">Request custom programming resources</span> 
+                    and we'll create them for you - <span class="text-green-300 font-medium">completely free!</span>
+                </p>
+
+                <!-- Trust Indicators -->
+                <div class="flex flex-wrap justify-center items-center gap-3 md:gap-6 opacity-90 mt-6 md:mt-8">
+                    <div class="flex items-center gap-1 md:gap-2 bg-white/10 backdrop-blur-sm px-3 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm">
+                        <i class="fas fa-rocket text-green-400 text-sm md:text-lg"></i>
+                        <span class="font-medium">Fast Delivery</span>
+                    </div>
+                    <div class="flex items-center gap-1 md:gap-2 bg-white/10 backdrop-blur-sm px-3 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm">
+                        <i class="fas fa-shield-alt text-blue-400 text-sm md:text-lg"></i>
+                        <span class="font-medium">Quality Guaranteed</span>
+                    </div>
+                    <div class="flex items-center gap-1 md:gap-2 bg-white/10 backdrop-blur-sm px-3 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm">
+                        <i class="fas fa-infinity text-purple-400 text-sm md:text-lg"></i>
+                        <span class="font-medium">Always Free</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Request Form Section -->
+        <section class="py-12 md:py-16 bg-white" aria-labelledby="request-form-heading">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Progress Steps -->
+                    <div class="mb-8 md:mb-12">
+                        <div class="flex justify-between items-center mb-6 md:mb-8">
+                            <div class="flex flex-col items-center">
+                                <div class="w-8 h-8 md:w-12 md:h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold shadow text-xs md:text-base">
+                                    1
+                                </div>
+                                <span class="text-xs md:text-sm font-medium mt-1 md:mt-2 text-gray-600">Your Details</span>
+                            </div>
+                            <div class="flex-1 h-1 bg-gray-200 mx-2 md:mx-4">
+                                <div class="h-full bg-gradient-to-r from-green-500 to-blue-500 rounded-full w-1/2"></div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-8 h-8 md:w-12 md:h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold shadow text-xs md:text-base">
+                                    2
+                                </div>
+                                <span class="text-xs md:text-sm font-medium mt-1 md:mt-2 text-gray-600">Resource Info</span>
+                            </div>
+                            <div class="flex-1 h-1 bg-gray-200 mx-2 md:mx-4">
+                                <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full w-0"></div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-8 h-8 md:w-12 md:h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-bold text-xs md:text-base">
+                                    3
+                                </div>
+                                <span class="text-xs md:text-sm font-medium mt-1 md:mt-2 text-gray-400">Submit</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+                        <!-- Main Form -->
+                        <div class="lg:col-span-2">
+                            <div class="bg-gradient-to-br from-white to-gray-50 rounded-xl md:rounded-2xl shadow-lg md:shadow-2xl p-4 md:p-8 border border-gray-100">
+                                <h2 id="request-form-heading" class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Request Your Resource</h2>
+                                <p class="text-gray-600 mb-6 md:mb-8 text-sm md:text-base">Tell us what you need and we'll create it for you</p>
+
+                                <form id="resourceRequestForm" class="space-y-4 md:space-y-6" method="POST" action="{% url 'resources:request_for_resources' %}">
+                                    {% csrf_token %}
+                                    
+                                    <!-- Personal Information -->
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                                        <div>
+                                            <label for="fullName" class="block text-sm font-semibold text-gray-700 mb-2">
+                                                Full Name <span class="text-red-500">*</span>
+                                            </label>
+                                            <div class="relative">
+                                                <i class="fas fa-user absolute left-3 top-3 text-gray-400 text-sm"></i>
+                                                <input type="text" id="fullName" name="full_name" required
+                                                       class="w-full pl-10 pr-4 py-2 md:py-3 border border-gray-300 rounded-lg md:rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 bg-white text-sm md:text-base"
+                                                       placeholder="Enter your full name">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+                                                Email Address <span class="text-red-500">*</span>
+                                            </label>
+                                            <div class="relative">
+                                                <i class="fas fa-envelope absolute left-3 top-3 text-gray-400 text-sm"></i>
+                                                <input type="email" id="email" name="email" required
+                                                       class="w-full pl-10 pr-4 py-2 md:py-3 border border-gray-300 rounded-lg md:rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 bg-white text-sm md:text-base"
+                                                       placeholder="your@email.com">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Resource Details -->
+                                    <div>
+                                        <label for="resourceTitle" class="block text-sm font-semibold text-gray-700 mb-2">
+                                            Resource Title <span class="text-red-500">*</span>
+                                        </label>
+                                        <div class="relative">
+                                            <i class="fas fa-heading absolute left-3 top-3 text-gray-400 text-sm"></i>
+                                            <input type="text" id="resourceTitle" name="resource_title" required
+                                                   class="w-full pl-10 pr-4 py-2 md:py-3 border border-gray-300 rounded-lg md:rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 bg-white text-sm md:text-base"
+                                                   placeholder="e.g., Django REST API Authentication Library">
+                                        </div>
+                                    </div>
+
+                                    <!-- Category Selection -->
+                                    <div>
+                                        <label for="resourceCategory" class="block text-sm font-semibold text-gray-700 mb-2">
+                                            Resource Category <span class="text-red-500">*</span>
+                                        </label>
+                                        <div class="relative">
+                                            <i class="fas fa-tag absolute left-3 top-3 text-gray-400 text-sm"></i>
+                                            <select id="resourceCategory" name="resource_category" required
+                                                    class="w-full pl-10 pr-4 py-2 md:py-3 border border-gray-300 rounded-lg md:rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 bg-white text-sm md:text-base appearance-none">
+                                                <option value="">Select a category</option>
+                                                {% for category in categories %}
+                                                <option value="{{ category.slug }}">{{ category.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <i class="fas fa-chevron-down absolute right-3 top-3 text-gray-400 text-sm"></i>
+                                        </div>
+                                    </div>
+
+                                    <!-- Detailed Description -->
+                                    <div>
+                                        <label for="resourceDescription" class="block text-sm font-semibold text-gray-700 mb-2">
+                                            Detailed Description <span class="text-red-500">*</span>
+                                        </label>
+                                        <div class="relative">
+                                            <i class="fas fa-file-alt absolute left-3 top-3 text-gray-400 text-sm"></i>
+                                            <textarea id="resourceDescription" name="resource_description" required rows="4 md:rows-6"
+                                                      class="w-full pl-10 pr-4 py-2 md:py-3 border border-gray-300 rounded-lg md:rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 bg-white text-sm md:text-base resize-none"
+                                                      placeholder="Describe what you need in detail. Include specific requirements, features, and any examples if possible..."></textarea>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-gray-500 mt-2">Please be as detailed as possible to help us understand your requirements</p>
+                                    </div>
+
+                                    <!-- Urgency Level -->
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-700 mb-3 md:mb-4">
+                                            How soon do you need this resource?
+                                        </label>
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+                                            <label class="urgency-option relative">
+                                                <input type="radio" name="urgency" value="low" class="sr-only peer">
+                                                <div class="bg-gray-100 border border-gray-300 rounded-lg md:rounded-xl p-3 md:p-4 text-center cursor-pointer transition-all duration-300 peer-checked:bg-blue-50 peer-checked:border-blue-500 peer-checked:shadow-sm hover:shadow-sm">
+                                                    <i class="fas fa-walking text-lg md:text-2xl text-gray-400 mb-1 md:mb-2 peer-checked:text-blue-500"></i>
+                                                    <div class="font-semibold text-gray-700 text-sm md:text-base peer-checked:text-blue-600">Low Priority</div>
+                                                    <div class="text-xs md:text-sm text-gray-500 mt-1">Within 2 weeks</div>
+                                                </div>
+                                            </label>
+                                            <label class="urgency-option relative">
+                                                <input type="radio" name="urgency" value="medium" class="sr-only peer" checked>
+                                                <div class="bg-gray-100 border border-gray-300 rounded-lg md:rounded-xl p-3 md:p-4 text-center cursor-pointer transition-all duration-300 peer-checked:bg-green-50 peer-checked:border-green-500 peer-checked:shadow-sm hover:shadow-sm">
+                                                    <i class="fas fa-running text-lg md:text-2xl text-gray-400 mb-1 md:mb-2 peer-checked:text-green-500"></i>
+                                                    <div class="font-semibold text-gray-700 text-sm md:text-base peer-checked:text-green-600">Medium Priority</div>
+                                                    <div class="text-xs md:text-sm text-gray-500 mt-1">Within 1 week</div>
+                                                </div>
+                                            </label>
+                                            <label class="urgency-option relative">
+                                                <input type="radio" name="urgency" value="high" class="sr-only peer">
+                                                <div class="bg-gray-100 border border-gray-300 rounded-lg md:rounded-xl p-3 md:p-4 text-center cursor-pointer transition-all duration-300 peer-checked:bg-red-50 peer-checked:border-red-500 peer-checked:shadow-sm hover:shadow-sm">
+                                                    <i class="fas fa-bolt text-lg md:text-2xl text-gray-400 mb-1 md:mb-2 peer-checked:text-red-500"></i>
+                                                    <div class="font-semibold text-gray-700 text-sm md:text-base peer-checked:text-red-600">High Priority</div>
+                                                    <div class="text-xs md:text-sm text-gray-500 mt-1">Within 3 days</div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Submit Button -->
+                                    <div class="pt-4 md:pt-6">
+                                        <button type="submit" 
+                                                class="w-full bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white font-bold py-3 md:py-4 px-6 md:px-8 rounded-lg md:rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 md:gap-3 text-sm md:text-base">
+                                            <i class="fas fa-paper-plane text-xs md:text-sm"></i>
+                                            Submit Resource Request
+                                        </button>
+                                        <p class="text-center text-xs md:text-sm text-gray-500 mt-2 md:mt-3">
+                                            <i class="fas fa-lock mr-1 text-xs"></i>
+                                            Your information is secure and will only be used to fulfill your request
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar Information -->
+                        <div class="space-y-4 md:space-y-6">
+                            <!-- What to Expect -->
+                            <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl md:rounded-2xl p-4 md:p-6 border border-blue-200">
+                                <div class="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
+                                    <div class="w-8 h-8 md:w-10 md:h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-lightbulb text-white text-sm md:text-lg"></i>
+                                    </div>
+                                    <h3 class="text-lg md:text-xl font-bold text-gray-800">What to Expect</h3>
+                                </div>
+                                <ul class="space-y-2 md:space-y-3 text-gray-700 text-sm md:text-base">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fas fa-check-circle text-green-500 mt-0.5 md:mt-1 flex-shrink-0 text-xs md:text-sm"></i>
+                                        <span>Response within 24 hours</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fas fa-check-circle text-green-500 mt-0.5 md:mt-1 flex-shrink-0 text-xs md:text-sm"></i>
+                                        <span>Free resource creation</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fas fa-check-circle text-green-500 mt-0.5 md:mt-1 flex-shrink-0 text-xs md:text-sm"></i>
+                                        <span>Quality code with documentation</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fas fa-check-circle text-green-500 mt-0.5 md:mt-1 flex-shrink-0 text-xs md:text-sm"></i>
+                                        <span>Ongoing support if needed</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Popular Requests -->
+                            <div class="bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl md:rounded-2xl p-4 md:p-6 border border-purple-200">
+                                <div class="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
+                                    <div class="w-8 h-8 md:w-10 md:h-10 bg-purple-500 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-fire text-white text-sm md:text-lg"></i>
+                                    </div>
+                                    <h3 class="text-lg md:text-xl font-bold text-gray-800">Popular Requests</h3>
+                                </div>
+                                <div class="space-y-2 md:space-y-3">
+                                    <div class="bg-white rounded-lg p-2 md:p-3 shadow-sm border text-xs md:text-sm">
+                                        <div class="font-semibold text-gray-800">API Authentication Libraries</div>
+                                        <div class="text-gray-500 mt-1 text-xs">Most requested category</div>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 md:p-3 shadow-sm border text-xs md:text-sm">
+                                        <div class="font-semibold text-gray-800">UI Component Kits</div>
+                                        <div class="text-gray-500 mt-1 text-xs">React & Vue components</div>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 md:p-3 shadow-sm border text-xs md:text-sm">
+                                        <div class="font-semibold text-gray-800">Database Utilities</div>
+                                        <div class="text-gray-500 mt-1 text-xs">Query optimizers & tools</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quick Stats -->
+                            <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl md:rounded-2xl p-4 md:p-6 border border-green-200">
+                                <div class="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
+                                    <div class="w-8 h-8 md:w-10 md:h-10 bg-green-500 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-chart-bar text-white text-sm md:text-lg"></i>
+                                    </div>
+                                    <h3 class="text-lg md:text-xl font-bold text-gray-800">Our Stats</h3>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3 md:gap-4 text-center">
+                                    <div class="bg-white rounded-lg p-2 md:p-3 shadow-sm text-xs md:text-sm">
+                                        <div class="text-lg md:text-2xl font-bold text-green-600">500+</div>
+                                        <div class="text-gray-600">Resources Created</div>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 md:p-3 shadow-sm text-xs md:text-sm">
+                                        <div class="text-lg md:text-2xl font-bold text-blue-600">24h</div>
+                                        <div class="text-gray-600">Avg. Response Time</div>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 md:p-3 shadow-sm text-xs md:text-sm">
+                                        <div class="text-lg md:text-2xl font-bold text-purple-600">98%</div>
+                                        <div class="text-gray-600">Satisfaction Rate</div>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 md:p-3 shadow-sm text-xs md:text-sm">
+                                        <div class="text-lg md:text-2xl font-bold text-orange-600">Free</div>
+                                        <div class="text-gray-600">Always Free</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-12 md:py-16 bg-gradient-to-br from-gray-50 to-blue-50" aria-labelledby="faq-heading">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-8 md:mb-12">
+                    <h2 id="faq-heading" class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 md:mb-4">Frequently Asked Questions</h2>
+                    <p class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">Get answers to common questions about requesting resources</p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                    <!-- FAQ Items -->
+                    <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-base md:text-lg font-bold text-gray-800 mb-2 md:mb-3 flex items-center gap-2">
+                            <i class="fas fa-question-circle text-blue-500 text-sm md:text-base"></i>
+                            Is this really free?
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                            Yes, absolutely! All resources created through requests are completely free. We believe in supporting the developer community.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-base md:text-lg font-bold text-gray-800 mb-2 md:mb-3 flex items-center gap-2">
+                            <i class="fas fa-clock text-green-500 text-sm md:text-base"></i>
+                            How long does it take?
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                            Most requests are fulfilled within 3-7 days depending on complexity. We'll provide an estimated timeline after reviewing your request.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-base md:text-lg font-bold text-gray-800 mb-2 md:mb-3 flex items-center gap-2">
+                            <i class="fas fa-code text-purple-500 text-sm md:text-base"></i>
+                            What kind of resources can I request?
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                            You can request code libraries, tutorials, tools, templates, or any programming-related resource. Be creative!
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-base md:text-lg font-bold text-gray-800 mb-2 md:mb-3 flex items-center gap-2">
+                            <i class="fas fa-shield-alt text-red-500 text-sm md:text-base"></i>
+                            Is my information safe?
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                            Your information is completely secure. We only use it to contact you about your request and never share it with third parties.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-12 md:py-16 bg-gradient-to-r from-blue-600 to-purple-700 text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">Ready to Get Your Custom Resource?</h2>
+                <p class="text-lg md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">Join thousands of developers who've gotten exactly what they needed through our request system.</p>
+                <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+                    <a href="#request-form-heading" class="bg-gradient-to-r from-yellow-400 to-amber-500 text-gray-900 px-6 md:px-10 py-3 md:py-4 rounded-lg md:rounded-xl font-bold text-base md:text-lg hover:from-yellow-300 hover:to-amber-400 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-yellow-500/30 inline-flex items-center justify-center">
+                        <i class="fas fa-edit mr-2 md:mr-3 text-sm md:text-base"></i>Submit Your Request
+                    </a>
+                    <a href="{% url 'resources:category_resources' %}" class="bg-white/10 backdrop-blur-sm border border-white/30 text-white px-6 md:px-10 py-3 md:py-4 rounded-lg md:rounded-xl font-bold text-base md:text-lg hover:bg-white hover:text-purple-700 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center">
+                        <i class="fas fa-boxes mr-2 md:mr-3 text-sm md:text-base"></i>Browse Existing Resources
+                    </a>
+                </div>
+            </div>
+        </section>
+        {% include 'partials/newsletter.html' %}
+    </main>
+
+    <!-- Footer -->
+    {% include 'partials/footer.html' %}
+
+    <style>
+        /* Custom Animations */
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        /* Animation Classes */
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Focus styles */
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Loading spinner */
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Success animation */
+        @keyframes success-bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        .success-bounce {
+            animation: success-bounce 1s;
+        }
+
+        /* Error notification */
+        .error-notification {
+            background: linear-gradient(to right, #fef2f2, #fef2f2);
+            border-left: 4px solid #ef4444;
+        }
+
+        /* Success notification */
+        .success-notification {
+            background: linear-gradient(to right, #f0fdf4, #f0fdf4);
+            border-left: 4px solid #10b981;
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById('resourceRequestForm');
+            const urgencyOptions = document.querySelectorAll('.urgency-option');
+            
+            // Enhanced form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate form
+                if (!validateForm()) {
+                    return;
+                }
+                
+                // Show loading state
+                const submitButton = form.querySelector('button[type="submit"]');
+                const originalText = submitButton.innerHTML;
+                submitButton.innerHTML = '<div class="loading-spinner"></div><span class="ml-2">Processing...</span>';
+                submitButton.disabled = true;
+                
+                // Prepare form data
+                const formData = new FormData(form);
+                
+                // Submit form via fetch API
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Show success message
+                        submitButton.innerHTML = '<i class="fas fa-check"></i><span class="ml-2">Request Submitted!</span>';
+                        submitButton.classList.remove('from-green-500', 'to-blue-600', 'hover:from-green-600', 'hover:to-blue-700');
+                        submitButton.classList.add('from-green-500', 'to-green-600', 'hover:from-green-600', 'hover:to-green-700');
+                        submitButton.classList.add('success-bounce');
+                        
+                        // Show success notification
+                        showNotification('Your resource request has been submitted successfully! We\'ll contact you within 24 hours.', 'success');
+                        
+                        // Reset form after success
+                        setTimeout(() => {
+                            form.reset();
+                            submitButton.innerHTML = originalText;
+                            submitButton.disabled = false;
+                            submitButton.classList.remove('from-green-500', 'to-green-600', 'hover:from-green-600', 'hover:to-green-700', 'success-bounce');
+                            submitButton.classList.add('from-green-500', 'to-blue-600', 'hover:from-green-600', 'hover:to-blue-700');
+                        }, 3000);
+                    } else {
+                        // Show error message
+                        showNotification(data.message || 'There was an error submitting your request. Please try again.', 'error');
+                        submitButton.innerHTML = originalText;
+                        submitButton.disabled = false;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('There was an error submitting your request. Please try again.', 'error');
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                });
+            });
+            
+            // Enhanced urgency option interactions
+            urgencyOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    urgencyOptions.forEach(opt => {
+                        opt.querySelector('input').checked = false;
+                    });
+                    this.querySelector('input').checked = true;
+                });
+            });
+            
+            // Form validation enhancement
+            const inputs = form.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                
+                input.addEventListener('input', function() {
+                    if (this.classList.contains('border-red-300')) {
+                        validateField(this);
+                    }
+                });
+            });
+            
+            // Field validation function
+            function validateField(field) {
+                if (field.hasAttribute('required') && field.value.trim() === '') {
+                    field.classList.add('border-red-300', 'bg-red-50');
+                    field.classList.remove('border-gray-300', 'bg-white');
+                    return false;
+                } else {
+                    field.classList.remove('border-red-300', 'bg-red-50');
+                    field.classList.add('border-gray-300', 'bg-white');
+                    
+                    // Email validation
+                    if (field.type === 'email' && field.value.trim() !== '') {
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(field.value)) {
+                            field.classList.add('border-red-300', 'bg-red-50');
+                            return false;
+                        }
+                    }
+                    
+                    return true;
+                }
+            }
+            
+            // Form validation function
+            function validateForm() {
+                let isValid = true;
+                
+                inputs.forEach(input => {
+                    if (!validateField(input)) {
+                        isValid = false;
+                    }
+                });
+                
+                return isValid;
+            }
+            
+            // Notification function
+            function showNotification(message, type) {
+                // Remove existing notifications
+                const existingNotifications = document.querySelectorAll('.custom-notification');
+                existingNotifications.forEach(notification => notification.remove());
+                
+                // Create notification element
+                const notification = document.createElement('div');
+                notification.className = `custom-notification fixed top-4 right-4 z-50 max-w-sm w-full p-4 rounded-lg shadow-lg transform transition-transform duration-300 ${
+                    type === 'success' ? 'success-notification' : 'error-notification'
+                }`;
+                
+                notification.innerHTML = `
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <i class="fas ${type === 'success' ? 'fa-check-circle text-green-500' : 'fa-exclamation-circle text-red-500'} text-lg"></i>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium ${type === 'success' ? 'text-green-800' : 'text-red-800'}">${message}</p>
+                        </div>
+                        <button class="ml-auto flex-shrink-0 text-gray-400 hover:text-gray-500 focus:outline-none" onclick="this.parentElement.parentElement.remove()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+                
+                // Add to page
+                document.body.appendChild(notification);
+                
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribute Resources - Share Your Programming Tools | Media Ghor</title>
+    <meta name="description" content="Contribute your programming resources, libraries, and tools to Media Ghor. Share with the developer community and help fellow programmers grow.">
+    <meta name="keywords" content="contribute resources, submit library, share code, programming tools, developer community, open source contribution">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Contribute Resources - Share Your Programming Tools | Media Ghor">
+    <meta property="og:description" content="Share your programming resources and libraries with the Media Ghor community. Contribute to help developers worldwide.">
+    <meta property="og:url" content="https://mediaghor.com/resources/contribute/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mediaghor.com/static/images/resources-logo.png">
+    <meta property="og:site_name" content="Media Ghor">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contribute Resources | Media Ghor">
+    <meta name="twitter:description" content="Share your programming resources and help the developer community grow.">
+    <meta name="twitter:image" content="https://mediaghor.com/static/images/resources-logo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mediaghor.com/resources/contribute/">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest'%}">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Media Ghor">
+    <meta name="theme-color" content="#10B981">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Contribute Resources - Media Ghor",
+        "description": "Share your programming resources, libraries, and tools with the Media Ghor developer community",
+        "url": "https://mediaghor.com/resource/contribute/",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Media Ghor",
+            "url": "https://mediaghor.com",
+            "logo": "https://mediaghor.com/static/images/resources-logo.png"
+        }
+    }
+    </script>
+    
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -468px 0; }
+            100% { background-position: 468px 0; }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradientFlow 4s ease infinite;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-shimmer {
+            animation: shimmer 2s linear infinite;
+            background: linear-gradient(to right, #f6f7f8 8%, #edeef1 18%, #f6f7f8 33%);
+            background-size: 800px 104px;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #10B981, #3B82F6);
+            border-radius: 10px;
+        }
+        
+        /* Form styling */
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.3);
+        }
+        
+        .character-count {
+            font-size: 0.75rem;
+            transition: color 0.3s ease;
+        }
+        
+        .character-count.warning {
+            color: #F59E0B;
+        }
+        
+        .character-count.error {
+            color: #EF4444;
+        }
+        
+        /* Glassmorphism effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #FBBF24, #FDE68A, #FEF3C7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Elegant shadow */
+        .elegant-shadow {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hover effects */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 via-blue-50 to-green-50 min-h-screen font-inter">
+    <!-- Navigation -->
+    {% include 'partials/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-20">
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden bg-gradient-to-r from-green-500 via-emerald-600 to-blue-600 text-white py-12 md:py-20">
+            <!-- Animated background elements -->
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full animate-float"></div>
+                <div class="absolute -bottom-16 -left-16 w-48 h-48 bg-white/10 rounded-full animate-float" style="animation-delay: 1.5s;"></div>
+                <div class="absolute top-1/2 left-1/4 w-32 h-32 bg-white/10 rounded-full animate-float" style="animation-delay: 2.5s;"></div>
+            </div>
+            
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <!-- Breadcrumb -->
+                <nav class="flex justify-center mb-6" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                        <li class="inline-flex items-center">
+                            <a href="/" class="inline-flex items-center text-sm font-medium text-green-200 hover:text-white transition-colors">
+                                <i class="fas fa-home mr-2"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-green-200 mx-2"></i>
+                                <a href="{% url 'resources:category_resources' %}" class="text-sm font-medium text-green-200 hover:text-white transition-colors">Resources</a>
+                            </div>
+                        </li>
+                        <li aria-current="page">
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-green-200 mx-2"></i>
+                                <span class="text-sm font-medium text-white">Contribute</span>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 animate-fade-in">
+                    <span class="gradient-text">
+                        Share Your Code
+                    </span>
+                </h1>
+                <p class="text-xl md:text-2xl lg:text-3xl mb-8 opacity-90 max-w-3xl mx-auto leading-relaxed font-light">
+                    Contribute your programming tools and libraries to empower developers worldwide
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <div class="glass rounded-full px-6 py-3 backdrop-blur-sm">
+                        <span class="text-base md:text-lg"><i class="fas fa-share-alt mr-2"></i>Share Knowledge</span>
+                    </div>
+                    <div class="glass rounded-full px-6 py-3 backdrop-blur-sm">
+                        <span class="text-base md:text-lg"><i class="fas fa-users mr-2"></i>Help Community</span>
+                    </div>
+                    <div class="glass rounded-full px-6 py-3 backdrop-blur-sm">
+                        <span class="text-base md:text-lg"><i class="fas fa-star mr-2"></i>Get Featured</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contribution Form Section -->
+        <section class="py-16 md:py-20">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Guidelines Card -->
+                    <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-2xl elegant-shadow p-8 mb-10 hover-lift">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-white/20 rounded-full p-4 mt-1">
+                                <i class="fas fa-lightbulb text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-4">Contribution Guidelines</h3>
+                                <ul class="space-y-3 text-blue-100">
+                                    <li class="flex items-center gap-3">
+                                        <i class="fas fa-check text-green-300 text-lg"></i>
+                                        Submit free and open-source resources only
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <i class="fas fa-check text-green-300 text-lg"></i>
+                                        Ensure proper documentation is available
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <i class="fas fa-check text-green-300 text-lg"></i>
+                                        Provide clear usage instructions
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <i class="fas fa-check text-green-300 text-lg"></i>
+                                        Include relevant category and tags
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Form -->
+                    <form method="POST" action="{% url 'resources:submit_contribution' %}" class="bg-white rounded-2xl elegant-shadow p-8 md:p-10 hover-lift">
+                        {% csrf_token %}
+                        
+                        <!-- Contact Information Section -->
+                        <div class="mb-10">
+                            <h3 class="text-xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">
+                                <i class="fas fa-user-circle mr-2 text-blue-500"></i>
+                                Your Information
+                            </h3>
+                            
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label for="contributor_name" class="block text-sm font-semibold text-gray-700">
+                                        Your Name *
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="contributor_name" 
+                                        name="contributor_name" 
+                                        maxlength="100"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl form-input focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300"
+                                        placeholder="Enter your full name"
+                                    >
+                                    <div class="text-xs text-gray-500">
+                                        We'll credit you for this contribution
+                                    </div>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label for="contributor_email" class="block text-sm font-semibold text-gray-700">
+                                        Your Email *
+                                    </label>
+                                    <input 
+                                        type="email" 
+                                        id="contributor_email" 
+                                        name="contributor_email" 
+                                        maxlength="255"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl form-input focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300"
+                                        placeholder="your.email@example.com"
+                                    >
+                                    <div class="text-xs text-gray-500">
+                                        We'll notify you when your resource is published
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 space-y-2">
+                                <label for="contributor_phone" class="block text-sm font-semibold text-gray-700">
+                                    Contact Number (Optional)
+                                </label>
+                                <input 
+                                    type="tel" 
+                                    id="contributor_phone" 
+                                    name="contributor_phone" 
+                                    maxlength="20"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl form-input focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300"
+                                    placeholder="+1 (555) 123-4567"
+                                >
+                                <div class="text-xs text-gray-500">
+                                    Only used if we need to contact you about your submission
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Resource Information Section -->
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">
+                                <i class="fas fa-code mr-2 text-green-500"></i>
+                                Resource Information
+                            </h3>
+                            
+                            <!-- Title Fields -->
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div class="space-y-2">
+                                    <label for="title" class="block text-sm font-semibold text-gray-700">
+                                        Full Title *
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="title" 
+                                        name="title" 
+                                        maxlength="255"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl form-input focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300"
+                                        placeholder="Enter the complete resource title"
+                                    >
+                                    <div class="flex justify-between text-xs text-gray-500">
+                                        <span>Descriptive title of your resource</span>
+                                        <span id="titleCount" class="character-count">0/255</span>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label for="short_title" class="block text-sm font-semibold text-gray-700">
+                                        Short Title *
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="short_title" 
+                                        name="short_title" 
+                                        maxlength="50"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl form-input focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300"
+                                        placeholder="Short name (max 50 chars)"
+                                    >
+                                    <div class="flex justify-between text-xs text-gray-500">
+                                        <span>Brief title for cards and listings</span>
+                                        <span id="shortTitleCount" class="character-count">0/50</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Category Selection -->
+                            <div class="mb-6">
+                                <label for="category" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Category *
+                                </label>
+                                <select 
+                                    id="category" 
+                                    name="category"
+                                    required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl form-input focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 appearance-none bg-white"
+                                >
+                                    <option value="">Select a category</option>
+                                    {% for cat in categories %}
+                                        <option value="{{ cat.id }}">{{ cat.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="text-xs text-gray-500 mt-1">
+                                    Choose the most relevant category for your resource
+                                </div>
+                            </div>
+
+                            <!-- Resource Link -->
+                            <div class="mb-6">
+                                <label for="library_link" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Resource Link *
+                                </label>
+                                <textarea 
+                                    id="library_link" 
+                                    name="library_link" 
+                                    maxlength="500"
+                                    required
+                                    rows="3"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl form-textarea focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300"
+                                    placeholder="https://github.com/username/repository
+com.airbnb.android:lottie:$lottieVersion"
+
+                                ></textarea>
+                                <div class="text-xs text-gray-500 mt-1">
+                                    You can add multiple links — press Enter to start a new line.
+                                </div>
+                            </div>
+
+
+                            <!-- Description -->
+                            <div class="mb-6">
+                                <label for="description" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Description *
+                                </label>
+                                <textarea 
+                                    id="description" 
+                                    name="description" 
+                                    rows="4"
+                                    required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl form-input focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 resize-vertical"
+                                    placeholder="Describe what this resource does, its features, and why it's useful..."
+                                ></textarea>
+                                <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                    <span>Clear and concise description of your resource</span>
+                                    <span id="descriptionCount" class="character-count">0 characters</span>
+                                </div>
+                            </div>
+
+                            <!-- How to Use -->
+                            <div class="mb-8">
+                                <label for="how_to_use" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    How to Use / Installation Guide
+                                </label>
+                                <textarea 
+                                    id="how_to_use" 
+                                    name="how_to_use" 
+                                    rows="5"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl form-input focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 resize-vertical"
+                                    placeholder="Provide installation steps, basic usage examples, or code snippets..."
+                                ></textarea>
+                                <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                    <span>Help users get started quickly with your resource</span>
+                                    <span id="usageCount" class="character-count">0 characters</span>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="flex flex-col sm:flex-row gap-4 justify-between items-center pt-6 border-t border-gray-200">
+                                <div class="text-sm text-gray-600">
+                                    <i class="fas fa-info-circle mr-1"></i>
+                                    All submissions are reviewed before publishing
+                                </div>
+                                <button 
+                                    type="submit"
+                                    class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2"
+                                >
+                                    <i class="fas fa-paper-plane"></i>
+                                    Submit Resource
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Additional Info -->
+                    <div class="mt-12 grid md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-2xl elegant-shadow p-6 text-center hover-lift">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-clock text-blue-500 text-xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Quick Review</h4>
+                            <p class="text-sm text-gray-600">Submissions typically reviewed within 24-48 hours</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl elegant-shadow p-6 text-center hover-lift">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Quality Check</h4>
+                            <p class="text-sm text-gray-600">We ensure all resources meet our quality standards</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl elegant-shadow p-6 text-center hover-lift">
+                            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-trophy text-purple-500 text-xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Get Featured</h4>
+                            <p class="text-sm text-gray-600">Outstanding resources get featured on our homepage</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alternative Contribution Methods -->
+        <section class="py-16 md:py-20 bg-white/50 backdrop-blur-sm">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Other Ways to Contribute</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">Can't submit a resource right now? Here are other ways to help our community grow</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                    <a href="{% url 'resources:request_resources_page' %}" class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-6 rounded-2xl text-center hover-lift group">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-lightbulb text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Suggest Ideas</h3>
+                        <p class="text-blue-100 text-sm">Request resources you'd like to see</p>
+                    </a>
+                    
+                    <a href="/github" class="bg-gradient-to-br from-gray-700 to-gray-800 text-white p-6 rounded-2xl text-center hover-lift group">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fab fa-github text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">GitHub</h3>
+                        <p class="text-gray-300 text-sm">Contribute to our open-source projects</p>
+                    </a>
+                    
+                    <a href="/documentation" class="bg-gradient-to-br from-green-500 to-green-600 text-white p-6 rounded-2xl text-center hover-lift group">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-book text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Documentation</h3>
+                        <p class="text-green-100 text-sm">Help improve our guides and tutorials</p>
+                    </a>
+                    
+                    <a href="/contact" class="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-6 rounded-2xl text-center hover-lift group">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-envelope text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Contact Us</h3>
+                        <p class="text-purple-100 text-sm">Share feedback or partnership ideas</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        {% include 'partials/newsletter.html' %}
+
+    </main>
+
+    <!-- Footer -->
+    {% include 'partials/footer.html' %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Character counters
+            const titleInput = document.getElementById('title');
+            const shortTitleInput = document.getElementById('short_title');
+            const descriptionInput = document.getElementById('description');
+            const usageInput = document.getElementById('how_to_use');
+            
+            const titleCount = document.getElementById('titleCount');
+            const shortTitleCount = document.getElementById('shortTitleCount');
+            const descriptionCount = document.getElementById('descriptionCount');
+            const usageCount = document.getElementById('usageCount');
+
+            function updateCharacterCount(input, counter, maxLength = null) {
+                const length = input.value.length;
+                if (maxLength) {
+                    counter.textContent = `${length}/${maxLength}`;
+                    
+                    // Add warning/error classes based on length
+                    counter.classList.remove('warning', 'error');
+                    if (length > maxLength * 0.8) {
+                        counter.classList.add('warning');
+                    }
+                    if (length > maxLength * 0.95) {
+                        counter.classList.add('error');
+                    }
+                } else {
+                    counter.textContent = `${length} characters`;
+                }
+            }
+
+            // Initialize counters
+            updateCharacterCount(titleInput, titleCount, 255);
+            updateCharacterCount(shortTitleInput, shortTitleCount, 50);
+            updateCharacterCount(descriptionInput, descriptionCount);
+            updateCharacterCount(usageInput, usageCount);
+
+            // Add event listeners
+            titleInput.addEventListener('input', () => updateCharacterCount(titleInput, titleCount, 255));
+            shortTitleInput.addEventListener('input', () => updateCharacterCount(shortTitleInput, shortTitleCount, 50));
+            descriptionInput.addEventListener('input', () => updateCharacterCount(descriptionInput, descriptionCount));
+            usageInput.addEventListener('input', () => updateCharacterCount(usageInput, usageCount));
+
+            // Form submission handling
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(e) {
+                const submitButton = form.querySelector('button[type="submit"]');
+                const originalText = submitButton.innerHTML;
+                
+                // Add loading state
+                submitButton.innerHTML = `
+                    <i class="fas fa-spinner fa-spin"></i>
+                    Submitting...
+                `;
+                submitButton.disabled = true;
+                
+                // You can add additional validation here if needed
+                
+                // For demo purposes, we'll re-enable after 3 seconds
+                setTimeout(() => {
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                }, 3000);
+            });
+
+            // Add smooth animations for form elements
+            const formInputs = document.querySelectorAll('.form-input');
+            formInputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('transform', 'scale-105');
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('transform', 'scale-105');
+                });
+            });
+
+            // Add intersection observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all cards and form sections
+            document.querySelectorAll('.bg-white, .hover-lift').forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'all 0.6s ease-out';
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

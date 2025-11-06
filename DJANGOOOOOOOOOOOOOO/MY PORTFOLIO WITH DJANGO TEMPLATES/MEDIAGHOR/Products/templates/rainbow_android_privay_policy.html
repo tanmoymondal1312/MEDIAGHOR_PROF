@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Rainbow Tools | Media Ghor</title>
+    <meta name="description" content="Privacy Policy for Rainbow Tools - Image & File Toolkit. Learn how we protect your data, handle permissions, and ensure your privacy.">
+    <meta name="keywords" content="Rainbow Tools privacy policy, Media Ghor privacy, Android app privacy, image processing privacy, file conversion data protection">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Privacy Policy - Rainbow Tools | Media Ghor">
+    <meta property="og:description" content="Privacy Policy for Rainbow Tools - Image & File Toolkit. Learn how we protect your data and handle permissions.">
+    <meta property="og:url" content="https://mediaghor.com/products/rainbow-tools/privacy-policy/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mediaghor.com/static/images/our_products/rainbow_tools/rainbowtools_logo.png">
+    <meta property="og:site_name" content="Media Ghor">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mediaghor.com/products/rainbow-tools/privacy-policy/">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest'%}">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Media Ghor">
+    <meta name="theme-color" content="#8B5CF6">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #FF6B6B, #FFD93D, #6BCF7F, #4D96FF, #9D4BFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .privacy-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid #9D4BFF;
+        }
+        
+        .privacy-highlight {
+            background: linear-gradient(135deg, #FF6B6B, #9D4BFF);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+        
+        .info-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .permission-box {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .last-updated {
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .privacy-section {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .mobile-padding {
+                padding: 1rem !important;
+            }
+        }
+        
+        /* Table Styling */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+        
+        .data-table th {
+            background: #9D4BFF;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        .data-table tr:hover {
+            background: #f1f5f9;
+        }
+        
+        .permission-badge {
+            background: linear-gradient(135deg, #FF6B6B, #9D4BFF);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .tech-tag {
+            background: linear-gradient(135deg, #FF6B6B, #9D4BFF);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-purple-50 min-h-screen font-inter">
+    <!-- Navigation -->
+    {% include 'partials/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-20">
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden bg-gradient-to-r from-purple-600 via-pink-600 to-red-500 text-white py-12 md:py-16">
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div class="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full"></div>
+                <div class="absolute -bottom-16 -left-16 w-48 h-48 bg-white/10 rounded-full"></div>
+            </div>
+            
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <!-- Breadcrumb -->
+                <nav class="flex justify-center mb-6" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-3 text-sm">
+                        <li class="inline-flex items-center">
+                            <a href="/" class="inline-flex items-center font-medium text-white/80 hover:text-white transition-colors duration-300">
+                                <i class="fas fa-home mr-2" aria-hidden="true"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li class="inline-flex items-center">
+                            <i class="fas fa-chevron-right text-white/80 mx-2" aria-hidden="true"></i>
+                            <a href="/products" class="inline-flex items-center font-medium text-white/80 hover:text-white transition-colors duration-300">
+                                Products
+                            </a>
+                        </li>
+                        <li class="inline-flex items-center">
+                            <i class="fas fa-chevron-right text-white/80 mx-2" aria-hidden="true"></i>
+                            <a href="/products/rainbow-tools" class="inline-flex items-center font-medium text-white/80 hover:text-white transition-colors duration-300">
+                                Rainbow Tools
+                            </a>
+                        </li>
+                        <li aria-current="page">
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-white/80 mx-2" aria-hidden="true"></i>
+                                <span class="font-medium text-white">Privacy Policy</span>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+
+                <div class="flex items-center justify-center gap-4 mb-6">
+                    <img src="{% static 'images/our_products/rainbow_tools/rainbowtools_logo.png' %}" alt="Rainbow Tools Logo" class="w-16 h-16 rounded-xl shadow-lg">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-black">
+                        Privacy Policy
+                    </h1>
+                </div>
+                <p class="text-lg md:text-xl opacity-90 max-w-3xl mx-auto">
+                    For Rainbow Tools - Image & File Toolkit
+                </p>
+            </div>
+        </section>
+
+        <!-- Last Updated Notice -->
+        <section class="py-8">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <div class="last-updated animate-fade-in-up">
+                    <div class="flex items-start">
+                        <i class="fas fa-info-circle text-yellow-500 text-xl mt-1 mr-3" aria-hidden="true"></i>
+                        <div>
+                            <h3 class="font-bold text-gray-800 mb-1">Last Updated: December 1, 2023</h3>
+                            <p class="text-gray-700">This privacy policy describes how Media Ghor ("we", "our", or "us") collects, uses, and shares information about you when you use our Android application "Rainbow Tools - Image & File Toolkit" (the "App").</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Privacy Policy Content -->
+        <section class="py-8 pb-16">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <!-- Introduction -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-shield-alt text-purple-500 mr-3" aria-hidden="true"></i>
+                        Introduction
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        At Media Ghor, we are committed to protecting your privacy and being transparent about our data practices. This Privacy Policy explains how Rainbow Tools handles your information when you use our application for image processing and file management.
+                    </p>
+                    <p class="text-gray-700">
+                        Rainbow Tools is designed to process your images and files while respecting your privacy. We implement measures to ensure that your data is handled securely and in accordance with this policy.
+                    </p>
+                </div>
+
+                <!-- Key Privacy Highlights -->
+                <div class="privacy-highlight animate-fade-in-up">
+                    <h3 class="text-xl font-bold mb-4 text-center">Our Privacy Commitment for Rainbow Tools</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-ban text-white mr-3 text-xl" aria-hidden="true"></i>
+                            <span>No Personal Data Collection</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-user-secret text-white mr-3 text-xl" aria-hidden="true"></i>
+                            <span>Files Deleted After Processing</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-lock text-white mr-3 text-xl" aria-hidden="true"></i>
+                            <span>Encrypted Data Transmission</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-eye-slash text-white mr-3 text-xl" aria-hidden="true"></i>
+                            <span>No Unnecessary Data Access</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Permissions Explanation -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-key text-purple-500 mr-3" aria-hidden="true"></i>
+                        Android Permissions Explained
+                    </h2>
+                    
+                    <p class="text-gray-700 mb-4">
+                        Rainbow Tools requires certain permissions to function properly. Here's a detailed explanation of why each permission is needed and how it's used:
+                    </p>
+                    
+                    <!-- INTERNET Permission -->
+                    <div class="permission-box">
+                        <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                            <span class="permission-badge">INTERNET</span>
+                            android.permission.INTERNET
+                        </h4>
+                        <p class="text-gray-700 mb-2">
+                            <strong>Purpose:</strong> This permission allows Rainbow Tools to connect to the internet to provide advanced features.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>AI-powered image processing (background removal, enhancement)</li>
+                            <li>Text extraction using OCR technology</li>
+                            <li>File format conversion services</li>
+                            <li>Downloading necessary updates and resources</li>
+                        </ul>
+                        <p class="text-gray-700 mt-2 text-sm">
+                            <strong>Data Handling:</strong> All internet communications are encrypted using SSL/TLS protocols.
+                        </p>
+                    </div>
+                    
+                    <!-- ACCESS_WIFI_STATE Permission -->
+                    <div class="permission-box">
+                        <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                            <span class="permission-badge">ACCESS_WIFI_STATE</span>
+                            android.permission.ACCESS_WIFI_STATE
+                        </h4>
+                        <p class="text-gray-700 mb-2">
+                            <strong>Purpose:</strong> This permission helps optimize the app's performance based on network conditions.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Detect when you're on Wi-Fi to enable larger file processing</li>
+                            <li>Provide appropriate feedback about network availability</li>
+                            <li>Optimize data usage when on mobile networks</li>
+                        </ul>
+                        <p class="text-gray-700 mt-2 text-sm">
+                            <strong>Data Handling:</strong> We do not collect information about specific networks you connect to.
+                        </p>
+                    </div>
+                    
+                    <!-- READ_EXTERNAL_STORAGE Permission -->
+                    <div class="permission-box">
+                        <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                            <span class="permission-badge">READ_EXTERNAL_STORAGE</span>
+                            android.permission.READ_EXTERNAL_STORAGE
+                        </h4>
+                        <p class="text-gray-700 mb-2">
+                            <strong>Purpose:</strong> This permission allows Rainbow Tools to access images and files you select for processing.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Access images you choose to enhance or modify</li>
+                            <li>Read documents you select for text extraction or conversion</li>
+                            <li>Browse your gallery to select files for processing</li>
+                        </ul>
+                        <p class="text-gray-700 mt-2 text-sm">
+                            <strong>Data Handling:</strong> We only access files you explicitly choose. We do not scan or access other files on your device.
+                        </p>
+                    </div>
+                    
+                    <!-- WRITE_EXTERNAL_STORAGE Permission -->
+                    <div class="permission-box">
+                        <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                            <span class="permission-badge">WRITE_EXTERNAL_STORAGE</span>
+                            android.permission.WRITE_EXTERNAL_STORAGE
+                        </h4>
+                        <p class="text-gray-700 mb-2">
+                            <strong>Purpose:</strong> This permission allows Rainbow Tools to save processed files to your device.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Save enhanced images to your gallery</li>
+                            <li>Store converted files in your preferred location</li>
+                            <li>Create output folders for organized file management</li>
+                        </ul>
+                        <p class="text-gray-700 mt-2 text-sm">
+                            <strong>Data Handling:</strong> We only write files to locations you approve and never modify existing files without your consent.
+                        </p>
+                    </div>
+                    
+                    <!-- READ_MEDIA_IMAGES Permission (Android 13+) -->
+                    <div class="permission-box">
+                        <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                            <span class="permission-badge">READ_MEDIA_IMAGES</span>
+                            android.permission.READ_MEDIA_IMAGES
+                        </h4>
+                        <p class="text-gray-700 mb-2">
+                            <strong>Purpose:</strong> This is the updated permission for Android 13+ that replaces READ_EXTERNAL_STORAGE for media access.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Access photos and images for processing</li>
+                            <li>Select images from your gallery for enhancement</li>
+                            <li>Choose images for background removal or text extraction</li>
+                        </ul>
+                        <p class="text-gray-700 mt-2 text-sm">
+                            <strong>Data Handling:</strong> This permission provides more granular control and only grants access to images, not other file types.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Information We Collect -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-database text-purple-500 mr-3" aria-hidden="true"></i>
+                        Information We Collect
+                    </h2>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Data Collection Summary</h3>
+                    <p class="text-gray-700 mb-4">
+                        Rainbow Tools is designed to minimize data collection while providing powerful functionality:
+                    </p>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Data Type</th>
+                                    <th>Collected</th>
+                                    <th>Purpose</th>
+                                    <th>Storage Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Personal Information</td>
+                                    <td><span class="text-red-500 font-bold">No</span></td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>Images & Files (Processing)</td>
+                                    <td><span class="text-yellow-500 font-bold">Temporary</span></td>
+                                    <td>Core app functionality</td>
+                                    <td>Deleted after processing</td>
+                                </tr>
+                                <tr>
+                                    <td>Device Information</td>
+                                    <td><span class="text-green-500 font-bold">Limited</span></td>
+                                    <td>App optimization</td>
+                                    <td>Anonymous & aggregated</td>
+                                </tr>
+                                <tr>
+                                    <td>Usage Analytics</td>
+                                    <td><span class="text-yellow-500 font-bold">Optional</span></td>
+                                    <td>App improvement</td>
+                                    <td>Anonymous & aggregated</td>
+                                </tr>
+                                <tr>
+                                    <td>Location Data</td>
+                                    <td><span class="text-red-500 font-bold">No</span></td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mt-8 mb-3">File Processing Details</h3>
+                    <div class="info-box">
+                        <h4 class="font-bold text-gray-800 mb-2">How We Handle Your Files</h4>
+                        <p class="text-gray-700 mb-2">When you process images or files through Rainbow Tools:</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li><strong>Local Processing:</strong> Simple operations are processed directly on your device</li>
+                            <li><strong>Cloud Processing:</strong> Advanced AI features (background removal, OCR) may process files on our secure servers</li>
+                            <li><strong>Temporary Storage:</strong> Files sent to our servers are automatically deleted after processing (typically within 1 hour)</li>
+                            <li><strong>No Permanent Storage:</strong> We do not permanently store your processed files on our servers</li>
+                            <li><strong>Encryption:</strong> All file transfers are encrypted using industry-standard protocols</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- How We Use Information -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-cogs text-purple-500 mr-3" aria-hidden="true"></i>
+                        How We Use Information
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        Any information we collect is used solely for the purpose of providing and improving the Rainbow Tools application:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li>To provide image processing services (enhancement, background removal, etc.)</li>
+                        <li>To enable file conversion between different formats</li>
+                        <li>To extract text from images using OCR technology</li>
+                        <li>To optimize app performance and user experience</li>
+                        <li>To fix bugs and improve functionality through anonymous crash reports</li>
+                        <li>To respond to user support requests when voluntarily contacted</li>
+                    </ul>
+                    
+                    <div class="info-box mt-4">
+                        <h4 class="font-bold text-gray-800 mb-2">AI Processing Note</h4>
+                        <p class="text-gray-700">
+                            For AI-powered features like background removal and image enhancement, your images are processed using machine learning algorithms. These algorithms analyze the visual content of your images but do not store or remember specific images after processing is complete.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Data Sharing and Disclosure -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-share-alt text-purple-500 mr-3" aria-hidden="true"></i>
+                        Data Sharing and Disclosure
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        We do not sell, trade, or otherwise transfer your personal information or file contents to third parties. The limited circumstances where information may be shared include:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li><strong>Service Providers:</strong> Trusted third parties who assist us in operating our app (e.g., cloud hosting, AI processing services), subject to strict data protection obligations</li>
+                        <li><strong>Legal Requirements:</strong> If required by law or in response to valid legal process</li>
+                        <li><strong>Business Transfers:</strong> In connection with a merger, acquisition, or sale of assets</li>
+                    </ul>
+                    
+                    <div class="privacy-highlight mt-4">
+                        <h4 class="font-bold text-center mb-2">No Advertising Networks</h4>
+                        <p class="text-center">
+                            Rainbow Tools does not integrate with advertising networks and does not use your data for targeted advertising.
+                        </p>
+                    </div>
+                    
+                    <div class="info-box mt-4">
+                        <h4 class="font-bold text-gray-800 mb-2">Third-Party Services</h4>
+                        <p class="text-gray-700">
+                            We may use third-party services for specific functionalities (e.g., OCR processing, cloud infrastructure). These services are bound by contractual obligations to handle your data securely and only for the purposes we specify.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Data Security -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-lock text-purple-500 mr-3" aria-hidden="true"></i>
+                        Data Security
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        We implement appropriate technical and organizational measures to protect any information we process:
+                    </p>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Our Security Measures</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li><strong>Encryption:</strong> All data transmissions are encrypted using SSL/TLS protocols</li>
+                        <li><strong>Secure Servers:</strong> Our processing servers are secured with industry-standard protections</li>
+                        <li><strong>Access Controls:</strong> Strict access controls limit who can access processing systems</li>
+                        <li><strong>Regular Audits:</strong> We regularly review and update our security practices</li>
+                        <li><strong>Data Minimization:</strong> We only collect and process data necessary for app functionality</li>
+                    </ul>
+                    
+                    <div class="info-box mt-4">
+                        <h4 class="font-bold text-gray-800 mb-2">Security Limitations</h4>
+                        <p class="text-gray-700">
+                            While we implement robust security measures, no method of transmission over the Internet or electronic storage is 100% secure. We cannot guarantee absolute security but we continuously work to maintain and improve our security protocols.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- User Rights -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-user-check text-purple-500 mr-3" aria-hidden="true"></i>
+                        Your Rights and Choices
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        You have control over your data and how it's used within Rainbow Tools:
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-4 mt-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-gray-800 mb-2">Access and Control</h4>
+                            <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                <li>Right to know what data we collect</li>
+                                <li>Right to access your personal data</li>
+                                <li>Right to correct inaccurate data</li>
+                                <li>Right to delete your data</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-gray-800 mb-2">Practical Actions</h4>
+                            <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                <li>Uninstall the app to remove all local data</li>
+                                <li>Disable optional analytics in app settings</li>
+                                <li>Revoke app permissions via device settings</li>
+                                <li>Contact us to request data deletion</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="info-box mt-4">
+                        <h4 class="font-bold text-gray-800 mb-2">For EU Users (GDPR)</h4>
+                        <p class="text-gray-700">
+                            If you are located in the European Economic Area (EEA), you have certain rights under the General Data Protection Regulation (GDPR). We honor these rights, including the right to access, rectify, and erase your personal data.
+                        </p>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h4 class="font-bold text-gray-800 mb-2">For California Users (CCPA/CPRA)</h4>
+                        <p class="text-gray-700">
+                            The California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA) provide California residents with specific rights regarding their personal information. We comply with these regulations and do not sell personal information.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Children's Privacy -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-child text-purple-500 mr-3" aria-hidden="true"></i>
+                        Children's Privacy
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        Rainbow Tools is not directed to children under the age of 13, and we do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us, and we will take steps to delete such information.
+                    </p>
+                    
+                    <div class="info-box">
+                        <h4 class="font-bold text-gray-800 mb-2">COPPA Compliance</h4>
+                        <p class="text-gray-700">
+                            Our app complies with the Children's Online Privacy Protection Act (COPPA). We do not specifically market to children under 13, and our data collection practices are designed to minimize any potential impact on children's privacy.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- International Data Transfers -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-globe text-purple-500 mr-3" aria-hidden="true"></i>
+                        International Data Transfers
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        Your information may be transferred to and maintained on computers located outside of your state, province, country, or other governmental jurisdiction where the data protection laws may differ from those of your jurisdiction.
+                    </p>
+                    <p class="text-gray-700">
+                        We ensure that any international transfers of your data are protected through appropriate safeguards, such as standard contractual clauses, and that they comply with applicable data protection laws.
+                    </p>
+                </div>
+
+                <!-- Changes to This Policy -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-sync-alt text-purple-500 mr-3" aria-hidden="true"></i>
+                        Changes to This Policy
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date at the top of this policy.
+                    </p>
+                    <p class="text-gray-700">
+                        You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
+                    </p>
+                    
+                    <div class="info-box mt-4">
+                        <h4 class="font-bold text-gray-800 mb-2">Notification of Material Changes</h4>
+                        <p class="text-gray-700">
+                            If we make material changes to this policy, we will provide a more prominent notice, such as an in-app notification or email (if you've provided your contact information).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-envelope text-purple-500 mr-3" aria-hidden="true"></i>
+                        Contact Us
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        If you have any questions or concerns about this Privacy Policy or our data practices, please contact us:
+                    </p>
+                    
+                    <div class="bg-purple-50 border border-purple-200 rounded-xl p-6">
+                        <div class="flex items-start mb-4">
+                            <i class="fas fa-building text-purple-500 mt-1 mr-3" aria-hidden="true"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Media Ghor</h4>
+                                <p class="text-gray-700">Software Development Company</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-4">
+                            <i class="fas fa-envelope text-purple-500 mt-1 mr-3" aria-hidden="true"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Email</h4>
+                                <a href="mailto:privacy@mediaghor.com" class="text-purple-600 hover:text-purple-800">privacy@mediaghor.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i class="fas fa-globe text-purple-500 mt-1 mr-3" aria-hidden="true"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Website</h4>
+                                <a href="https://mediaghor.com" class="text-purple-600 hover:text-purple-800">https://mediaghor.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-gray-100 rounded-lg">
+                        <p class="text-gray-700 text-sm">
+                            <strong>Response Time:</strong> We strive to respond to all privacy-related inquiries within 7 business days.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Additional Resources -->
+                <div class="text-center mt-12">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Additional Resources</h3>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="/products/rainbow-tools" class="bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2">
+                            <i class="fas fa-arrow-left" aria-hidden="true"></i> Back to Rainbow Tools
+                        </a>
+                        <a href="/terms" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2">
+                            <i class="fas fa-file-contract" aria-hidden="true"></i> Terms of Service
+                        </a>
+                        <a href="/contact" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2">
+                            <i class="fas fa-headset" aria-hidden="true"></i> Contact Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    {% include 'partials/footer.html' %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Add animation to elements
+            const observerOptions = {
+                threshold: 0.05,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+            
+            // Update last updated date dynamically
+            const lastUpdatedElement = document.querySelector('.last-updated h3');
+            if (lastUpdatedElement) {
+                const currentDate = new Date().toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+                lastUpdatedElement.textContent = `Last Updated: ${currentDate}`;
+            }
+        });
+    </script>
+</body>
+</html>

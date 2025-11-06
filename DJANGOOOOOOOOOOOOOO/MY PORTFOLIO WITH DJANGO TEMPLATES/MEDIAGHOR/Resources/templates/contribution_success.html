@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribution Submitted - Media Ghor</title>
+    <meta name="description" content="Thank you for contributing to Media Ghor. Your resource has been submitted for review.">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest'%}">
+    
+    <!-- Same CSS and meta tags as contribute page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-green-50 min-h-screen font-inter">
+    {% include 'partials/navbar.html' %}
+
+    <main class="flex-grow pt-20">
+        <!-- Success Hero Section -->
+        <section class="bg-gradient-to-r from-green-500 to-green-600 text-white py-16 md:py-20">
+            <div class="container mx-auto px-4 text-center">
+                <div class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-check-circle text-4xl text-white"></i>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4">
+                    <span class="bg-gradient-to-r from-yellow-300 to-yellow-400 bg-clip-text text-transparent">
+                        Thank You!
+                    </span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-6 opacity-90 max-w-2xl mx-auto leading-relaxed">
+                    Your resource has been successfully submitted for review.
+                </p>
+            </div>
+        </section>
+
+        <!-- Success Details -->
+        <section class="py-12 md:py-16">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto">
+                    <div class="bg-white rounded-2xl shadow-xl p-8 text-center">
+                        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-clock text-green-500 text-2xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">What Happens Next?</h2>
+                        
+                        <div class="space-y-6 mb-8">
+                            <div class="flex items-start gap-4 text-left">
+                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-search text-blue-500 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800 mb-1">Review Process</h3>
+                                    <p class="text-gray-600">Our team will review your submission to ensure it meets our quality guidelines and community standards.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4 text-left">
+                                <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-envelope text-purple-500 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800 mb-1">Notification</h3>
+                                    <p class="text-gray-600">You'll be notified via email once your resource is approved and published on the platform.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4 text-left">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-rocket text-green-500 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800 mb-1">Live on Site</h3>
+                                    <p class="text-gray-600">Once approved, your resource will be available to thousands of developers in our community.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="{% url 'resources:contribute_for_resources' %}" class="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-green-600 hover:to-green-700 transition duration-300 transform hover:scale-105 inline-flex items-center gap-2">
+                                <i class="fas fa-plus-circle"></i>
+                                Submit Another Resource
+                            </a>
+                            <a href="{% url 'resources:category_resources' %}" class="bg-white border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-xl font-semibold hover:border-green-500 hover:text-green-600 transition duration-300 inline-flex items-center gap-2">
+                                <i class="fas fa-boxes"></i>
+                                Browse Resources
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% include 'partials/newsletter.html' %}
+    </main>
+
+    {% include 'partials/footer.html' %}
+</body>
+</html>

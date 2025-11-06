@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Media Ghor | Professional Software Development</title>
+    <meta name="description" content="Media Ghor offers professional Android Development, Website Development, Server Solutions, API Development, React, and Django services. Transform your ideas into reality.">
+    <meta name="keywords" content="Android development, website development, server solutions, API development, React development, Django development, software services, Media Ghor">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Our Services - Media Ghor | Professional Software Development">
+    <meta property="og:description" content="Expert Android, Website, Server, API, React, and Django development services. Professional solutions for your business.">
+    <meta property="og:url" content="https://mediaghor.com/services">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mediaghor.com/static/images/logo.png">
+    <meta property="og:site_name" content="Media Ghor">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Our Services - Media Ghor">
+    <meta name="twitter:description" content="Professional Android, Website, Server, API, React, and Django development services">
+    <meta name="twitter:image" content="https://mediaghor.com/static/images/logo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mediaghor.com/services">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest'%}">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Media Ghor">
+    <meta name="theme-color" content="#3B82F6">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Media Ghor Software Development Services",
+        "description": "Professional software development services including Android apps, websites, servers, APIs, React, and Django development",
+        "url": "https://mediaghor.com/services",
+        "provider": {
+            "@type": "Organization",
+            "name": "Media Ghor",
+            "url": "https://mediaghor.com",
+            "logo": "https://mediaghor.com/static/images/logo.png"
+        },
+        "areaServed": "Worldwide",
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Software Development Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Android Development",
+                        "description": "Custom Android application development with modern technologies"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Website Development",
+                        "description": "Responsive and scalable website development"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Server Solutions",
+                        "description": "Robust server infrastructure and deployment solutions"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "API Development",
+                        "description": "RESTful API development and integration services"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "React Development",
+                        "description": "Modern React applications with latest features"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Django Development",
+                        "description": "Python Django backend development and APIs"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+    
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradientFlow 4s ease infinite;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #3B82F6, #10B981, #8B5CF6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stagger-animation > * {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .tech-tag {
+            background: linear-gradient(135deg, #3B82F6, #10B981);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #3B82F6, #10B981, transparent);
+            margin: 3rem auto;
+            max-width: 200px;
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, #3B82F6, #10B981);
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f1f5f9;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #3B82F6, #10B981);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+            filter: blur(40px);
+            z-index: 0;
+        }
+        
+        .process-step {
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .process-step::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3B82F6, #10B981);
+        }
+        
+        .process-step-number {
+            position: absolute;
+            left: -1rem;
+            top: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, #3B82F6, #10B981);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+        
+        .tech-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f1f5f9;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #3B82F6, #10B981);
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f1f5f9;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -1rem;
+            left: 2rem;
+            font-size: 4rem;
+            color: #3B82F6;
+            opacity: 0.1;
+            font-family: serif;
+        }
+        
+        .cta-gradient {
+            background: linear-gradient(135deg, #3B82F6, #10B981, #8B5CF6);
+            background-size: 200% 200%;
+            animation: gradientFlow 4s ease infinite;
+        }
+        
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transform: translateX(-100%);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .service-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .mobile-stack {
+                flex-direction: column;
+            }
+            
+            .mobile-center {
+                text-align: center;
+                justify-content: center;
+            }
+            
+            .mobile-padding {
+                padding: 1rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .service-card {
+                padding: 1.5rem;
+            }
+            
+            .mobile-padding {
+                padding: 1rem !important;
+            }
+        }
+        
+        /* Performance Optimizations */
+        .will-change {
+            will-change: transform;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen font-inter">
+    <!-- Navigation -->
+    {% include 'partials/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-20">
+        <!-- Floating Background Shapes -->
+        <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+            <div class="floating-shape w-64 h-64 -top-20 -left-20 animate-float" style="animation-delay: 0s;"></div>
+            <div class="floating-shape w-48 h-48 -bottom-16 -right-16 animate-float" style="animation-delay: 1.5s;"></div>
+            <div class="floating-shape w-32 h-32 top-1/3 right-1/4 animate-float" style="animation-delay: 2.5s;"></div>
+            <div class="floating-shape w-40 h-40 bottom-1/4 left-1/3 animate-float" style="animation-delay: 3.5s;"></div>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 text-white py-16 md:py-24">
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <!-- Breadcrumb -->
+                <nav class="flex justify-center mb-6" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-3 text-sm">
+                        <li class="inline-flex items-center">
+                            <a href="{% url 'home'%}" class="inline-flex items-center font-medium text-blue-200 hover:text-white transition-colors duration-300">
+                                <i class="fas fa-home mr-2" aria-hidden="true"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li aria-current="page">
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-blue-200 mx-2" aria-hidden="true"></i>
+                                <span class="font-medium text-white">Our Services</span>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 animate-fade-in-up">
+                    <span class="gradient-text">Our Services</span>
+                </h1>
+                <p class="text-xl md:text-2xl lg:text-3xl mb-8 opacity-90 max-w-3xl mx-auto leading-relaxed font-light">
+                    Transforming Ideas Into Digital Reality
+                </p>
+                <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto opacity-80 leading-relaxed">
+                    We provide comprehensive software development services to bring your vision to life with cutting-edge technology and expert craftsmanship.
+                </p>
+                
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <div class="glass-effect rounded-full px-6 py-3 backdrop-blur-sm">
+                        <span class="text-base md:text-lg"><i class="fas fa-mobile-alt mr-2" aria-hidden="true"></i>Android Development</span>
+                    </div>
+                    <div class="glass-effect rounded-full px-6 py-3 backdrop-blur-sm">
+                        <span class="text-base md:text-lg"><i class="fas fa-globe mr-2" aria-hidden="true"></i>Website Development</span>
+                    </div>
+                    <div class="glass-effect rounded-full px-6 py-3 backdrop-blur-sm">
+                        <span class="text-base md:text-lg"><i class="fas fa-server mr-2" aria-hidden="true"></i>Server Solutions</span>
+                    </div>
+                </div>
+                
+                <a href="#services" class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-xl font-bold text-lg transition-colors duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl mx-auto w-full md:w-auto">
+                    <i class="fas fa-arrow-down" aria-hidden="true"></i> Explore Our Services
+                </a>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
+                    <div class="animate-fade-in-up">
+                        <div class="text-3xl md:text-4xl font-bold mb-2 text-blue-600" data-count="25">25+</div>
+                        <div class="text-gray-600 font-medium">Projects Completed</div>
+                    </div>
+                    <div class="animate-fade-in-up" style="animation-delay: 0.1s;">
+                        <div class="text-3xl md:text-4xl font-bold mb-2 text-green-600" data-count="15">15K+</div>
+                        <div class="text-gray-600 font-medium">Users Served</div>
+                    </div>
+                    <div class="animate-fade-in-up" style="animation-delay: 0.2s;">
+                        <div class="text-3xl md:text-4xl font-bold mb-2 text-purple-600">4.8★</div>
+                        <div class="text-gray-600 font-medium">Client Rating</div>
+                    </div>
+                    <div class="animate-fade-in-up" style="animation-delay: 0.3s;">
+                        <div class="text-3xl md:text-4xl font-bold mb-2 text-indigo-600" data-count="3">3+</div>
+                        <div class="text-gray-600 font-medium">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-16 md:py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                        Our Core Services
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                        We offer end-to-end software development solutions tailored to your business needs
+                    </p>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto stagger-animation">
+                    <!-- Android Development -->
+                    <div class="service-card card-hover will-change">
+                        <div class="feature-icon">
+                            <i class="fab fa-android text-white text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Android Development</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Create powerful, user-friendly Android applications with modern architecture, material design, and seamless performance across all devices.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Kotlin</span>
+                            <span class="tech-tag">Material Design</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">REST APIs</span>
+                        </div>
+                        <ul class="text-gray-600 space-y-2 mb-8">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>Custom UI/UX Design</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>Google Play Store Deployment</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>Performance Optimization</span>
+                            </li>
+                        </ul>
+                        <a href="/contact" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2 w-full">
+                            <i class="fas fa-comment-dots" aria-hidden="true"></i> Discuss Project
+                        </a>
+                    </div>
+                    
+                    <!-- Website Development -->
+                    <div class="service-card card-hover will-change">
+                        <div class="feature-icon">
+                            <i class="fas fa-code text-white text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Website Development</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Build responsive, fast, and SEO-optimized websites that deliver exceptional user experiences across all devices and platforms.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                            <span class="tech-tag">SEO</span>
+                        </div>
+                        <ul class="text-gray-600 space-y-2 mb-8">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>Responsive Design</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>Performance Optimization</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>Cross-browser Compatibility</span>
+                            </li>
+                        </ul>
+                        <a href="/contact" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2 w-full">
+                            <i class="fas fa-comment-dots" aria-hidden="true"></i> Discuss Project
+                        </a>
+                    </div>
+                    
+                    <!-- Server Solutions -->
+                    <div class="service-card card-hover will-change">
+                        <div class="feature-icon">
+                            <i class="fas fa-server text-white text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Server Solutions</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Deploy robust, scalable server infrastructure with high availability, security, and performance for your applications.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag">Linux</span>
+                            <span class="tech-tag">Nginx</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">SSL/TLS</span>
+                        </div>
+                        <ul class="text-gray-600 space-y-2 mb-8">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>Server Configuration & Setup</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>Security Hardening</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>Performance Monitoring</span>
+                            </li>
+                        </ul>
+                        <a href="/contact" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2 w-full">
+                            <i class="fas fa-comment-dots" aria-hidden="true"></i> Discuss Project
+                        </a>
+                    </div>
+                    
+                    <!-- API Development -->
+                    <div class="service-card card-hover will-change">
+                        <div class="feature-icon">
+                            <i class="fas fa-network-wired text-white text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">API Development</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Design and develop secure, scalable RESTful APIs with comprehensive documentation, versioning, and testing.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag">REST</span>
+                            <span class="tech-tag">JSON</span>
+                            <span class="tech-tag">Authentication</span>
+                            <span class="tech-tag">Documentation</span>
+                            <span class="tech-tag">Testing</span>
+                        </div>
+                        <ul class="text-gray-600 space-y-2 mb-8">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>RESTful API Design</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>Authentication & Authorization</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>Comprehensive Documentation</span>
+                            </li>
+                        </ul>
+                        <a href="/contact" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2 w-full">
+                            <i class="fas fa-comment-dots" aria-hidden="true"></i> Discuss Project
+                        </a>
+                    </div>
+                    
+                    <!-- React Development -->
+                    <div class="service-card card-hover will-change">
+                        <div class="feature-icon">
+                            <i class="fab fa-react text-white text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">React Development</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Build dynamic, high-performance React applications with modern hooks, state management, and component libraries.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Redux</span>
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Material-UI</span>
+                        </div>
+                        <ul class="text-gray-600 space-y-2 mb-8">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>Component-based Architecture</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>State Management</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>Performance Optimization</span>
+                            </li>
+                        </ul>
+                        <a href="/contact" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2 w-full">
+                            <i class="fas fa-comment-dots" aria-hidden="true"></i> Discuss Project
+                        </a>
+                    </div>
+                    
+                    <!-- Django Development -->
+                    <div class="service-card card-hover will-change">
+                        <div class="feature-icon">
+                            <i class="fab fa-python text-white text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Django Development</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Develop robust, scalable Django applications with secure authentication, ORM, and REST API capabilities.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">DRF</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Celery</span>
+                        </div>
+                        <ul class="text-gray-600 space-y-2 mb-8">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>REST API Development</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>Database Design & Optimization</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                                <span>Admin Panel Customization</span>
+                            </li>
+                        </ul>
+                        <a href="/contact" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2 w-full">
+                            <i class="fas fa-comment-dots" aria-hidden="true"></i> Discuss Project
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Stack -->
+        <section class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                        Technology Stack
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                        We work with modern technologies to deliver cutting-edge solutions
+                    </p>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="max-w-6xl mx-auto">
+                    <div class="tech-grid stagger-animation">
+                        <div class="tech-item">
+                            <i class="fab fa-android text-green-500 text-3xl mb-2" aria-hidden="true"></i>
+                            <span class="font-medium text-gray-700">Android</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-java text-red-500 text-3xl mb-2" aria-hidden="true"></i>
+                            <span class="font-medium text-gray-700">Java</span>
+                        </div>
+                        <div class="tech-item flex flex-col items-center">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" 
+                                alt="Kotlin" class="w-8 h-8 mb-2">
+                            <span class="font-medium text-gray-700">Kotlin</span>
+                        </div>
+
+
+                        <div class="tech-item">
+                            <i class="fab fa-python text-blue-500 text-3xl mb-2" aria-hidden="true"></i>
+                            <span class="font-medium text-gray-700">Python</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-js-square text-yellow-500 text-3xl mb-2" aria-hidden="true"></i>
+                            <span class="font-medium text-gray-700">JavaScript</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-react text-blue-400 text-3xl mb-2" aria-hidden="true"></i>
+                            <span class="font-medium text-gray-700">React</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-node-js text-green-600 text-3xl mb-2" aria-hidden="true"></i>
+                            <span class="font-medium text-gray-700">Node.js</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-database text-indigo-500 text-3xl mb-2" aria-hidden="true"></i>
+                            <span class="font-medium text-gray-700">PostgreSQL</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-aws text-orange-500 text-3xl mb-2" aria-hidden="true"></i>
+                            <span class="font-medium text-gray-700">AWS</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-docker text-blue-500 text-3xl mb-2" aria-hidden="true"></i>
+                            <span class="font-medium text-gray-700">Docker</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-git-alt text-red-500 text-3xl mb-2" aria-hidden="true"></i>
+                            <span class="font-medium text-gray-700">Git</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-server text-gray-600 text-3xl mb-2" aria-hidden="true"></i>
+                            <span class="font-medium text-gray-700">Nginx</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-shield-alt text-green-500 text-3xl mb-2" aria-hidden="true"></i>
+                            <span class="font-medium text-gray-700">SSL/TLS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="py-16 md:py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                        Our Development Process
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                        A structured approach to ensure quality, transparency, and successful project delivery
+                    </p>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="grid md:grid-cols-2 gap-12 stagger-animation">
+                        <div>
+                            <div class="process-step mb-8">
+                                <div class="process-step-number">1</div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-3">Discovery & Planning</h3>
+                                <p class="text-gray-600">
+                                    We start by understanding your requirements, goals, and target audience to create a comprehensive project plan.
+                                </p>
+                            </div>
+                            
+                            <div class="process-step mb-8">
+                                <div class="process-step-number">2</div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-3">Design & Prototyping</h3>
+                                <p class="text-gray-600">
+                                    Create wireframes, mockups, and prototypes to visualize the final product and gather feedback.
+                                </p>
+                            </div>
+                            
+                            <div class="process-step mb-8">
+                                <div class="process-step-number">3</div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-3">Development</h3>
+                                <p class="text-gray-600">
+                                    Agile development with regular updates, code reviews, and quality assurance throughout the process.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="process-step mb-8">
+                                <div class="process-step-number">4</div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-3">Testing & Quality Assurance</h3>
+                                <p class="text-gray-600">
+                                    Comprehensive testing including unit tests, integration tests, and user acceptance testing.
+                                </p>
+                            </div>
+                            
+                            <div class="process-step mb-8">
+                                <div class="process-step-number">5</div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-3">Deployment</h3>
+                                <p class="text-gray-600">
+                                    Smooth deployment to production environment with proper monitoring and backup systems.
+                                </p>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="process-step-number">6</div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-3">Support & Maintenance</h3>
+                                <p class="text-gray-600">
+                                    Ongoing support, maintenance, and updates to ensure your application runs smoothly.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                        What Our Clients Say
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                        Don't just take our word for it - hear from our satisfied clients
+                    </p>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto stagger-animation">
+                    
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                <img src="{% static 'images/services/shariar_ratul.jpg'%}" alt="Shariar Ratul" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Shariar Ratul</h4>
+                                <p class="text-gray-600 text-sm">CEO, Bikalpo</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            "Media Ghor developed our mobile app with exceptional quality. Their attention to detail and communication throughout the project was outstanding."
+                        </p>
+                        <div class="flex text-yellow-400 mt-4">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                <img src="{% static 'images/services/arav_sharma.jpg'%}" alt="Arav Sharma" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Arav Sharma</h4>
+                                <p class="text-gray-600 text-sm">CTO, DataFlow Systems</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            "The Django backend and React frontend they built for us is robust and scalable. Their technical expertise is impressive."
+                        </p>
+                        <div class="flex text-yellow-400 mt-4">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                <img src="{% static 'images/services/rajdiv_yeadav.jpg'%}" alt="Rajdiv Yeadav" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Rajdiv Yeadav</h4>
+                                <p class="text-gray-600 text-sm">Marketing Director, BrandVision</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            "Our website developed by Media Ghor has significantly improved our online presence. The SEO optimization has increased our traffic by 200%."
+                        </p>
+                        <div class="flex text-yellow-400 mt-4">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star-half-alt" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CTA Section -->
+        <section class="py-16 md:py-20 cta-gradient text-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Project?</h2>
+                    <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                        Let's discuss your ideas and turn them into a successful digital solution
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="{% url 'contact'%}" class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-xl font-semibold text-lg transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i> Direct Contact
+                        </a>
+                        <a href="{% url 'products:all_products'%}" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-8 py-3 rounded-xl font-semibold text-lg transition-colors duration-300 flex items-center justify-center gap-2 backdrop-blur-sm">
+                            <i class="fas fa-code" aria-hidden="true"></i> View Our Work
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    {% include 'partials/footer.html' %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Performance: Use requestAnimationFrame for animations
+            function staggerAnimation() {
+                const staggerElements = document.querySelectorAll('.stagger-animation > *');
+                staggerElements.forEach((el, index) => {
+                    el.style.animationDelay = `${index * 0.15}s`;
+                    el.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                });
+            }
+            
+            requestAnimationFrame(staggerAnimation);
+            
+            // Smooth scroll with performance optimization
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Intersection Observer with performance optimizations
+            const observerOptions = {
+                threshold: 0.05,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements with performance in mind
+            document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+            
+            // Counter animation for stats
+            const counters = document.querySelectorAll('[data-count]');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 2000; // 2 seconds
+                const step = target / (duration / 16); // 60fps
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current) + '+';
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target + '+';
+                    }
+                };
+                
+                // Start counter when element is in viewport
+                const counterObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateCounter();
+                            counterObserver.unobserve(entry.target);
+                        }
+                    });
+                });
+                
+                counterObserver.observe(counter);
+            });
+            
+            // Mobile touch optimizations
+            let touchStartY = 0;
+            document.addEventListener('touchstart', function(e) {
+                touchStartY = e.touches[0].clientY;
+            }, { passive: true });
+        });
+    </script>
+</body>
+</html>

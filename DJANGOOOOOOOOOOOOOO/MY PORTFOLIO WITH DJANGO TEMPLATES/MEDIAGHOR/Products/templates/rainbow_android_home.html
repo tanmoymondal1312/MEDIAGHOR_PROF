@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainbow Tools - Image & File Toolkit | Media Ghor</title>
+    <meta name="description" content="Rainbow Tools: Advanced AI-powered toolkit for background removal, image enhancement, text extraction, file conversion, and size reduction. Boost your productivity with smart utilities.">
+    <meta name="keywords" content="Rainbow Tools, image processing, background removal, OCR text extraction, file conversion, image enhancement, Android app, Media Ghor">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Rainbow Tools - Image & File Toolkit | Media Ghor">
+    <meta property="og:description" content="Advanced tools for background removal, image enhancement, text extraction, size reduction, and file conversion.">
+    <meta property="og:url" content="https://mediaghor.com/products/rainbow-tools/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mediaghor.com/static/images/our_products/rainbow_tools/rainbow_title.jpeg">
+    <meta property="og:site_name" content="Media Ghor">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rainbow Tools - Image & File Toolkit">
+    <meta name="twitter:description" content="AI-powered tools for image processing, background removal, and file conversion.">
+    <meta name="twitter:image" content="https://mediaghor.com/static/images/our_products/rainbow_tools/rainbow_title.jpeg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mediaghor.com/products/rainbow-tools/">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest'%}">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Media Ghor">
+    <meta name="theme-color" content="#8B5CF6">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Rainbow Tools - Image & File Toolkit",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Android",
+        "description": "Advanced AI-powered tools for background removal, image enhancement, text extraction, size reduction, and file conversion.",
+        "url": "https://mediaghor.com/products/rainbow-tools/",
+        "author": {
+            "@type": "Organization",
+            "name": "Media Ghor"
+        },
+        "datePublished": "2023-03-20",
+        "softwareVersion": "3.2.1",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.3",
+            "ratingCount": "1500"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "screenshot": [
+            "https://mediaghor.com/static/images/our_products/rainbow_title.jpeg",
+            "https://mediaghor.com/static/images/our_products/rainbow_tools/screenshot1.png",
+            "https://mediaghor.com/static/images/our_products/rainbow_tools/screenshot2.png",
+            "https://mediaghor.com/static/images/our_products/rainbow_tools/screenshot3.png",
+            "https://mediaghor.com/static/images/our_products/rainbow_tools/screenshot4.png"
+            "https://mediaghor.com/static/images/our_products/rainbow_tools/screenshot5.png"
+            "https://mediaghor.com/static/images/our_products/rainbow_tools/screenshot6.png"
+        ],
+        "featureList": [
+            "Background Removal",
+            "Image Enhancement",
+            "Text Extraction (OCR)",
+            "File Size Reduction",
+            "Format Conversion",
+            "AI-Powered Processing"
+        ]
+    }
+    </script>
+    
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradientFlow 4s ease infinite;
+        }
+        
+        .animate-rainbow {
+            background: linear-gradient(135deg, #FF6B6B, #FFD93D, #6BCF7F, #4D96FF, #9D4BFF, #FF6B6B);
+            background-size: 400% 400%;
+            animation: rainbow 6s ease infinite;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #FF6B6B, #FFD93D, #6BCF7F, #4D96FF, #9D4BFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stagger-animation > * {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .tech-tag {
+            background: linear-gradient(135deg, #FF6B6B, #9D4BFF);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #FF6B6B, #FFD93D, #6BCF7F, #4D96FF, #9D4BFF, transparent);
+            margin: 3rem auto;
+            max-width: 200px;
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, #FF6B6B, #9D4BFF);
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .screenshot-container {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .screenshot-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .screenshot-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .screenshot-container:hover .screenshot-overlay {
+            opacity: 1;
+        }
+        .section-divider {
+            height: 3px;
+            width: 60px;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+        
+        .tool-category {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid;
+        }
+        
+        .tool-category.image-tools {
+            border-left-color: #FF6B6B;
+        }
+        
+        .tool-category.file-tools {
+            border-left-color: #4D96FF;
+        }
+        
+        .tool-category.ai-tools {
+            border-left-color: #9D4BFF;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .mobile-stack {
+                flex-direction: column;
+            }
+            
+            .mobile-center {
+                text-align: center;
+                justify-content: center;
+            }
+            
+            .mobile-padding {
+                padding: 1rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .mobile-padding {
+                padding: 1rem !important;
+            }
+        }
+        
+        /* Performance Optimizations */
+        .will-change {
+            will-change: transform;
+        }
+        
+        /* Image loading states */
+        .image-loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .app-download-btn {
+            background: linear-gradient(135deg, #FF6B6B, #9D4BFF);
+            transition: all 0.3s ease;
+        }
+        
+        .app-download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(157, 75, 255, 0.4);
+        }
+        
+        .rainbow-badge {
+            background: linear-gradient(135deg, #FF6B6B, #FFD93D, #6BCF7F, #4D96FF, #9D4BFF);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-purple-50 min-h-screen font-inter">
+    <!-- Navigation -->
+    {% include 'partials/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-20">
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden animate-rainbow text-white py-16 md:py-24">
+            <!-- Background Elements -->
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div class="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full animate-float"></div>
+                <div class="absolute -bottom-16 -left-16 w-48 h-48 bg-white/10 rounded-full animate-float" style="animation-delay: 1.5s;"></div>
+                <div class="absolute top-1/3 right-1/4 w-32 h-32 bg-white/10 rounded-full animate-float" style="animation-delay: 2.5s;"></div>
+            </div>
+            
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <!-- Breadcrumb -->
+                <nav class="flex justify-center mb-6" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-3 text-sm">
+                        <li class="inline-flex items-center">
+                            <a href="{% url 'home'%}" class="inline-flex items-center font-medium text-white/80 hover:text-white transition-colors duration-300">
+                                <i class="fas fa-home mr-2" aria-hidden="true"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li class="inline-flex items-center">
+                            <i class="fas fa-chevron-right text-white/80 mx-2" aria-hidden="true"></i>
+                            <a href="{% url 'products:all_products'%}" class="inline-flex items-center font-medium text-white/80 hover:text-white transition-colors duration-300">
+                                Products
+                            </a>
+                        </li>
+                        <li aria-current="page">
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-white/80 mx-2" aria-hidden="true"></i>
+                                <span class="font-medium text-white">Rainbow Tools</span>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8 max-w-6xl mx-auto">
+                    <div class="flex-1 text-left">
+                        <div class="inline-flex items-center gap-2 mb-4">
+                            <img src="{% static 'images/our_products/rainbow_tools/rainbowtools_logo.png' %}" alt="Rainbow Tools Logo" class="w-12 h-12 rounded-xl shadow-lg">
+                            <span class="tech-tag bg-white/20 backdrop-blur-sm text-white border border-white/30">
+                                <i class="fab fa-android mr-1" aria-hidden="true"></i> Android App
+                            </span>
+                        </div>
+                        
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-6 animate-fade-in-up">
+                            Rainbow Tools
+                        </h1>
+                        <p class="text-xl md:text-2xl mb-6 opacity-90 leading-relaxed font-light">
+                            Image & File Toolkit with AI Power
+                        </p>
+                        <p class="text-lg mb-8 max-w-2xl opacity-80 leading-relaxed">
+                            Advanced tools for background removal, image enhancement, text extraction, size reduction, and file conversion. 
+                            Boost your productivity with smart AI-powered utilities — fast, reliable, and effortless to use.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-start">
+                            <a href="{% url 'sale:rainbow_android_sale'%}" class="app-download-btn text-white px-8 py-3 rounded-xl font-semibold text-lg flex items-center justify-center gap-3 shadow-lg">
+                                <i class="fas fa-download" aria-hidden="true"></i> Download Now
+                            </a>
+                            <a href="#features" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-8 py-3 rounded-xl font-semibold text-lg transition-colors duration-300 flex items-center justify-center gap-3 backdrop-blur-sm">
+                                <i class="fas fa-play-circle" aria-hidden="true"></i> Watch Demo
+                            </a>
+                        </div>
+                        
+                        <div class="flex items-center mt-8 text-white/80">
+                            <div class="flex items-center text-yellow-400 mr-4">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="far fa-star" aria-hidden="true"></i>
+                                <span class="text-white ml-2">4.3 (1.5K reviews)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-download mr-1" aria-hidden="true"></i>
+                                <span>35K+ Downloads</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 flex justify-center">
+                        <div class="w-64">
+                            <img 
+                                src="{% static 'images/our_products/rainbow_tools/rainbow_tools_home.png' %}" 
+                                alt="Dark Screen app interface showing fake lock screen"
+                                class="w-full h-full object-cover"
+                                loading="eager"
+                            >
+                            <div class="absolute bottom-4 left-0 right-0 flex justify-center">
+                                <div class="bg-black/70 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm">
+                                    AI Tools Active
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Info Section -->
+        <section class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">What is Rainbow Tools?</h2>
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                            Rainbow Tools is a comprehensive Android application that brings powerful image processing and file management capabilities to your mobile device. With AI-powered algorithms and intuitive design, it transforms complex tasks into simple one-tap operations.
+                        </p>
+                        <p class="text-gray-600 mb-8 text-lg leading-relaxed">
+                            Whether you're a content creator, student, professional, or casual user, Rainbow Tools provides the utilities you need to enhance images, extract text, convert files, and optimize your digital content - all without requiring technical expertise.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <span class="tech-tag">AI-Powered</span>
+                            <span class="tech-tag">Background Removal</span>
+                            <span class="tech-tag">OCR Technology</span>
+                            <span class="tech-tag">File Conversion</span>
+                            <span class="tech-tag">Image Enhancement</span>
+                            <span class="tech-tag">Text Extraction</span>
+                        </div>
+                        
+                        <div class="bg-purple-50 border border-purple-200 rounded-xl p-6">
+                            <h3 class="text-xl font-bold text-purple-800 mb-3 flex items-center">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-2" aria-hidden="true"></i>
+                                Perfect For
+                            </h3>
+                            <ul class="text-purple-700 space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2" aria-hidden="true"></i>
+                                    <span>Content creators and social media managers</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2" aria-hidden="true"></i>
+                                    <span>Students and researchers for document processing</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2" aria-hidden="true"></i>
+                                    <span>Professionals needing quick file conversions</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2" aria-hidden="true"></i>
+                                    <span>Anyone looking to enhance their photos effortlessly</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-6">How It Works</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-white/20 rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <span class="font-bold">1</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Select Your Tool</h4>
+                                    <p class="opacity-90">Choose from various image processing or file conversion tools</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white/20 rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <span class="font-bold">2</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Upload Your File</h4>
+                                    <p class="opacity-90">Select image or document from gallery or take a new photo</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white/20 rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <span class="font-bold">3</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">AI Processing</h4>
+                                    <p class="opacity-90">Our algorithms process your file with advanced AI technology</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white/20 rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <span class="font-bold">4</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Download Result</h4>
+                                    <p class="opacity-90">Save or share your enhanced, converted, or processed file</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Categories Section -->
+        <section class="py-16 md:py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                        Powerful Tool Categories
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                        Discover the comprehensive suite of tools designed to handle all your image and file processing needs
+                    </p>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="max-w-6xl mx-auto space-y-8 stagger-animation">
+                    <!-- Image Tools -->
+                    <div class="tool-category image-tools">
+                        <div class="flex items-center mb-6">
+                            <div class="feature-icon">
+                                <i class="fas fa-image text-white text-2xl" aria-hidden="true"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 ml-4">Image Processing Tools</h3>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                                    <i class="fas fa-cut text-red-500 mr-2" aria-hidden="true"></i>
+                                    Background Removal
+                                </h4>
+                                <p class="text-gray-600 text-sm">Remove backgrounds automatically with AI precision</p>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                                    <i class="fas fa-magic text-purple-500 mr-2" aria-hidden="true"></i>
+                                    Image Enhancement
+                                </h4>
+                                <p class="text-gray-600 text-sm">Improve quality, adjust colors, and enhance details</p>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                                    <i class="fas fa-compress-arrows-alt text-blue-500 mr-2" aria-hidden="true"></i>
+                                    Size Reduction
+                                </h4>
+                                <p class="text-gray-600 text-sm">Compress images without significant quality loss</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- File Tools -->
+                    <div class="tool-category file-tools">
+                        <div class="flex items-center mb-6">
+                            <div class="feature-icon">
+                                <i class="fas fa-file-alt text-white text-2xl" aria-hidden="true"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 ml-4">File Management Tools</h3>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                                    <i class="fas fa-exchange-alt text-green-500 mr-2" aria-hidden="true"></i>
+                                    Format Conversion
+                                </h4>
+                                <p class="text-gray-600 text-sm">Convert between JPG, PNG, PDF, and other formats</p>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                                    <i class="fas fa-file-pdf text-red-500 mr-2" aria-hidden="true"></i>
+                                    PDF Tools
+                                </h4>
+                                <p class="text-gray-600 text-sm">Create, merge, and compress PDF documents</p>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                                    <i class="fas fa-archive text-orange-500 mr-2" aria-hidden="true"></i>
+                                    Compression
+                                </h4>
+                                <p class="text-gray-600 text-sm">Reduce file sizes for sharing and storage</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Tools -->
+                    <div class="tool-category ai-tools">
+                        <div class="flex items-center mb-6">
+                            <div class="feature-icon">
+                                <i class="fas fa-robot text-white text-2xl" aria-hidden="true"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 ml-4">AI-Powered Tools</h3>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                                    <i class="fas fa-font text-indigo-500 mr-2" aria-hidden="true"></i>
+                                    Text Extraction (OCR)
+                                </h4>
+                                <p class="text-gray-600 text-sm">Extract text from images with high accuracy</p>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                                    <i class="fas fa-brain text-purple-500 mr-2" aria-hidden="true"></i>
+                                    Smart Enhancement
+                                </h4>
+                                <p class="text-gray-600 text-sm">AI automatically detects and enhances images</p>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                                    <i class="fas fa-object-group text-teal-500 mr-2" aria-hidden="true"></i>
+                                    Object Recognition
+                                </h4>
+                                <p class="text-gray-600 text-sm">Identify and process specific elements in images</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                        Key Features
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                        Rainbow Tools offers a comprehensive set of features to enhance your productivity
+                    </p>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto stagger-animation">
+                    <!-- Feature 1 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-bolt text-white text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Fast Processing</h3>
+                        <p class="text-gray-600">
+                            Lightning-fast processing with optimized algorithms that handle tasks in seconds, not minutes
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-robot text-white text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">AI-Powered</h3>
+                        <p class="text-gray-600">
+                            Advanced artificial intelligence for accurate background removal and text recognition
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-user-friends text-white text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">User-Friendly</h3>
+                        <p class="text-gray-600">
+                            Intuitive interface designed for all skill levels - no technical expertise required
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 4 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-shield-alt text-white text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Privacy Focused</h3>
+                        <p class="text-gray-600">
+                            Your files are processed locally whenever possible, ensuring your data stays private
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- Technology Stack Section -->
+            <section class="py-10 md:py-12 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-3">
+                        App Screenshots
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-base">
+                        Explore the intuitive interface and powerful features of Rainbow Tools
+                    </p>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 max-w-7xl mx-auto">
+                    <!-- Screenshot 1 -->
+                    <div class="screenshot-container relative overflow-hidden rounded-lg shadow-md">
+                        <img 
+                            src="{% static 'images/our_products/rainbow_tools/screenshot1.png' %}" 
+                            alt="Dark Screen main interface showing activation options"
+                            class="screenshot-img"
+                            loading="lazy"
+                        >
+                        <div class="screenshot-overlay absolute inset-0 flex flex-col justify-end text-white p-3">
+                            <h3 class="font-bold text-sm mb-1">Easy Activation</h3>
+                            <p class="text-xs opacity-90">Simple one-tap activation</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Screenshot 2 -->
+                    <div class="screenshot-container relative overflow-hidden rounded-lg shadow-md">
+                        <img 
+                            src="{% static 'images/our_products/rainbow_tools/screenshot2.png' %}" 
+                            alt="Dark Screen fake lock screen in action"
+                            class="screenshot-img"
+                            loading="lazy"
+                        >
+                        <div class="screenshot-overlay absolute inset-0 flex flex-col justify-end text-white p-3">
+                            <h3 class="font-bold text-sm mb-1">Apply Lock Screen</h3>
+                            <p class="text-xs opacity-90">Apply your preferred lock screen</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Screenshot 3 -->
+                    <div class="screenshot-container relative overflow-hidden rounded-lg shadow-md">
+                        <img 
+                            src="{% static 'images/our_products/rainbow_tools/screenshot3.png' %}" 
+                            alt="Dark Screen settings and customization options"
+                            class="screenshot-img"
+                            loading="lazy"
+                        >
+                        <div class="screenshot-overlay absolute inset-0 flex flex-col justify-end text-white p-3">
+                            <h3 class="font-bold text-sm mb-1">Floating Icon</h3>
+                            <p class="text-xs opacity-90">Click the floating icon anywhere</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Screenshot 4 -->
+                    <div class="screenshot-container relative overflow-hidden rounded-lg shadow-md">
+                        <img 
+                            src="{% static 'images/our_products/rainbow_tools/screenshot4.png' %}"
+                            alt="Dark Screen floating icon and quick access"
+                            class="screenshot-img"
+                            loading="lazy"
+                        >
+                        <div class="screenshot-overlay absolute inset-0 flex flex-col justify-end text-white p-3">
+                            <h3 class="font-bold text-sm mb-1">Vanish Lock Screen</h3>
+                            <p class="text-xs opacity-90">Remove lock screen smoothly</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Screenshot 5 -->
+                    <div class="screenshot-container relative overflow-hidden rounded-lg shadow-md">
+                        <img 
+                            src="{% static 'images/our_products/rainbow_tools/screenshot5.png' %}"
+                            alt="Dark Screen background music feature"
+                            class="screenshot-img"
+                            loading="lazy"
+                        >
+                        <div class="screenshot-overlay absolute inset-0 flex flex-col justify-end text-white p-3">
+                            <h3 class="font-bold text-sm mb-1">Background Music</h3>
+                            <p class="text-xs opacity-90">Enjoy lock screen with music</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Screenshot 6 -->
+                    <div class="screenshot-container relative overflow-hidden rounded-lg shadow-md">
+                        <img 
+                            src="{% static 'images/our_products/rainbow_tools/screenshot6.png' %}"
+                            alt="Dark Screen customization options"
+                            class="screenshot-img"
+                            loading="lazy"
+                        >
+                        <div class="screenshot-overlay absolute inset-0 flex flex-col justify-end text-white p-3">
+                            <h3 class="font-bold text-sm mb-1">Customization</h3>
+                            <p class="text-xs opacity-90">Personalize your experience</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Screenshot 7 -->
+                    <div class="screenshot-container relative overflow-hidden rounded-lg shadow-md">
+                        <img 
+                            src="{% static 'images/our_products/rainbow_tools/screenshot7.png' %}" 
+                            alt="Dark Screen settings menu"
+                            class="screenshot-img"
+                            loading="lazy"
+                        >
+                        <div class="screenshot-overlay absolute inset-0 flex flex-col justify-end text-white p-3">
+                            <h3 class="font-bold text-sm mb-1">Settings</h3>
+                            <p class="text-xs opacity-90">Fine-tune app preferences</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Download Section -->
+        <section id="download" class="py-16 md:py-20 animate-rainbow text-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Get Rainbow Tools Now</h2>
+                    <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                        Download the app today and transform how you handle images and files on your mobile device
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+                        <a href="{% url 'sale:rainbow_android_sale'%}" class="bg-white text-purple-600 hover:bg-gray-100 px-8 py-4 rounded-xl font-bold text-lg transition-colors duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl">
+                            <i class="fab fa-google-play text-2xl" aria-hidden="true"></i>
+                            <div class="text-left">
+                                <div class="text-xs">GET IT ON</div>
+                                <div class="text-xl">Google Play</div>
+                            </div>
+                        </a>
+                        
+                        <a href="{% url 'sale:rainbow_android_sale'%}" class="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-download text-2xl" aria-hidden="true"></i>
+                            <div class="text-left">
+                                <div class="text-xs">DOWNLOAD</div>
+                                <div class="text-xl">APK File</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto">
+                        <h3 class="text-xl font-bold mb-4">System Requirements</h3>
+                        <div class="grid md:grid-cols-2 gap-4 text-left">
+                            <div class="flex items-center">
+                                <i class="fab fa-android text-green-400 mr-3 text-xl" aria-hidden="true"></i>
+                                <span>Android 8.0 or higher</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-mobile-alt text-blue-400 mr-3 text-xl" aria-hidden="true"></i>
+                                <span>100MB free space</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-wifi text-yellow-400 mr-3 text-xl" aria-hidden="true"></i>
+                                <span>Internet connection</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-camera text-purple-400 mr-3 text-xl" aria-hidden="true"></i>
+                                <span>Camera & Gallery access</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-16 md:py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                            Frequently Asked Questions
+                        </h2>
+                        <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                            Find answers to common questions about Rainbow Tools
+                        </p>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-2xl p-6 shadow-lg">
+                            <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-start">
+                                <i class="fas fa-question-circle text-purple-500 mr-3 mt-1" aria-hidden="true"></i>
+                                How accurate is the background removal feature?
+                            </h3>
+                            <p class="text-gray-600 pl-9">
+                                Our AI-powered background removal is highly accurate for most images. It works best with clear subjects and contrasting backgrounds. For complex images, we provide manual editing tools to refine the results.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-6 shadow-lg">
+                            <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-start">
+                                <i class="fas fa-question-circle text-purple-500 mr-3 mt-1" aria-hidden="true"></i>
+                                Does Rainbow Tools work offline?
+                            </h3>
+                            <p class="text-gray-600 pl-9">
+                                Some basic functions like simple image adjustments work offline, but advanced features like AI background removal, text extraction, and format conversion require an internet connection to process files on our secure servers.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-6 shadow-lg">
+                            <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-start">
+                                <i class="fas fa-question-circle text-purple-500 mr-3 mt-1" aria-hidden="true"></i>
+                                What file formats does Rainbow Tools support?
+                            </h3>
+                            <p class="text-gray-600 pl-9">
+                                We support all major image formats (JPG, PNG, WEBP, GIF) and document formats (PDF, DOC, TXT). Our conversion tools allow you to transform between these formats while maintaining quality.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-6 shadow-lg">
+                            <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-start">
+                                <i class="fas fa-question-circle text-purple-500 mr-3 mt-1" aria-hidden="true"></i>
+                                Is my data safe with Rainbow Tools?
+                            </h3>
+                            <p class="text-gray-600 pl-9">
+                                Absolutely. We take privacy seriously. Files processed through our servers are automatically deleted after processing. We don't store your personal data or images, and all transmissions are encrypted.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-16 md:py-20">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Ready to Boost Your Productivity?</h2>
+                    <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+                        Download Rainbow Tools now and experience the power of AI-driven image and file processing on your Android device.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="{% url 'sale:rainbow_android_sale'%}" class="bg-purple-500 hover:bg-purple-600 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
+                            <i class="fab fa-google-play" aria-hidden="true"></i> Download Now
+                        </a>
+                        <a href="{% url 'products:all_products'%}" class="bg-white hover:bg-gray-100 text-purple-500 border border-purple-500 px-8 py-3 rounded-xl font-semibold text-lg transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-arrow-left" aria-hidden="true"></i> Back to Products
+                        </a>
+                    </div>
+                    <div class="flex justify-center items-center py-8 px-4">
+                        <a href="{% url 'products:rainbow_android_privay_policy'%}"
+                        class="bg-white hover:bg-gray-100 text-purple-500 border border-purple-500 px-8 py-3 rounded-xl font-semibold text-lg transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl w-full sm:w-auto text-center">
+                        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                        Privacy Policy
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {% include 'partials/newsletter.html' %}
+
+    </main>
+
+    <!-- Footer -->
+    {% include 'partials/footer.html' %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Performance: Use requestAnimationFrame for animations
+            function staggerAnimation() {
+                const staggerElements = document.querySelectorAll('.stagger-animation > *');
+                staggerElements.forEach((el, index) => {
+                    el.style.animationDelay = `${index * 0.15}s`;
+                    el.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                });
+            }
+            
+            requestAnimationFrame(staggerAnimation);
+            
+            // Smooth scroll with performance optimization
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Intersection Observer with performance optimizations
+            const observerOptions = {
+                threshold: 0.05,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements with performance in mind
+            document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+            
+            // Mobile touch optimizations
+            let touchStartY = 0;
+            document.addEventListener('touchstart', function(e) {
+                touchStartY = e.touches[0].clientY;
+            }, { passive: true });
+        });
+    </script>
+</body>
+</html>

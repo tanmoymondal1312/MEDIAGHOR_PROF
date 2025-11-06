@@ -1,0 +1,66 @@
+{% load static %}
+<footer class="bg-gray-900 text-white pt-16 pb-8 mt-6">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div>
+                <img src="{% static 'images/logo.png' %}" alt="Media Ghor" class="h-12 mb-4">
+                <p class="text-gray-400 mb-4">Premier IT solutions and resources for businesses and developers.</p>
+                <div class="flex justify-center space-x-6 mt-2">
+                    <a href="#" class="text-gray-400 text-3xl hover:text-white">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 text-3xl hover:text-white">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 text-3xl hover:text-white">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 text-3xl hover:text-white">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Services</h3>
+                <ul class="space-y-2">
+                    <li><a href="{% url 'company_services:service_details' id='android-development' %}" class="text-gray-400 hover:text-white">Android Development</a></li>
+                    <li><a href="{% url 'company_services:service_details' id='ios-app-development' %}" class="text-gray-400 hover:text-white">iOS Development</a></li>
+                    <li><a href="{% url 'company_services:service_details' id='web-development' %}" class="text-gray-400 hover:text-white">Web Development</a></li>
+                    <li><a href="{% url 'company_services:service_details' id='api-development' %}" class="text-gray-400 hover:text-white">API Development</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                <ul class="space-y-2">
+                    <li><a href="{% url 'resources:single_category_resources' 'android' %}" class="text-gray-400 hover:text-white">Android Libraries</a></li>
+                    <li><a href="{% url 'resources:single_category_resources' 'python' %}" class="text-gray-400 hover:text-white">Python Packages</a></li>
+                    <li><a href="{% url 'resources:single_category_resources' 'django' %}" class="text-gray-400 hover:text-white">Django Tools</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                <ul class="space-y-2 text-gray-400">
+                    <li class="flex items-start">
+                        <i class="fas fa-envelope mt-1 mr-2"></i>
+                        <span>tanmoymondal1315@gmail.com</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-phone mt-1 mr-2"></i>
+                        <span>+88 01736008374</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+                        <span>Dhaka, Bangladesh</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center mb-4 md:mb-0">
+                <img src="{% static 'images/from-kanika.png' %}" alt="From Kanika" class="h-8 mr-3">
+                <p class="text-gray-400">A subsidiary of Kanika Technologies</p>
+            </div>
+            <p class="text-gray-400">© 2023 Media Ghor. All rights reserved.</p>
+        </div>
+    </div>
+</footer>

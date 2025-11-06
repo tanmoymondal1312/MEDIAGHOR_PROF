@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{post.title}} - {{post.short_title}} | Programming Resource | Media Ghor</title>
+    <meta name="description" content="{{post.description|truncatechars:160}} - Download free programming resource {{post.title}} for developers.">
+    <meta name="keywords" content="{{post.title}}, {{post.category}}, programming resource, code library, developer tools, {{post.short_title}}, free download">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{post.title}} - {{post.short_title}} | Media Ghor">
+    <meta property="og:description" content="{{post.description|truncatechars:160}}">
+    <meta property="og:url" content="https://mediaghor.com{% url 'resources:library_detail' id=post.id %}">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://mediaghor.com/static/images/resources-logo.png">
+    <meta property="og:site_name" content="Media Ghor">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{post.title}} - {{post.short_title}}">
+    <meta name="twitter:description" content="{{post.description|truncatechars:160}}">
+    <meta name="twitter:image" content="https://mediaghor.com/static/images/resources-logo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mediaghor.com{% url 'resources:library_detail' id=post.id %}">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest'%}">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Media Ghor">
+    <meta name="theme-color" content="#3B82F6">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "{{post.title}}",
+        "description": "{{post.description}}",
+        "applicationCategory": "ProgrammingResource",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Media Ghor"
+        },
+        "datePublished": "{{post.created_at|date:'Y-m-d'}}",
+        "dateModified": "{{post.updated_at|date:'Y-m-d'}}",
+        "downloadUrl": "{{post.library_link}}"
+    }
+    </script>
+    
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Premium Styling */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Mobile Section Styles */
+        .mobile-section {
+            min-height: 60vh;
+            padding-bottom: 2rem;
+        }
+
+        /* Mobile Bottom Navigation */
+        .mobile-nav-btn.active {
+            color: #3b82f6;
+        }
+
+        /* Code Block Styling */
+        pre code {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            line-height: 1.5;
+        }
+
+        /* Prose Styling */
+        .prose {
+            color: #374151;
+            line-height: 1.75;
+        }
+
+        .prose h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin: 1.5em 0 0.75em;
+            color: #111827;
+        }
+
+        .prose h3 {
+            font-size: 1.25em;
+            font-weight: 600;
+            margin: 1.5em 0 0.75em;
+            color: #111827;
+        }
+
+        .prose p {
+            margin-bottom: 1.25em;
+        }
+
+        .prose ul, .prose ol {
+            margin-bottom: 1.25em;
+            padding-left: 1.5em;
+        }
+
+        .prose li {
+            margin-bottom: 0.5em;
+        }
+
+        .prose a {
+            color: #3b82f6;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+
+        .prose a:hover {
+            color: #2563eb;
+        }
+
+        .prose blockquote {
+            border-left: 4px solid #e5e7eb;
+            padding-left: 1em;
+            margin: 1.5em 0;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        /* Smooth Transitions */
+        * {
+            transition-property: color, background-color, border-color, transform;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+
+        /* Toast Notification */
+        .toast-notification {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            position: fixed;
+            bottom: 5rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .toast-notification.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #3b82f6;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Desktop Layout with Independent Scrolling */
+        .desktop-layout {
+            display: flex;
+            min-height: calc(100vh - 4rem);
+            overflow: hidden;
+        }
+
+        .desktop-left-column {
+            width: 25%;
+            border-right: 1px solid #e5e7eb;
+            background-color: white;
+            overflow-y: auto;
+            height: calc(100vh - 4rem);
+            position: sticky;
+            top: 0;
+        }
+
+        .desktop-middle-column {
+            width: 50%;
+            background-color: white;
+            overflow-y: auto;
+            height: calc(100vh - 4rem);
+        }
+
+        .desktop-right-column {
+            width: 25%;
+            border-left: 1px solid #e5e7eb;
+            background-color: white;
+            overflow-y: auto;
+            height: calc(100vh - 4rem);
+            position: sticky;
+            top: 0;
+        }
+
+        /* Mobile-specific fixes */
+        @media (max-width: 768px) {
+            .prose {
+                font-size: 0.875rem;
+                max-width: 100%;
+                overflow-wrap: break-word;
+            }
+            
+            .prose h2 {
+                font-size: 1.25em;
+            }
+            
+            .prose h3 {
+                font-size: 1.125em;
+            }
+            
+            /* Fix for content overlapping cards */
+            .prose > div {
+                padding: 1rem;
+                overflow: hidden;
+                word-wrap: break-word;
+            }
+            
+            /* Ensure content doesn't extend behind bottom nav */
+            .mobile-section {
+                padding-bottom: 6rem; /* Increased for bottom nav */
+            }
+            
+            /* Fix for code block overflow */
+            .library-content {
+                max-width: 100%;
+                overflow-x: auto;
+                word-break: break-all;
+            }
+            
+            /* Improved card padding for mobile */
+            .mobile-card {
+                padding: 1rem;
+                margin: 0.5rem 0;
+                border-radius: 0.75rem;
+                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            }
+            
+            /* Better text sizing for mobile */
+            .mobile-text {
+                font-size: 0.875rem;
+                line-height: 1.5;
+            }
+            
+            /* Fix for bottom navigation spacing */
+            .mobile-bottom-nav {
+                height: 4rem;
+            }
+        }
+
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            .dark-mode-support {
+                /* Dark mode styles would go here */
+            }
+        }
+        
+        /* Content overflow prevention */
+        .content-container {
+            max-width: 100%;
+            overflow: hidden;
+        }
+        
+        /* Image responsiveness */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Table responsiveness */
+        table {
+            width: 100%;
+            display: block;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen flex flex-col pt-16 font-inter" style="font-family: 'Inter', sans-serif;">
+    
+    <!-- Navigation -->
+    {% include 'partials/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Breadcrumb -->
+        <nav class="bg-white border-b border-gray-200 py-3">
+            <div class="container mx-auto px-4">
+                <ol class="flex items-center space-x-2 text-sm text-gray-600">
+                    <li><a href="{% url 'home' %}" class="hover:text-blue-600 transition-colors">Home</a></li>
+                    <li><i class="fas fa-chevron-right text-xs"></i></li>
+                    <li><a href="{% url 'resources:category_resources' %}" class="hover:text-blue-600 transition-colors">Resources</a></li>
+                    <li><i class="fas fa-chevron-right text-xs"></i></li>
+                    <li><a href="{% url 'resources:single_category_resources' post.category.slug %}" class="hover:text-blue-600 transition-colors">{{post.category.name}}</a></li>
+                    <li><i class="fas fa-chevron-right text-xs"></i></li>
+
+                    <li class="text-gray-900 font-medium truncate">{{post.short_title|default:post.title}}</li>
+                </ol>
+            </div>
+        </nav>
+
+        <div class="relative min-h-screen">
+            <!-- Desktop/Tablet Layout -->
+            <div class="hidden lg:flex desktop-layout">
+                <!-- Left Side - Recommended Posts -->
+                <div class="desktop-left-column">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                            <i class="fas fa-fire text-orange-500"></i>
+                            Recommended Libraries
+                        </h3>
+                        <div class="space-y-4">
+                            {% for post in recommended_posts %}
+                            <a href="{% url 'resources:library_detail' id=post.id %}" class="block group transform transition-all duration-300 hover:scale-105">
+                                <div class="bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
+                                    <div class="flex items-start space-x-3">
+                                        <div class="flex-1 min-w-0">
+                                            <h4 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2 leading-tight">
+                                                {{ post.short_title|default:post.title }}
+                                            </h4>
+                                            <div class="flex items-center mt-2 text-sm text-gray-500">
+                                                <span class="flex items-center gap-1">
+                                                    <i class="far fa-calendar text-xs"></i>
+                                                    {{ post.created_at|date:"M d, Y" }}
+                                                </span>
+                                                <span class="mx-2">•</span>
+                                                <span class="flex items-center space-x-1 bg-blue-50 px-2 py-1 rounded-full">
+                                                    <i class="far fa-copy text-xs"></i>
+                                                    <span class="text-xs font-medium">{{ post.copy }}</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Middle - Post Content -->
+                <div class="desktop-middle-column">
+                    <div class="p-8">
+                        <!-- Header Section -->
+                        <div class="mb-8">
+                            <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">
+                                    {{ post.category.name }}
+                                </span>
+                                <span>•</span>
+                                <span>{{ post.created_at|date:"F j, Y" }}</span>
+                                <span>•</span>
+                                <span class="flex items-center gap-1">
+                                    <i class="far fa-eye"></i>
+                                    {{ post.views }} views
+                                </span>
+                            </div>
+                            
+                            <h1 class="text-4xl font-bold text-gray-900 mb-4 leading-tight">
+                                {{ post.title }}
+                            </h1>
+                            
+                            {% if post.short_title %}
+                            <h2 class="text-xl text-gray-600 mb-6 font-light leading-relaxed">
+                                {{ post.short_title }}
+                            </h2>
+                            {% endif %}
+
+                            <!-- Code Block -->
+                            <div class="bg-gradient-to-r from-gray-900 to-gray-800 rounded-xl p-6 mb-8 shadow-2xl border border-gray-700">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                        <span class="text-gray-400 text-sm ml-2 font-mono">resource.js</span>
+                                    </div>
+                                    <button
+                                        data-post-id="{{ post.id }}"
+                                        data-link="{{ post.library_link }}"
+                                        class="copy-btn px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2 font-medium">
+                                        <i class="far fa-copy"></i>
+                                        Copy Code
+                                    </button>
+                                </div>
+                                <pre class="library-content m-0 font-mono text-sm text-gray-200 whitespace-pre-wrap break-all bg-transparent overflow-x-auto"><code>{{ post.library_link|default:'// No link available' }}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- How To Use Section -->
+                        <div class="mb-12">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-play text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-900">How To Use</h3>
+                                    <p class="text-gray-600">Step-by-step implementation guide</p>
+                                </div>
+                            </div>
+                            
+                            <div class="prose prose-lg max-w-none mb-0">
+                                <div class="rounded-2xl content-container p-0 m-0">
+                            <pre class="whitespace-pre-wrap break-words font-mono text-gray-800 text-base leading-relaxed rounded-none overflow-x-auto m-0 p-0">{{ post.how_to_use|default:post.description|safe }}</pre>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+                        <!-- Additional Actions -->
+                        <div class="flex items-center justify-between pt-8 border-t border-gray-200">
+                            <div class="flex items-center gap-4">
+                                <button class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-blue-600 transition-colors">
+                                    <i class="far fa-thumbs-up"></i>
+                                    <span>Helpful</span>
+                                </button>
+                                <button class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-blue-600 transition-colors">
+                                    <i class="far fa-share-square"></i>
+                                    <span>Share</span>
+                                </button>
+                            </div>
+                            <div class="text-sm text-gray-500">
+                                Last updated: {{ post.updated_at|date:"F j, Y" }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side - Post Meta -->
+                <div class="desktop-right-column">
+                    <div class="p-6">
+                        {% if post.image %}
+                        <div class="mb-6 rounded-2xl overflow-hidden shadow-lg">
+                            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full h-48 object-cover">
+                        </div>
+                        {% endif %}
+                        
+                        <div class="space-y-6">
+                            <!-- Quick Stats -->
+                            <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-6 border border-blue-200">
+                                <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                    <i class="fas fa-chart-line text-blue-600"></i>
+                                    Resource Stats
+                                </h4>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-blue-600">{{ post.copy }}</div>
+                                        <div class="text-xs text-gray-600 mt-1">Copies</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-green-600">{{ post.views }}</div>
+                                        <div class="text-xs text-gray-600 mt-1">Views</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Resource Details -->
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Resource Details</h4>
+                                    <div class="space-y-3">
+                                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                            <span class="text-gray-600">Published</span>
+                                            <span class="font-medium text-gray-900">{{ post.created_at|date:"M j, Y" }}</span>
+                                        </div>
+                                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                            <span class="text-gray-600">Last Updated</span>
+                                            <span class="font-medium text-gray-900">{{ post.updated_at|date:"M j, Y" }}</span>
+                                        </div>
+                                        <div class="flex justify-between items-center py-2">
+                                            <span class="text-gray-600">Category</span>
+                                            <span class="font-medium text-blue-600">{{ post.category.name }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Quick Copy -->
+                                <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-4 border border-green-200">
+                                    <button
+                                        data-post-id="{{ post.id }}"
+                                        data-link="{{ post.library_link }}"
+                                        class="w-full copy-btn px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 font-semibold">
+                                        <i class="fas fa-bolt"></i>
+                                        Quick Copy
+                                    </button>
+                                </div>
+
+                                <!-- Description -->
+                                <div class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
+                                    <h4 class="font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                                        <i class="fas fa-info-circle text-blue-600"></i>
+                                        Description
+                                    </h4>
+                                    <p class="text-gray-700 leading-relaxed text-sm">
+                                        {{ post.description }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Layout -->
+            <div class="lg:hidden">
+                <!-- Content Area -->
+                <div class="p-4 pb-24"> <!-- Increased padding-bottom for bottom navbar -->
+                    <!-- Mobile Header -->
+                    <div class="mb-6">
+                        <div class="flex items-center gap-2 text-xs text-gray-500 mb-3 flex-wrap">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full font-medium">
+                                {{ post.category.name }}
+                            </span>
+                            <span>•</span>
+                            <span>{{ post.created_at|date:"M j, Y" }}</span>
+                            <span>•</span>
+                            <span class="flex items-center gap-1">
+                                <i class="far fa-eye"></i>
+                                {{ post.views }} views
+                            </span>
+                        </div>
+                        
+                        <h1 class="text-2xl font-bold text-gray-900 mb-2 leading-tight">
+                            {{ post.title }}
+                        </h1>
+                        
+                        {% if post.short_title %}
+                        <h2 class="text-lg text-gray-600 mb-4 font-light">
+                            {{ post.short_title }}
+                        </h2>
+                        {% endif %}
+                    </div>
+
+                    <!-- Code Block -->
+                    <div class="bg-gradient-to-r from-gray-900 to-gray-800 rounded-xl p-4 mb-6 shadow-lg border border-gray-700">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                                <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span class="text-gray-400 text-xs ml-2 font-mono">resource.js</span>
+                            </div>
+                            <button
+                                data-post-id="{{ post.id }}"
+                                data-link="{{ post.library_link }}"
+                                class="copy-btn px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-300 text-xs font-medium flex items-center gap-1">
+                                <i class="far fa-copy text-xs"></i>
+                                Copy
+                            </button>
+                        </div>
+                        <pre class="library-content m-0 font-mono text-xs text-gray-200 whitespace-pre-wrap break-all bg-transparent overflow-x-auto"><code>{{ post.library_link|default:'// No link available' }}</code></pre>
+                    </div>
+
+                    <!-- Mobile Content Sections -->
+                    <div id="mobile-content" class="mobile-section">
+                        <!-- How To Use -->
+                        <div class="mb-8">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                <i class="fas fa-play text-blue-600"></i>
+                                How To Use
+                            </h3>
+                            
+                            <div class="prose prose-sm max-w-none mb-0">
+                                <div class="bg-white rounded-xl content-container mobile-card mb-0">
+                            <pre class="whitespace-pre-wrap break-words font-mono text-gray-700 text-[10px] leading-relaxed rounded-lg overflow-x-auto mb-0">{{ post.how_to_use|default:post.description|safe }}</pre>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div id="mobile-meta" class="mobile-section hidden">
+                        <div class="space-y-6">
+                            {% if post.image %}
+                            <div class="rounded-xl overflow-hidden shadow-md">
+                                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full h-40 object-cover">
+                            </div>
+                            {% endif %}
+                            
+                            <!-- Quick Stats -->
+                            <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-4 border border-blue-200 mobile-card">
+                                <h4 class="font-bold text-gray-800 mb-3 text-sm">Resource Stats</h4>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="text-center">
+                                        <div class="text-xl font-bold text-blue-600">{{ post.copy }}</div>
+                                        <div class="text-xs text-gray-600 mt-1">Copies</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-xl font-bold text-green-600">{{ post.views }}</div>
+                                        <div class="text-xs text-gray-600 mt-1">Views</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Resource Details -->
+                            <div class="space-y-4 mobile-card">
+                                <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Resource Details</h4>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-gray-600 text-sm">Published</span>
+                                        <span class="font-medium text-gray-900 text-sm">{{ post.created_at|date:"M j, Y" }}</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-gray-600 text-sm">Last Updated</span>
+                                        <span class="font-medium text-gray-900 text-sm">{{ post.updated_at|date:"M j, Y" }}</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2">
+                                        <span class="text-gray-600 text-sm">Category</span>
+                                        <span class="font-medium text-blue-600 text-sm">{{ post.category.name }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quick Copy -->
+                            <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-4 border border-green-200 mobile-card">
+                                <button
+                                    data-post-id="{{ post.id }}"
+                                    data-link="{{ post.library_link }}"
+                                    class="w-full copy-btn px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all duration-300 flex items-center justify-center gap-2 font-semibold text-sm">
+                                    <i class="fas fa-bolt"></i>
+                                    Quick Copy Resource
+                                </button>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="bg-white rounded-xl p-4 border border-gray-200 mobile-card">
+                                <h4 class="font-semibold text-gray-800 mb-2 text-sm flex items-center gap-2">
+                                    <i class="fas fa-info-circle text-blue-600"></i>
+                                    Description
+                                </h4>
+                                <p class="text-gray-700 leading-relaxed text-sm mobile-text">
+                                    {{ post.description }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="mobile-recommended" class="mobile-section hidden">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                            <i class="fas fa-fire text-orange-500"></i>
+                            Recommended Libraries
+                        </h3>
+                        <div class="space-y-3">
+                            {% for post in recommended_posts %}
+                            <a href="{% url 'resources:library_detail' id=post.id %}" class="block group">
+                                <div class="bg-gradient-to-br from-white to-gray-50 rounded-xl p-3 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 mobile-card">
+                                    <div class="flex items-start space-x-3">
+                                        <div class="flex-1 min-w-0">
+                                            <h4 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors text-sm line-clamp-2 leading-tight">
+                                                {{ post.short_title|default:post.title }}
+                                            </h4>
+                                            <div class="flex items-center mt-2 text-xs text-gray-500">
+                                                <span class="flex items-center gap-1">
+                                                    <i class="far fa-calendar"></i>
+                                                    {{ post.created_at|date:"M d, Y" }}
+                                                </span>
+                                                <span class="mx-2">•</span>
+                                                <span class="flex items-center space-x-1 bg-blue-50 px-2 py-1 rounded-full">
+                                                    <i class="far fa-copy text-xs"></i>
+                                                    <span class="text-xs font-medium">{{ post.copy }}</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 mobile-bottom-nav">
+        <div class="flex justify-around items-center py-3">
+            <button onclick="showSection('mobile-content')" class="mobile-nav-btn flex flex-col items-center justify-center w-1/3 py-2 text-blue-600 transition-colors">
+                <i class="fas fa-file-alt text-lg mb-0"></i>
+                <span class="text-xs font-medium">Content</span>
+            </button>
+            <button onclick="showSection('mobile-meta')" class="mobile-nav-btn flex flex-col items-center justify-center w-1/3 py-2 text-gray-500 transition-colors">
+                <i class="fas fa-info-circle text-lg mb-0"></i>
+                <span class="text-xs font-medium">Details</span>
+            </button>
+            <button onclick="showSection('mobile-recommended')" class="mobile-nav-btn flex flex-col items-center justify-center w-1/3 py-2 text-gray-500 transition-colors">
+                <i class="fas fa-fire text-lg mb-0"></i>
+                <span class="text-xs font-medium">Recommended</span>
+            </button>
+        </div>
+    </div>
+    {% include 'partials/newsletter.html' %}
+
+    <!-- Footer -->
+    {% include 'partials/footer.html' %}
+
+    <script>
+    // Mobile Navigation
+    function showSection(sectionId) {
+        // Hide all sections
+        document.querySelectorAll('.mobile-section').forEach(section => {
+            section.classList.add('hidden');
+        });
+        
+        // Show selected section
+        document.getElementById(sectionId).classList.remove('hidden');
+        
+        // Update active tab
+        document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+            btn.classList.remove('text-blue-600');
+            btn.classList.add('text-gray-500');
+        });
+        
+        // Find the button that corresponds to the section and activate it
+        const buttons = document.querySelectorAll('.mobile-nav-btn');
+        if (sectionId === 'mobile-content') {
+            buttons[0].classList.add('text-blue-600');
+            buttons[0].classList.remove('text-gray-500');
+        } else if (sectionId === 'mobile-meta') {
+            buttons[1].classList.add('text-blue-600');
+            buttons[1].classList.remove('text-gray-500');
+        } else if (sectionId === 'mobile-recommended') {
+            buttons[2].classList.add('text-blue-600');
+            buttons[2].classList.remove('text-gray-500');
+        }
+        
+        // Scroll to top when switching sections
+        window.scrollTo(0, 0);
+    }
+
+    // Copy Functionality with Enhanced Toast and Debug Logging
+    document.addEventListener('DOMContentLoaded', function() {
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        
+        copyButtons.forEach(button => {
+                button.addEventListener('click', async function() {
+                const link = this.getAttribute('data-link');
+                const postId = this.getAttribute('data-post-id');
+                
+                console.log('=== COPY BUTTON CLICKED ===');
+                console.log('Post ID:', postId);
+                console.log('Link to copy:', link);
+                
+                try {
+                    await navigator.clipboard.writeText(link);
+                    console.log('✅ Successfully copied to clipboard');
+                    
+                    // Show success toast
+                    showToast('Code copied to clipboard!');
+                    
+                    // Update copy count via AJAX
+                    try {
+                        console.log('🔄 Attempting to update copy count...');
+                        const apiUrl = `${window.location.origin}/resources/click_on_copy/`;
+                        
+                        const csrfToken = getCSRFToken();
+                        console.log('CSRF Token found:', !!csrfToken);
+                        
+                        // Create the JSON data to send
+                        const postData = {
+                            post_id: postId  // This matches what your Django view expects
+                        };
+                        
+                        console.log('📤 Sending data:', postData);
+                        
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRFToken': csrfToken,
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(postData)  // Add the JSON data here
+                        });
+                        
+                        console.log('📡 Response status:', response.status);
+                        
+                        if (response.ok) {
+                            const data = await response.json();
+                            console.log('✅ Copy count updated successfully:', data);
+                            
+                            // Update copy count in UI
+                            const copyElements = document.querySelectorAll('.copy-count');
+                            copyElements.forEach(el => {
+                                el.textContent = data.copies;  // Use 'copies' to match Django response
+                            });
+                        } else {
+                            console.error('❌ Server returned error status:', response.status);
+                            const errorText = await response.text();
+                            console.error('Error response body:', errorText);
+                            showToast('Failed to update copy count', 'error');
+                        }
+                    } catch (error) {
+                        console.error('❌ Network error updating copy count:', error);
+                        showToast('Network error updating copy count', 'error');
+                    }
+                    
+                } catch (err) {
+                    console.error('❌ Clipboard copy failed:', err);
+                    showToast('Failed to copy code', 'error');
+                }
+                
+                console.log('=== COPY PROCESS COMPLETED ===\n');
+            });
+        });
+        
+        // Clean up content whitespace and fix overflow issues
+        const contentDivs = document.querySelectorAll(".prose > div");
+        contentDivs.forEach(div => {
+            if (div.innerHTML.trim().length > 0) {
+                div.innerHTML = div.innerHTML.trimStart();
+            }
+            
+            // Fix any content that might overflow
+            const elements = div.querySelectorAll('*');
+            elements.forEach(el => {
+                el.style.maxWidth = '100%';
+                el.style.overflow = 'hidden';
+            });
+        });
+        
+        // Initialize first section as active on mobile
+        if (window.innerWidth < 1024) {
+            showSection('mobile-content');
+        }
+        
+        // Fix for images in content
+        const contentImages = document.querySelectorAll('.prose img');
+        contentImages.forEach(img => {
+            img.style.maxWidth = '100%';
+            img.style.height = 'auto';
+        });
+        
+        console.log('📱 Page loaded successfully');
+        console.log('Copy buttons found:', copyButtons.length);
+    });
+
+    // Enhanced Toast Notification
+    function showToast(message, type = 'success') {
+        console.log(`📢 Toast: ${type} - ${message}`);
+        
+        const toast = document.createElement('div');
+        toast.className = `toast-notification ${type === 'error' ? 'bg-red-500' : 'bg-gradient-to-r from-green-500 to-green-600'}`;
+        toast.innerHTML = `
+            <div class="flex items-center gap-3">
+                <i class="fas ${type === 'error' ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i>
+                <span class="font-medium">${message}</span>
+            </div>
+        `;
+        
+        document.body.appendChild(toast);
+        
+        // Animate in
+        setTimeout(() => toast.classList.add('show'), 10);
+        
+        // Auto remove
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 500);
+        }, 3000);
+    }
+
+    function getCSRFToken() {
+    // Method 1: Get from cookie
+    const getCookie = (name) => {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    };
+    
+    const token = getCookie('csrftoken');
+    console.log('🔐 CSRF Token length:', token ? token.length : 'Not found');
+    return token;
+}
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth < 1024) {
+            // Ensure mobile layout is properly initialized
+            const activeSection = document.querySelector('.mobile-section:not(.hidden)');
+            if (!activeSection) {
+                showSection('mobile-content');
+            }
+        }
+    });
+    
+    // Global error handler for uncaught errors
+    window.addEventListener('error', function(e) {
+        console.error('🚨 Global error caught:', e.error);
+        console.error('Error in file:', e.filename);
+        console.error('At line:', e.lineno, 'column:', e.colno);
+    });
+    
+    // Promise rejection handler
+    window.addEventListener('unhandledrejection', function(e) {
+        console.error('🚨 Unhandled promise rejection:', e.reason);
+    });
+</script>
+</body>
+</html>

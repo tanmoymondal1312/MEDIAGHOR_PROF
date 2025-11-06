@@ -1,0 +1,165 @@
+<section class="bg-white text-gray-900 py-12 px-4 md:px-6">
+  <div class="container mx-auto max-w-2xl">
+    <div class="text-center mb-8">
+      <!-- Icon -->
+      <div class="flex justify-center mb-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center shadow-md">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Heading -->
+      <h2 class="text-2xl md:text-3xl font-bold mb-3 tracking-tight">Stay Updated</h2>
+      
+      <!-- Description -->
+      <p class="text-gray-600 text-sm md:text-base max-w-md mx-auto leading-relaxed">
+        Get the latest tutorials, coding tips, and resources delivered to your inbox.
+      </p>
+    </div>
+
+    <!-- Newsletter Form -->
+    <div class="bg-gray-50 rounded-xl p-5 md:p-6 shadow-lg border border-gray-200">
+      <div class="flex flex-col sm:flex-row items-stretch gap-3">
+        <div class="flex-1">
+          <input
+            id="email-input"
+            type="email"
+            placeholder="Enter your email address"
+            class="w-full px-4 py-3 rounded-lg text-gray-900 bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-sm"
+          />
+        </div>
+        <button
+          id="subscribe-btn"
+          class="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 text-sm"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+          Subscribe
+        </button>
+      </div>
+      
+      <!-- Message Box -->
+      <div id="subscribe-message" class="text-center mt-3 text-xs font-medium min-h-[20px] transition-all duration-300"></div>
+      
+      <!-- Privacy Note -->
+      <p class="text-center text-gray-500 text-xs mt-3 opacity-80">
+        We respect your privacy. Unsubscribe at any time.
+      </p>
+    </div>
+
+    <!-- Decorative Elements -->
+    <div class="mt-8 flex justify-center">
+      <div class="h-1 w-12 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600 rounded-full"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const button = document.getElementById("subscribe-btn");
+      const emailInput = document.getElementById("email-input");
+      const messageBox = document.getElementById("subscribe-message");
+
+      // Add enter key support
+      emailInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          button.click();
+        }
+      });
+
+      button.addEventListener("click", async function () {
+        const email = emailInput.value.trim();
+        messageBox.textContent = "";
+        messageBox.className = "text-center mt-3 text-xs font-medium min-h-[20px] transition-all duration-300";
+
+        if (!email) {
+          showMessage("Please enter an email address.", "text-red-600");
+          emailInput.focus();
+          return;
+        }
+
+        // Simple email validation
+        if (!isValidEmail(email)) {
+          showMessage("Please enter a valid email address.", "text-red-600");
+          emailInput.focus();
+          return;
+        }
+
+        // Show loading state
+        const originalText = button.innerHTML;
+        button.innerHTML = `
+          <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Processing...
+        `;
+        button.disabled = true;
+
+        try {
+          const response = await fetch("{% url 'subscriptions:subscribe' %}", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "X-CSRFToken": getCookie("csrftoken"),
+            },
+            body: new URLSearchParams({ email: email }),
+          });
+
+          const data = await response.json();
+
+          if (data.status === "success") {
+            showMessage(data.message, "text-green-600");
+            emailInput.value = "";
+          } else if (data.status === "info") {
+            showMessage(data.message, "text-yellow-600");
+          } else {
+            showMessage(data.message, "text-red-600");
+          }
+        } catch (error) {
+          showMessage("Something went wrong. Please try again.", "text-red-600");
+        } finally {
+          // Reset button state
+          button.innerHTML = originalText;
+          button.disabled = false;
+        }
+      });
+
+      // Helper: Show message and auto-hide
+      function showMessage(text, colorClass) {
+        messageBox.textContent = text;
+        messageBox.className = `text-center mt-3 text-xs font-semibold ${colorClass} min-h-[20px] transition-all duration-300`;
+        messageBox.style.opacity = "1";
+
+        setTimeout(() => {
+          messageBox.style.transition = "opacity 1s ease";
+          messageBox.style.opacity = "0";
+        }, 5000);
+      }
+
+      // Helper: Email validation
+      function isValidEmail(email) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+      }
+
+      // Helper: Get CSRF token
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          const cookies = document.cookie.split(";");
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+    });
+  </script>
+</section>

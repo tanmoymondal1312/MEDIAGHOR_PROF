@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainbow Tools - App for Sale | Media Ghor</title>
+    <meta name="description" content="Rainbow Tools Android app for sale. Complete source code with advanced image processing features.">
+    
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest'%}">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .sale-badge {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .screenshot-hover { transition: all 0.3s ease; }
+        .screenshot-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        /* Fix for email text overflow */
+        .email-text {
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    {% include 'partials/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <section class="gradient-bg text-white py-14">
+            <div class="container mx-auto px-4 text-center">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Sale Badge -->
+                    <div class="mb-6">
+                        <span class="sale-badge text-white px-6 py-2 rounded-full font-bold text-lg inline-block">
+                            <i class="fas fa-tag mr-2"></i>APP FOR SALE
+                        </span>
+                    </div>
+
+                    <!-- App Logo & Name -->
+                    <div class="flex items-center justify-center gap-4 mb-6">
+                        <img src="{% static 'images/our_products/rainbow_tools/rainbowtools_logo.png' %}" 
+                             alt="Rainbow Tools Logo" 
+                             class="w-16 h-16 rounded-xl shadow-lg">
+                        <h1 class="text-4xl md:text-5xl font-black">Rainbow Tools</h1>
+                    </div>
+
+                    <!-- Status Notice -->
+                    <p class="text-xl md:text-2xl font-semibold mb-3 text-yellow-200">
+                        ⚠️ Currently Not Available on Play Store
+                    </p>
+                    <p class="text-md md:text-lg mb-8 opacity-90 max-w-2xl mx-auto italic">
+                        Due to high backend maintenance cost, we decided to make this app available for direct purchase.
+                    </p>
+
+                    <p class="text-lg mb-8 opacity-80 max-w-3xl mx-auto">
+                        Advanced image processing Android app with AI-powered background removal, OCR, file conversion, and image enhancement — complete source code included.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Selling Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                        Why Are We Selling?
+                    </h2>
+                    <p class="text-gray-600 text-lg">
+                        The app requires continuous backend hosting and image processing servers, 
+                        which increase operational costs. To ensure its future development and reach, 
+                        we're offering the full project to a new owner or developer team.
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 max-w-2xl mx-auto shadow-sm">
+                    <ul class="text-left text-gray-700 space-y-3">
+                        <li><i class="fas fa-server text-purple-600 mr-2"></i> High backend (AI model) running cost</li>
+                        <li><i class="fas fa-dollar-sign text-green-600 mr-2"></i> Looking for serious buyers or resellers</li>
+                        <li><i class="fas fa-code text-blue-600 mr-2"></i> Full source code with backend & models included</li>
+                        <li><i class="fas fa-handshake text-yellow-500 mr-2"></i> Transfer of project ownership available</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                        Contact for Purchase
+                    </h2>
+                    <p class="text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
+                        Interested in acquiring Rainbow Tools? Contact us for full project details and transfer process.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-3 gap-8 mb-12">
+                        <div class="bg-white p-6 rounded-2xl shadow-lg">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-phone text-blue-600 text-xl"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800 mb-2">Call Us</h3>
+                            <a href="tel:+8801736008374" class="text-blue-600 hover:text-blue-800 text-lg font-semibold email-text">
+                                +88 01736008374
+                            </a>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-2xl shadow-lg">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-envelope text-green-600 text-xl"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800 mb-2">Business Email</h3>
+                            <a href="mailto:contact@mediaghor.com" class="text-green-600 hover:text-green-800 text-lg font-semibold email-text">
+                                contact@mediaghor.com
+                            </a>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-2xl shadow-lg">
+                            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-user-shield text-purple-600 text-xl"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800 mb-2">Direct Admin</h3>
+                            <a href="mailto:tanmoymondal1315@gmail.com" class="text-purple-600 hover:text-purple-800 text-lg font-semibold email-text">
+                                tanmoymondal1315@gmail.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    {% include 'partials/footer.html' %}
+</body>
+</html>

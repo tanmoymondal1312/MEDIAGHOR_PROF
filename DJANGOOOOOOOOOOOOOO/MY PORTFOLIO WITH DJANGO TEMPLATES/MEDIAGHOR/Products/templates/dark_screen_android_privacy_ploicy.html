@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Dark Screen | Media Ghor</title>
+    <meta name="description" content="Privacy Policy for Dark Screen - Privacy & Eye Comfort. Learn how we protect your data and privacy in our Android application.">
+    <meta name="keywords" content="Dark Screen privacy policy, Media Ghor privacy, Android app privacy, data protection, screen dimmer privacy, GDPR compliance">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Privacy Policy - Dark Screen | Media Ghor">
+    <meta property="og:description" content="Privacy Policy for Dark Screen - Privacy & Eye Comfort. Learn how we protect your data and privacy.">
+    <meta property="og:url" content="https://mediaghor.com/privacy/dark-screen/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mediaghor.com/static/images/our_products/dark_screen_logo.png">
+    <meta property="og:site_name" content="Media Ghor">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mediaghor.com/privacy/dark-screen/">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest'%}">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="Media Ghor">
+    <meta name="theme-color" content="#3B82F6">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #3B82F6, #10B981, #8B5CF6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .privacy-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid #3B82F6;
+        }
+        
+        .privacy-highlight {
+            background: linear-gradient(135deg, #3B82F6, #10B981);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+        
+        .info-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .last-updated {
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .privacy-section {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .mobile-padding {
+                padding: 1rem !important;
+            }
+        }
+        
+        /* Table Styling */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+        
+        .data-table th {
+            background: #3B82F6;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        .data-table tr:hover {
+            background: #f1f5f9;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen font-inter">
+    <!-- Navigation -->
+    {% include 'partials/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-20">
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 text-white py-12 md:py-16">
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div class="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full"></div>
+                <div class="absolute -bottom-16 -left-16 w-48 h-48 bg-white/10 rounded-full"></div>
+            </div>
+            
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <!-- Breadcrumb -->
+                <nav class="flex justify-center mb-6" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-3 text-sm">
+                        <li class="inline-flex items-center">
+                            <a href="{% url 'home'%}" class="inline-flex items-center font-medium text-blue-200 hover:text-white transition-colors duration-300">
+                                <i class="fas fa-home mr-2" aria-hidden="true"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li class="inline-flex items-center">
+                            <i class="fas fa-chevron-right text-blue-200 mx-2" aria-hidden="true"></i>
+                            <a href="{% url 'products:all_products' %}" class="inline-flex items-center font-medium text-blue-200 hover:text-white transition-colors duration-300">
+                                Products
+                            </a>
+                        </li>
+                        <li class="inline-flex items-center">
+                            <i class="fas fa-chevron-right text-blue-200 mx-2" aria-hidden="true"></i>
+                            <a href="{% url 'products:dark_screen_android'%}" class="inline-flex items-center font-medium text-blue-200 hover:text-white transition-colors duration-300">
+                                Dark Screen
+                            </a>
+                        </li>
+                        <li aria-current="page">
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-blue-200 mx-2" aria-hidden="true"></i>
+                                <span class="font-medium text-white">Privacy Policy</span>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+
+                <div class="flex items-center justify-center gap-4 mb-6">
+                    <img src="{% static 'images/our_products/dark_screen/dark_screen_logo.png' %}" alt="Dark Screen Logo" class="w-16 h-16 rounded-xl shadow-lg">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-black">
+                        Privacy Policy
+                    </h1>
+                </div>
+                <p class="text-lg md:text-xl opacity-90 max-w-3xl mx-auto">
+                    For Dark Screen - Privacy & Eye Comfort
+                </p>
+            </div>
+        </section>
+
+        <!-- Last Updated Notice -->
+        <section class="py-8">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <div class="last-updated animate-fade-in-up">
+                    <div class="flex items-start">
+                        <i class="fas fa-info-circle text-yellow-500 text-xl mt-1 mr-3" aria-hidden="true"></i>
+                        <div>
+                            <h3 class="font-bold text-gray-800 mb-1">Last Updated: December 1, 2023</h3>
+                            <p class="text-gray-700">This privacy policy describes how Media Ghor ("we", "our", or "us") collects, uses, and shares information about you when you use our Android application "Dark Screen - Privacy & Eye Comfort" (the "App").</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Privacy Policy Content -->
+        <section class="py-8 pb-16">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <!-- Introduction -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-shield-alt text-blue-500 mr-3" aria-hidden="true"></i>
+                        Introduction
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        At Media Ghor, we take your privacy seriously. This Privacy Policy explains how we handle your information when you use our Dark Screen application. We are committed to being transparent about our privacy practices and ensuring your data is protected.
+                    </p>
+                    <p class="text-gray-700">
+                        Dark Screen is designed to provide eye comfort and privacy by dimming your screen with a dark overlay while allowing your apps to continue running in the background. By using Dark Screen, you agree to the collection and use of information in accordance with this policy. We do not collect personal information unless you voluntarily provide it to us.
+                    </p>
+                </div>
+
+                <!-- Key Privacy Highlights -->
+                <div class="privacy-highlight animate-fade-in-up">
+                    <h3 class="text-xl font-bold mb-4 text-center">Our Privacy Commitment</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-ban text-white mr-3 text-xl" aria-hidden="true"></i>
+                            <span>No Personal Data Collection</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-user-secret text-white mr-3 text-xl" aria-hidden="true"></i>
+                            <span>No Data Sharing with Third Parties</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-lock text-white mr-3 text-xl" aria-hidden="true"></i>
+                            <span>Local-Only Processing</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-eye-slash text-white mr-3 text-xl" aria-hidden="true"></i>
+                            <span>No Screen Content Access</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Information We Collect -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-database text-blue-500 mr-3" aria-hidden="true"></i>
+                        Information We Collect
+                    </h2>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Data Collection Summary</h3>
+                    <p class="text-gray-700 mb-4">
+                        Dark Screen is designed with privacy in mind. We collect minimal information necessary for the app to function properly:
+                    </p>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Data Type</th>
+                                    <th>Collected</th>
+                                    <th>Purpose</th>
+                                    <th>Storage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Personal Information</td>
+                                    <td><span class="text-red-500 font-bold">No</span></td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>Device Information</td>
+                                    <td><span class="text-green-500 font-bold">Limited</span></td>
+                                    <td>App functionality</td>
+                                    <td>Device only</td>
+                                </tr>
+                                <tr>
+                                    <td>Usage Analytics</td>
+                                    <td><span class="text-yellow-500 font-bold">Optional</span></td>
+                                    <td>App improvement</td>
+                                    <td>Anonymous & aggregated</td>
+                                </tr>
+                                <tr>
+                                    <td>Location Data</td>
+                                    <td><span class="text-red-500 font-bold">No</span></td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>Contact Information</td>
+                                    <td><span class="text-red-500 font-bold">No</span></td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mt-8 mb-3">Required Permissions</h3>
+                    <p class="text-gray-700 mb-4">
+                        Dark Screen requires certain permissions to function properly. Here's why we need them:
+                    </p>
+                    
+                    <div class="info-box">
+                        <h4 class="font-bold text-gray-800 mb-2">SYSTEM_ALERT_WINDOW Permission</h4>
+                        <p class="text-gray-700 mb-2">This permission allows Dark Screen to display the dark screen overlay on top of other applications for privacy and eye comfort purposes.</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li><strong>Purpose:</strong> To create the dark screen overlay for eye comfort and privacy</li>
+                            <li><strong>Data Accessed:</strong> None - only display capability</li>
+                            <li><strong>Data Stored:</strong> None</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4 class="font-bold text-gray-800 mb-2">Notification Permission</h4>
+                        <p class="text-gray-700 mb-2">This permission allows Dark Screen to show persistent notifications when the dark overlay is active, helping you manage and control the screen dimming functionality.</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li><strong>Purpose:</strong> To provide ongoing control and status of the dark screen overlay</li>
+                            <li><strong>Data Accessed:</strong> None - only notification display capability</li>
+                            <li><strong>Data Stored:</strong> None</li>
+                            <li><strong>Usage:</strong> Shows active overlay status and quick access to turn off the dark screen</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h4 class="font-bold text-gray-800 mb-2">Other Functionality Permissions</h4>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li><strong>Internet Access:</strong> For optional crash reporting and analytics (disabled by default)</li>
+                            <li><strong>Foreground Service:</strong> To keep the dark screen overlay active when needed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- How We Use Information -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-cogs text-blue-500 mr-3" aria-hidden="true"></i>
+                        How We Use Information
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        Any information we collect is used solely for the purpose of providing and improving the Dark Screen application:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li>To provide the core functionality of displaying a dark screen overlay for eye comfort and privacy</li>
+                        <li>To maintain app stability and prevent crashes</li>
+                        <li>To improve user experience through optional, anonymous usage statistics</li>
+                        <li>To respond to user support requests when voluntarily contacted</li>
+                    </ul>
+                    
+                    <div class="info-box mt-4">
+                        <h4 class="font-bold text-gray-800 mb-2">Important Note</h4>
+                        <p class="text-gray-700">
+                            Dark Screen <strong>does not</strong> and <strong>cannot</strong> access or view your screen content, personal data, or any sensitive information. The overlay is purely visual and does not have the capability to interact with or capture what's displayed beneath it. The app is designed solely for providing screen dimming functionality for eye comfort and privacy.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Data Sharing and Disclosure -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-share-alt text-blue-500 mr-3" aria-hidden="true"></i>
+                        Data Sharing and Disclosure
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        We do not sell, trade, or otherwise transfer your information to third parties. The only exceptions are:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li><strong>Legal Requirements:</strong> If required by law or in response to valid legal process</li>
+                        <li><strong>Service Providers:</strong> Trusted third parties who assist us in operating our app (e.g., crash reporting services), subject to strict data protection obligations</li>
+                        <li><strong>Business Transfers:</strong> In connection with a merger, acquisition, or sale of assets</li>
+                    </ul>
+                    
+                    <div class="privacy-highlight mt-4">
+                        <h4 class="font-bold text-center mb-2">No Advertising Networks</h4>
+                        <p class="text-center">
+                            Dark Screen does not integrate with any advertising networks and does not display third-party advertisements.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Data Security -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-lock text-blue-500 mr-3" aria-hidden="true"></i>
+                        Data Security
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        We implement appropriate technical and organizational measures to protect any information we process. However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.
+                    </p>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Our Security Measures</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li>Minimal data collection principle</li>
+                        <li>Local processing of information where possible</li>
+                        <li>Regular security reviews of our code and infrastructure</li>
+                        <li>Use of secure communication protocols when data transmission is necessary</li>
+                    </ul>
+                </div>
+
+                <!-- User Rights -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-user-check text-blue-500 mr-3" aria-hidden="true"></i>
+                        Your Rights and Choices
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        Depending on your location, you may have certain rights regarding your personal information:
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-4 mt-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-gray-800 mb-2">Access and Control</h4>
+                            <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                <li>Right to access your personal data</li>
+                                <li>Right to correct inaccurate data</li>
+                                <li>Right to delete your data</li>
+                                <li>Right to restrict or object to processing</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-gray-800 mb-2">Practical Actions</h4>
+                            <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                <li>Uninstall the app to remove all local data</li>
+                                <li>Disable optional analytics in app settings</li>
+                                <li>Contact us with privacy concerns</li>
+                                <li>Revoke app permissions via device settings</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="info-box mt-4">
+                        <h4 class="font-bold text-gray-800 mb-2">For EU Users (GDPR)</h4>
+                        <p class="text-gray-700">
+                            If you are located in the European Economic Area (EEA), you have certain rights under the General Data Protection Regulation (GDPR). Since we collect minimal personal data, most of these rights don't apply, but we're committed to honoring them where relevant.
+                        </p>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h4 class="font-bold text-gray-800 mb-2">For California Users (CCPA)</h4>
+                        <p class="text-gray-700">
+                            The California Consumer Privacy Act (CCPA) provides California residents with specific rights regarding their personal information. As we don't sell personal data and collect minimal information, many CCPA provisions don't apply to our app.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Children's Privacy -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-child text-blue-500 mr-3" aria-hidden="true"></i>
+                        Children's Privacy
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        Dark Screen is not directed to children under the age of 13, and we do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us, and we will take steps to delete such information.
+                    </p>
+                    
+                    <div class="info-box">
+                        <h4 class="font-bold text-gray-800 mb-2">COPPA Compliance</h4>
+                        <p class="text-gray-700">
+                            Our app complies with the Children's Online Privacy Protection Act (COPPA). We do not specifically market to children under 13, and our data collection practices are designed to minimize any potential impact on children's privacy.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- International Data Transfers -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-globe text-blue-500 mr-3" aria-hidden="true"></i>
+                        International Data Transfers
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        Your information may be transferred to and maintained on computers located outside of your state, province, country, or other governmental jurisdiction where the data protection laws may differ from those of your jurisdiction.
+                    </p>
+                    <p class="text-gray-700">
+                        Since we collect minimal data and primarily process it locally on your device, international data transfers are limited. Any data that is transferred internationally (such as optional crash reports) is protected through appropriate safeguards.
+                    </p>
+                </div>
+
+                <!-- Changes to This Policy -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-sync-alt text-blue-500 mr-3" aria-hidden="true"></i>
+                        Changes to This Policy
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date at the top of this policy.
+                    </p>
+                    <p class="text-gray-700">
+                        You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
+                    </p>
+                    
+                    <div class="info-box mt-4">
+                        <h4 class="font-bold text-gray-800 mb-2">Notification of Material Changes</h4>
+                        <p class="text-gray-700">
+                            If we make material changes to this policy, we will provide a more prominent notice, such as an in-app notification or email (if you've provided your contact information).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="privacy-section animate-fade-in-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-envelope text-blue-500 mr-3" aria-hidden="true"></i>
+                        Contact Us
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        If you have any questions or concerns about this Privacy Policy or our data practices, please contact us:
+                    </p>
+                    
+                    <div class="bg-blue-50 border border-blue-200 rounded-xl p-6">
+                        <div class="flex items-start mb-4">
+                            <i class="fas fa-building text-blue-500 mt-1 mr-3" aria-hidden="true"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Media Ghor</h4>
+                                <p class="text-gray-700">Software Development Company</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-4">
+                            <i class="fas fa-envelope text-blue-500 mt-1 mr-3" aria-hidden="true"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Email</h4>
+                                <a href="mailto:privacy@mediaghor.com" class="text-blue-600 hover:text-blue-800">privacy@mediaghor.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i class="fas fa-globe text-blue-500 mt-1 mr-3" aria-hidden="true"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Website</h4>
+                                <a href="https://mediaghor.com" class="text-blue-600 hover:text-blue-800">https://mediaghor.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-gray-100 rounded-lg">
+                        <p class="text-gray-700 text-sm">
+                            <strong>Response Time:</strong> We strive to respond to all privacy-related inquiries within 7 business days.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Additional Resources -->
+                <div class="text-center mt-12">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Additional Resources</h3>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="/products/dark-screen" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2">
+                            <i class="fas fa-arrow-left" aria-hidden="true"></i> Back to Dark Screen
+                        </a>
+                        <a href="/terms" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2">
+                            <i class="fas fa-file-contract" aria-hidden="true"></i> Terms of Service
+                        </a>
+                        <a href="/contact" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2">
+                            <i class="fas fa-headset" aria-hidden="true"></i> Contact Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% include 'partials/newsletter.html' %}
+    </main>
+
+    <!-- Footer -->
+    {% include 'partials/footer.html' %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Add animation to elements
+            const observerOptions = {
+                threshold: 0.05,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+            
+            // Update last updated date dynamically
+            const lastUpdatedElement = document.querySelector('.last-updated h3');
+            if (lastUpdatedElement) {
+                const currentDate = new Date().toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+                lastUpdatedElement.textContent = `Last Updated: ${currentDate}`;
+            }
+        });
+    </script>
+</body>
+</html>

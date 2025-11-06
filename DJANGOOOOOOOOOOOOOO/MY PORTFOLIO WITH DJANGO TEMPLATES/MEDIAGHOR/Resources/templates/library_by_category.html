@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% if category %}
+            {{category.name}} Resources - Free Programming Tools & Libraries | Media Ghor
+        {% elif is_all_resources %}
+            All Programming Resources & Libraries | Media Ghor
+        {% else %}
+            Category Not Found | Media Ghor Resources
+        {% endif %}
+    </title>
+    <meta name="description" content="
+        {% if category %}
+            Explore free {{category.name}} resources, libraries, and tools at Media Ghor. Download code snippets, tutorials, and development resources for your projects.
+        {% elif is_all_resources %}
+            Discover free programming resources, code libraries, and development tools at Media Ghor. Browse our complete collection of web development, mobile, database, and UI/UX resources.
+        {% else %}
+            The requested programming category was not found. Browse all available programming resources, libraries, and development tools at Media Ghor.
+        {% endif %}
+    ">
+    <meta name="keywords" content="
+        {% if category %}
+            {{category.name}}, programming resources, code libraries, free tools, web development, software development, coding tutorials, {{category.name}} libraries
+        {% elif is_all_resources %}
+            programming resources, code libraries, free tools, web development, mobile development, database, software development, coding tutorials, programming libraries
+        {% else %}
+            programming resources, code libraries, development tools, web development, mobile development, database
+        {% endif %}
+    ">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="
+        {% if category %}
+            {{category.name}} Resources - Free Programming Tools | Media Ghor
+        {% elif is_all_resources %}
+            All Programming Resources & Libraries | Media Ghor
+        {% else %}
+            Category Not Found | Media Ghor Resources
+        {% endif %}
+    ">
+    <meta property="og:description" content="
+        {% if category %}
+            Discover free {{category.name}} resources, code libraries, and development tools at Media Ghor. Perfect for developers and programmers.
+        {% elif is_all_resources %}
+            Browse our complete collection of free programming resources, code libraries, and development tools for all technologies at Media Ghor.
+        {% else %}
+            The requested programming category was not found. Explore all available programming resources and libraries at Media Ghor.
+        {% endif %}
+    ">
+    <meta property="og:url" content="https://mediaghor.com/
+        {% if category %}
+            resources/category={{category.slug}}
+        {% elif is_all_resources %}
+            resources
+        {% else %}
+            resources
+        {% endif %}
+    ">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mediaghor.com/static/images/resources-logo.png">
+    <meta property="og:site_name" content="Media Ghor">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="
+        {% if category %}
+            {{category.name}} Resources - Free Programming Tools | Media Ghor
+        {% elif is_all_resources %}
+            All Programming Resources | Media Ghor
+        {% else %}
+            Category Not Found | Media Ghor
+        {% endif %}
+    ">
+    <meta name="twitter:description" content="
+        {% if category %}
+            Free {{category.name}} resources, libraries, and development tools for programmers at Media Ghor.
+        {% elif is_all_resources %}
+            Complete collection of free programming resources, libraries, and development tools for all technologies.
+        {% else %}
+            Requested category not found. Browse all programming resources at Media Ghor.
+        {% endif %}
+    ">
+    <meta name="twitter:image" content="https://mediaghor.com/static/images/resources-logo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mediaghor.com/
+        {% if category %}
+            resources/category={{category.slug}}
+        {% elif is_all_resources %}
+            resources
+        {% else %}
+            resources
+        {% endif %}
+    ">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest'%}">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="{% if error_message %}noindex, follow{% else %}index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1{% endif %}">
+    <meta name="author" content="Media Ghor">
+    <meta name="theme-color" content="#3B82F6">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "{% if category %}CollectionPage{% elif is_all_resources %}ItemList{% else %}WebPage{% endif %}",
+        "name": "{% if category %}{{category.name}} Resources - Media Ghor{% elif is_all_resources %}All Programming Resources - Media Ghor{% else %}Category Not Found - Media Ghor Resources{% endif %}",
+        "description": "{% if category %}Free {{category.name}} programming resources, code libraries, and development tools{% elif is_all_resources %}Complete collection of free programming resources, code libraries, and development tools for all technologies{% else %}The requested programming category was not found. Browse all available programming resources.{% endif %}",
+        "url": "https://mediaghor.com/{% if category %}resources/{{category.slug}}{% else %}resources{% endif %}",
+        {% if not error_message %}
+        "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": {{paginator.count|default:0}},
+            "itemListOrder": "Descending",
+            "itemListElement": [
+                {% for data in services_datas %}
+                {
+                    "@type": "ListItem",
+                    "position": {{forloop.counter}},
+                    "item": {
+                        "@type": "CreativeWork",
+                        "name": "{{data.title|escapejs}}",
+                        "description": "{{data.description|truncatewords:20|escapejs}}",
+                        "url": "https://mediaghor.com{% if data.is_for_libraries %}{% url 'resources:library_detail' id=data.id %}{% else %}{% url 'blogs:post_detail' id=data.id %}{% endif %}"
+                    }
+                }{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ]
+        },
+        {% endif %}
+        "publisher": {
+            "@type": "Organization",
+            "name": "Media Ghor",
+            "url": "https://mediaghor.com",
+            "logo": "https://mediaghor.com/static/images/logo.png"
+        }
+    }
+    </script>
+    
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradientFlow 3s ease infinite;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #2563eb, #7c3aed);
+        }
+
+        /* Smooth transitions */
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+
+        /* Search suggestions styling */
+        #searchSuggestions {
+            background-color: white;
+            color: #333;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-radius: 12px;
+            overflow: hidden;
+            z-index: 1000;
+        }
+        
+        #searchSuggestions div {
+            color: #2d3748;
+            transition: all 0.2s ease;
+        }
+        
+        #searchSuggestions div:hover {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+        }
+
+        /* Loading animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen font-inter">
+    <!-- Navigation -->
+    {% include 'partials/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-20">
+        <!-- Error State - Category Not Found -->
+        {% if error_message and not category and not is_all_resources %}
+        <section class="bg-gradient-to-r from-red-500 to-orange-600 text-white py-12 md:py-16">
+            <div class="container mx-auto px-4 text-center">
+                <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-exclamation-triangle text-3xl"></i>
+                </div>
+                <h1 class="text-3xl md:text-5xl font-black mb-4 animate-fade-in">
+                    Category Not Found
+                </h1>
+                <p class="text-lg md:text-xl mb-6 opacity-90 max-w-2xl mx-auto">
+                    {{ error_message }}
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="{% url 'resources:category_resources' %}" class="bg-white text-red-600 px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                        <i class="fas fa-arrow-left mr-2"></i>Browse All Resources
+                    </a>
+                    <a href="{% url 'home' %}" class="bg-white/20 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/30 transition duration-300 border border-white/30">
+                        <i class="fas fa-home mr-2"></i>Back to Home
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Categories Section for Error State -->
+        <section class="py-12 md:py-16">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Explore Available Categories</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Here are some popular categories you might be interested in</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <a href="{% url 'resources:single_category_resources' 'web' %}" class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-globe text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">Web Dev</span>
+                    </a>
+                    <a href="{% url 'resources:single_category_resources' 'mobile' %}" class="bg-gradient-to-br from-green-500 to-green-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-mobile-alt text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">Mobile</span>
+                    </a>
+                    <a href="{% url 'resources:single_category_resources' 'database' %}" class="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-database text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">Database</span>
+                    </a>
+                    <a href="{% url 'resources:single_category_resources' 'tools' %}" class="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-tools text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">Tools</span>
+                    </a>
+                    <a href="{% url 'resources:single_category_resources' 'ui-ux' %}" class="bg-gradient-to-br from-pink-500 to-pink-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-palette text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">UI/UX</span>
+                    </a>
+                    <a href="{% url 'resources:single_category_resources' 'devops' %}" class="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-server text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">DevOps</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Normal State - Category or All Resources -->
+        {% else %}
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 text-white py-12 md:py-16">
+            <div class="container mx-auto px-4 text-center">
+                <!-- Breadcrumb -->
+                <nav class="flex justify-center mb-6" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                        <li class="inline-flex items-center">
+                            <a href="/" class="inline-flex items-center text-sm font-medium text-blue-200 hover:text-white">
+                                <i class="fas fa-home mr-2"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-blue-200 mx-2"></i>
+                                <a href="{% url 'resources:category_resources' %}" class="text-sm font-medium text-blue-200 hover:text-white">Resources</a>
+                            </div>
+                        </li>
+                        {% if category %}
+                        <li aria-current="page">
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-blue-200 mx-2"></i>
+                                <span class="text-sm font-medium text-white">{{category.name}}</span>
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ol>
+                </nav>
+
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-black mb-4 animate-fade-in">
+                    <span class="bg-gradient-to-r from-yellow-300 to-yellow-400 bg-clip-text text-transparent">
+                        {% if category %}
+                            Free {{category.name}} Resources
+                        {% else %}
+                            Free Programming Resources 
+                        {% endif %}
+                    </span>
+                </h1>
+                <p class="text-lg md:text-xl lg:text-2xl mb-6 opacity-90 max-w-3xl mx-auto leading-relaxed">
+                    {% if category %}
+                        Discover free {{category.name}} libraries, tools, and code snippets for your development projects
+                    {% else %}
+                        Browse our complete collection of free programming resources, libraries, and development tools
+                    {% endif %}
+                </p>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
+                        <span class="text-sm md:text-base">
+                            <i class="fas fa-boxes mr-2"></i>
+                            {% if services_datas %}
+                                {{paginator.count}} Resources Available
+                            {% else %}
+                                No Resources Available
+                            {% endif %}
+                        </span>
+                    </div>
+                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
+                        <span class="text-sm md:text-base"><i class="fas fa-download mr-2"></i>Free to Use</span>
+                    </div>
+                    {% if not category and is_all_resources %}
+                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
+                        <span class="text-sm md:text-base"><i class="fas fa-layer-group mr-2"></i>All Categories</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Empty State - No Resources Found -->
+        {% if not services_datas %}
+        <section class="py-12 md:py-16">
+            <div class="container mx-auto px-4">
+                <div class="bg-white rounded-2xl shadow-lg p-8 text-center max-w-2xl mx-auto">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-inbox text-blue-500 text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                        {% if category %}
+                            No {{category.name}} Resources Yet
+                        {% else %}
+                            No Resources Available
+                        {% endif %}
+                    </h2>
+                    <p class="text-gray-600 mb-6">
+                        {% if category %}
+                            We're working on adding resources for "{{category.name}}". Check back soon or browse other categories.
+                        {% else %}
+                            Our resource library is currently empty. We're working on adding amazing resources for you!
+                        {% endif %}
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="{% url 'resources:category_resources' %}" class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-xl font-semibold hover:from-blue-600 hover:to-purple-600 transition duration-300 transform hover:scale-105">
+                            <i class="fas fa-arrow-left mr-2"></i>Browse All Resources
+                        </a>
+                        <a href="/request-resource" class="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-green-600 hover:to-green-700 transition duration-300 transform hover:scale-105">
+                            <i class="fas fa-plus-circle mr-2"></i>Request Resource
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Categories Section for Empty State -->
+        <section class="py-12 md:py-16 bg-white/50 backdrop-blur-sm">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Explore Other Categories</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Check out these popular categories with available resources</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <a href="{% url 'resources:single_category_resources' 'web' %}" class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-globe text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">Web Dev</span>
+                    </a>
+                    <a href="{% url 'resources:single_category_resources' 'mobile' %}" class="bg-gradient-to-br from-green-500 to-green-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-mobile-alt text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">Mobile</span>
+                    </a>
+                    <a href="{% url 'resources:single_category_resources' 'database' %}" class="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-database text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">Database</span>
+                    </a>
+                    <a href="{% url 'resources:single_category_resources' 'tools' %}" class="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-tools text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">Tools</span>
+                    </a>
+                    <a href="{% url 'resources:single_category_resources' 'ui-ux' %}" class="bg-gradient-to-br from-pink-500 to-pink-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-palette text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">UI/UX</span>
+                    </a>
+                    <a href="{% url 'resources:single_category_resources' 'devops' %}" class="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-server text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">DevOps</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section - When Resources Exist -->
+        {% else %}
+        <section id="resources-section" class="py-12 md:py-16">
+            <div class="container mx-auto px-4">
+                <!-- Stats and Filter Bar -->
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
+                    <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                        <div class="bg-white rounded-2xl shadow-lg px-4 py-3">
+                            <span class="text-sm text-gray-600">
+                                Showing <span class="font-semibold text-blue-600">{{services_datas.start_index}}–{{services_datas.end_index}}</span> 
+                                of <span class="font-semibold text-purple-600">{{paginator.count}}</span> items
+                            </span>
+                        </div>
+                        {% if category %}
+                        <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-3 rounded-2xl shadow-lg">
+                            <span class="text-sm font-semibold flex items-center gap-2">
+                                <i class="fas fa-tag"></i>
+                                {{category.name}}
+                            </span>
+                        </div>
+                        {% else %}
+                        <div class="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-3 rounded-2xl shadow-lg">
+                            <span class="text-sm font-semibold flex items-center gap-2">
+                                <i class="fas fa-layer-group"></i>
+                                All Categories
+                            </span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Search and Sort -->
+                    <div class="flex gap-3">
+                        <div class="bg-white rounded-2xl shadow-lg px-4 py-3">
+                            <span class="text-sm text-gray-600 flex items-center gap-2">
+                                <i class="fas fa-sort-amount-down-alt mr-1"></i>
+                                Most Popular
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resources Grid -->
+                <div class="mb-12">
+                    {% include 'partials/global_card.html' %}
+                </div>
+
+                <!-- Enhanced Pagination -->
+                {% if paginator.num_pages > 1 %}
+                <div class="flex justify-center">
+                    <nav class="flex items-center space-x-1 bg-white rounded-2xl shadow-lg p-2" aria-label="Pagination">
+                        <!-- First Page -->
+                        {% if services_datas.has_previous %}
+                            <a href="?page=1{% if search %}&search={{search|urlencode}}{% endif %}" class="min-w-[40px] h-10 flex items-center justify-center rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all duration-300 group" aria-label="First page">
+                                <i class="fas fa-angle-double-left text-sm group-hover:scale-110 transition-transform"></i>
+                            </a>
+                        {% else %}
+                            <span class="min-w-[40px] h-10 flex items-center justify-center rounded-xl bg-gray-100 text-gray-400 cursor-not-allowed" aria-hidden="true">
+                                <i class="fas fa-angle-double-left text-sm"></i>
+                            </span>
+                        {% endif %}
+
+                        <!-- Previous Page -->
+                        {% if services_datas.has_previous %}
+                            <a href="?page={{ services_datas.previous_page_number }}{% if search %}&search={{search|urlencode}}{% endif %}" class="min-w-[40px] h-10 flex items-center justify-center rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all duration-300 group" aria-label="Previous page">
+                                <i class="fas fa-angle-left text-sm group-hover:scale-110 transition-transform"></i>
+                            </a>
+                        {% else %}
+                            <span class="min-w-[40px] h-10 flex items-center justify-center rounded-xl bg-gray-100 text-gray-400 cursor-not-allowed" aria-hidden="true">
+                                <i class="fas fa-angle-left text-sm"></i>
+                            </span>
+                        {% endif %}
+
+                        <!-- Page Numbers -->
+                        {% for num in page_range %}
+                            {% if services_datas.number == num %}
+                                <span class="min-w-[40px] h-10 flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-lg transform scale-105" aria-current="page">
+                                    {{ num }}
+                                </span>
+                            {% else %}
+                                <a href="?page={{ num }}{% if search %}&search={{search|urlencode}}{% endif %}" class="min-w-[40px] h-10 flex items-center justify-center rounded-xl bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 border border-gray-200 hover:border-blue-200" aria-label="Page {{ num }}">
+                                    {{ num }}
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+
+                        <!-- Next Page -->
+                        {% if services_datas.has_next %}
+                            <a href="?page={{ services_datas.next_page_number }}{% if search %}&search={{search|urlencode}}{% endif %}" class="min-w-[40px] h-10 flex items-center justify-center rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all duration-300 group" aria-label="Next page">
+                                <i class="fas fa-angle-right text-sm group-hover:scale-110 transition-transform"></i>
+                            </a>
+                        {% else %}
+                            <span class="min-w-[40px] h-10 flex items-center justify-center rounded-xl bg-gray-100 text-gray-400 cursor-not-allowed" aria-hidden="true">
+                                <i class="fas fa-angle-right text-sm"></i>
+                            </span>
+                        {% endif %}
+
+                        <!-- Last Page -->
+                        {% if services_datas.has_next %}
+                            <a href="?page={{ paginator.num_pages }}{% if search %}&search={{search|urlencode}}{% endif %}" class="min-w-[40px] h-10 flex items-center justify-center rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all duration-300 group" aria-label="Last page">
+                                <i class="fas fa-angle-double-right text-sm group-hover:scale-110 transition-transform"></i>
+                            </a>
+                        {% else %}
+                            <span class="min-w-[40px] h-10 flex items-center justify-center rounded-xl bg-gray-100 text-gray-400 cursor-not-allowed" aria-hidden="true">
+                                <i class="fas fa-angle-double-right text-sm"></i>
+                            </span>
+                        {% endif %}
+                    </nav>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+
+        <!-- Related Categories Section for Normal State -->
+        {% if category %}
+        <section class="py-12 md:py-16 bg-white/50 backdrop-blur-sm">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Explore More Categories</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Discover resources across different programming domains and technologies</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <a href="{% url 'resources:single_category_resources' 'web' %}" class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-globe text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">Web Dev</span>
+                    </a>
+                    <a href="{% url 'resources:single_category_resources' 'mobile' %}" class="bg-gradient-to-br from-green-500 to-green-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-mobile-alt text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">Mobile</span>
+                    </a>
+                    <a href="{% url 'resources:single_category_resources' 'database' %}" class="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-database text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">Database</span>
+                    </a>
+                    <a href="{% url 'resources:single_category_resources' 'tools' %}" class="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-tools text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">Tools</span>
+                    </a>
+                    <a href="{% url 'resources:single_category_resources' 'ui-ux' %}" class="bg-gradient-to-br from-pink-500 to-pink-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-palette text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">UI/UX</span>
+                    </a>
+                    <a href="{% url 'resources:single_category_resources' 'devops' %}" class="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white p-4 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-server text-2xl mb-2"></i>
+                        <span class="text-sm font-semibold">DevOps</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+        {% endif %}
+
+        <!-- CTA Section -->
+        <section class="py-16 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Can't Find What You're Looking For?</h2>
+                <p class="text-xl mb-8 max-w-2xl mx-auto">
+                    Request specific resources or contribute your own to help the programming community grow
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="{% url 'resources:request_resources_page' %}" class="bg-yellow-400 text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-yellow-300 transition duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-2">
+                        <i class="fas fa-plus-circle"></i> Request Resource
+                    </a>
+                    <a href="{% url 'resources:contribute_for_resources' %}" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white hover:text-purple-600 transition duration-300 inline-flex items-center gap-2">
+                        <i class="fas fa-hand-holding-heart"></i> Contribute
+                    </a>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+        {% include 'partials/newsletter.html' %}
+
+    </main>
+
+    <!-- Footer -->
+    {% include 'partials/footer.html' %}
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById('searchInput');
+        const searchSuggestions = document.getElementById('searchSuggestions');
+        let debounceTimer;
+        let currentRequest = null;
+
+        // Function to scroll to resources section
+        const scrollToResources = () => {
+            setTimeout(() => {
+                const resourcesSection = document.getElementById('resources-section');
+                if (resourcesSection) {
+                    resourcesSection.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }, 500);
+        };
+
+        // Check if there's a search parameter in URL on page load
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('search')) {
+            scrollToResources();
+        }
+
+        // Determine the current page context for API calls
+        const getPageContext = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            const path = window.location.pathname;
+            
+            if (path.includes('/resources/')) {
+                const categorySlug = path.split('/').pop();
+                return categorySlug + "_library";
+            }
+            return "all_library";
+        };
+
+        // Fetch suggestions from Django backend
+        const fetchSuggestions = async (query) => {
+            try {
+                if (currentRequest) {
+                    currentRequest.abort();
+                }
+                let page = "all";
+                {% if category %}
+                    page = "{{ category.slug }}";
+                {% endif %}
+
+                currentRequest = new AbortController();
+                const response = await fetch(
+                    `/api/search-suggestions/?q=${encodeURIComponent(query)}&page=${encodeURIComponent(page)}`,
+                    {
+                        signal: currentRequest.signal
+                    }
+                );
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const data = await response.json();
+                
+                if (data.results && Array.isArray(data.results)) {
+                    return data.results.map(item => {
+                        return typeof item === 'object' ? item.short_title : item;
+                    }).filter(Boolean);
+                }
+                return [];
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    console.error('Error fetching suggestions:', error);
+                }
+                return [];
+            } finally {
+                currentRequest = null;
+            }
+        };
+    
+        // Display suggestions dropdown
+        const showSuggestions = (titles) => {
+            searchSuggestions.innerHTML = '';
+    
+            if (!titles || titles.length === 0) {
+                searchSuggestions.classList.add('hidden');
+                return;
+            }
+    
+            titles.forEach(title => {
+                if (!title) return;
+                
+                const suggestion = document.createElement('div');
+                suggestion.className = 'px-4 py-3 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white cursor-pointer transition-all duration-300 border-b border-gray-100 last:border-b-0';
+                suggestion.textContent = title;
+                suggestion.setAttribute('role', 'option');
+                suggestion.setAttribute('aria-selected', 'false');
+                
+                suggestion.addEventListener('click', () => {
+                    const currentUrl = window.location.pathname;
+                    window.location.href = `${currentUrl}?search=${encodeURIComponent(title)}`;
+                    scrollToResources();
+                });
+                
+                searchSuggestions.appendChild(suggestion);
+            });
+    
+            searchSuggestions.classList.remove('hidden');
+        };
+    
+        // Handle input with debounce
+        searchInput.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            const query = searchInput.value.trim();
+            
+            if (query.length < 2) {
+                searchSuggestions.classList.add('hidden');
+                return;
+            }
+            
+            debounceTimer = setTimeout(async () => {
+                const suggestions = await fetchSuggestions(query);
+                showSuggestions(suggestions);
+            }, 300);
+        });
+    
+        // Close suggestions when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.bv-searchbox')) {
+                searchSuggestions.classList.add('hidden');
+            }
+        });
+    
+        // Handle search button click
+        const searchButton = document.querySelector('.bv-searchbox button');
+        if (searchButton) {
+            searchButton.addEventListener('click', () => {
+                const query = searchInput.value.trim();
+                if (query) {
+                    const currentUrl = window.location.pathname;
+                    window.location.href = `${currentUrl}?search=${encodeURIComponent(query)}`;
+                    scrollToResources();
+                }
+            });
+        }
+    
+        // Handle Enter key
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const query = searchInput.value.trim();
+                if (query) {
+                    const currentUrl = window.location.pathname;
+                    window.location.href = `${currentUrl}?search=${encodeURIComponent(query)}`;
+                    scrollToResources();
+                }
+            }
+        });
+
+        // Add scroll animation for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for scroll animation
+        document.querySelectorAll('.group').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+
+        // Add loading states for better UX
+        const allLinks = document.querySelectorAll('a');
+        allLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.getAttribute('href') && !link.getAttribute('href').startsWith('#')) {
+                    link.classList.add('animate-pulse-slow');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
